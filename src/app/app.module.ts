@@ -6,6 +6,7 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing/app-routing.module';
 import {PreEclampsiaCalcModule} from './pre-eclampsia-calc/pre-eclampsia-calc.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {PreEclampsiaCalcModule} from './pre-eclampsia-calc/pre-eclampsia-calc.mo
     AppRoutingModule,
     PreEclampsiaCalcModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
