@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pre-eclampsia-calc.component.css']
 })
 export class PreEclampsiaCalcComponent implements OnInit {
+  ga: number;
 
   constructor() { }
 

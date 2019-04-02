@@ -1,5 +1,89 @@
-<p>
-  pre-eclampsia-calc works!
-</p>
+<div fxLayout="column" fxLayout.gt-md="row">
 
-<button mat-button>Click me!</button>
+  <div>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Bishop Score</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div fxLayout="row">
+          <button mat-button>Click me!</button>
+          <button mat-button>Click me too!</button>
+          <button mat-button>Click me 3!</button>
+          <button mat-button>Click me four!</button>
+        </div>
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Gestational Age</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div fxLayout="row">
+          <mat-slider min="0" max="45" value="40" step="1" tickInterval="5" [(ngModel)]="ga"></mat-slider>
+          <mat-form-field>
+            <input matInput [(ngModel)]="ga" type="number">
+          </mat-form-field>
+        </div>
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Race</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div fxLayout="row">
+          <button mat-button>Click me!</button>
+          <button mat-button>Click me too!</button>
+          <button mat-button>Click me 3!</button>
+          <button mat-button>Click me four!</button>
+        </div>
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Prior Vaginal Delivery</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div fxLayout="row">
+          <button mat-button>Click me!</button>
+          <button mat-button>Click me too!</button>
+          <button mat-button>Click me 3!</button>
+          <button mat-button>Click me four!</button>
+        </div>
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Body Mass Index</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div fxLayout="row">
+          <button mat-button>Click me!</button>
+          <button mat-button>Click me too!</button>
+          <button mat-button>Click me 3!</button>
+          <button mat-button>Click me four!</button>
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </div>
+
+  <div>
+    <div fxLayout="row" fxLayoutAlign="space-between">
+      <button mat-button>Click me!</button>
+      <button mat-button>Click me too!</button>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between">
+      <button mat-button>Click me!</button>
+      <button mat-button>Click me too!</button>
+    </div>
+  </div>
+
+</div>
