@@ -9,6 +9,7 @@ import {PreEclampsiaCalcModule} from './pre-eclampsia-calc/pre-eclampsia-calc.mo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import {ButtonGroupModule} from './button-group/button-group.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
     MatListModule,
   ],
   providers: [],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -4,20 +4,34 @@
     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-panel-title>Bishop Score: {{dilationScore}}</mat-panel-title>
+          <mat-panel-title>Bishop Score: {{dilationScore}} {{effacementScore}} {{stationScore}}</mat-panel-title>
         </mat-expansion-panel-header>
 
-        <div fxLayout="row">
-          <button *ngFor="let label of dilationOptions; first as isFirst; last as isLast; index as i"
-                  mat-raised-button
-                  [class.first]="isFirst"
-                  [class.last]="isLast"
-                  [class.mat-primary]="i == dilationScore"
-                  class="horizontal-group"
-                  (click)="setDilationScore(i)"
-                  [innerHTML]="label"></button>
-        </div>
+        <table width="100%">
+          <tr>
+            <td>
+              <app-button-group [(value)]="dilationScore" [labels]="dilationOptions"></app-button-group>
+            </td>
+            <td fxHide fxShow.gt-xs class="score-cell">{{dilationScore}}</td>
+          </tr>
+          <tr>
+            <td>
+              <app-button-group [(value)]="effacementScore" [labels]="effacementOptions"></app-button-group>
+            </td>
+            <td fxHide fxShow.gt-xs class="score-cell">{{effacementScore}}</td>
+          </tr>
+          <tr>
+            <td>
+              <app-button-group [(value)]="stationScore" [labels]="stationOptions"></app-button-group>
+            </td>
+            <td fxHide fxShow.gt-xs class="score-cell">{{stationScore}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td fxHide fxShow.gt-xs class="score-cell">{{getBishopScore()}}</td>
 
+          </tr>
+        </table>
       </mat-expansion-panel>
 
       <mat-expansion-panel>

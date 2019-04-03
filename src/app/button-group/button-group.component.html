@@ -1,0 +1,10 @@
+<div fxLayout="row">
+  <button *ngFor="let label of labels; first as isFirst; last as isLast; index as i"
+          mat-raised-button
+          [class.first]="isFirst"
+          [class.last]="isLast"
+          [class.mat-primary]="i == value"
+          class="horizontal-group"
+          (click)="setValue(i)"
+          [innerHTML]="label"></button>
+</div>

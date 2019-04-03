@@ -31,4 +31,7 @@ export class PreEclampsiaCalcComponent implements OnInit {
     this.dilationScore = score;
   }
 
+  getBishopScore() {
+    return this.dilationScore + this.stationScore + this.effacementScore;
+  }
 }

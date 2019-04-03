@@ -1,0 +1,35 @@
+.mat-raised-button.horizontal-group {
+  border-radius: 0;
+  margin-left: 0;
+  margin-right: 0;
+  /*padding: 3px 15px 3px 15px;*/
+  min-width: 90px;
+}
+
+.mat-raised-button.horizontal-group.first {
+  border-radius: 10px 0 0 10px;
+}
+
+.mat-raised-button.horizontal-group.last {
+  border-radius: 0 10px 10px 0;
+}
+
+.mat-raised-button.vertical-group {
+  border-radius: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  /*padding: 3px 15px 3px 15px;*/
+  min-width: 150px;
+}
+
+.mat-raised-button.vertical-group.first {
+  border-radius: 10px 10px 0 0;
+}
+
+.mat-raised-button.vertical-group.last {
+  border-radius: 0 0 10px 10px;
+}
+
+.score-cell {
+  text-align: center;
+}
