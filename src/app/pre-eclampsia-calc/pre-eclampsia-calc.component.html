@@ -4,14 +4,18 @@
     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-panel-title>Bishop Score</mat-panel-title>
+          <mat-panel-title>Bishop Score: {{dilationScore}}</mat-panel-title>
         </mat-expansion-panel-header>
 
         <div fxLayout="row">
-          <button mat-button>Click me!</button>
-          <button mat-button>Click me too!</button>
-          <button mat-button>Click me 3!</button>
-          <button mat-button>Click me four!</button>
+          <button *ngFor="let label of dilationOptions; first as isFirst; last as isLast; index as i"
+                  mat-raised-button
+                  [class.first]="isFirst"
+                  [class.last]="isLast"
+                  [class.mat-primary]="i == dilationScore"
+                  class="horizontal-group"
+                  (click)="setDilationScore(i)"
+                  [innerHTML]="label"></button>
         </div>
 
       </mat-expansion-panel>
@@ -36,10 +40,10 @@
         </mat-expansion-panel-header>
 
         <div fxLayout="row">
-          <button mat-button>Click me!</button>
-          <button mat-button>Click me too!</button>
-          <button mat-button>Click me 3!</button>
-          <button mat-button>Click me four!</button>
+          <button mat-raised-button>Click me!</button>
+          <button mat-raised-button>Click me too!</button>
+          <button mat-raised-button>Click me 3!</button>
+          <button mat-raised-button>Click me four!</button>
         </div>
 
       </mat-expansion-panel>
