@@ -1,27 +1,44 @@
-<div fxLayout="column" fxLayout.gt-md="row">
+<mat-toolbar class="mat-accent">
+  Calculator to predict the likelihood of cesarean delivery after induction in the setting of preeclampsia
+</mat-toolbar>
+<div>
+  <mat-toolbar class="mat-accent">
+    <mat-toolbar-row>
+      <h4>Likelihood of Cesarean Delivery:</h4>
+      <div fxFlex></div>
+      <div class="calculator-result">{{100 * getBishopScore() | number : '0.'}}</div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-progress-bar mode="determinate" value="30"></mat-progress-bar>
+</div>
 
+<div fxLayout="column" fxLayout.gt-md="row">
   <div>
     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-panel-title>Bishop Score: {{dilationScore}} {{effacementScore}} {{stationScore}}</mat-panel-title>
+          <mat-panel-title>Bishop Score</mat-panel-title>
+          <mat-panel-description>{{getBishopScore()}}</mat-panel-description>
         </mat-expansion-panel-header>
 
         <table width="100%">
           <tr>
             <td>
+              <label class="button-group-label">Dilation</label>
               <app-button-group [(value)]="dilationScore" [labels]="dilationOptions"></app-button-group>
             </td>
             <td fxHide fxShow.gt-xs class="score-cell">{{dilationScore}}</td>
           </tr>
           <tr>
             <td>
+              <label class="button-group-label">Effacement</label>
               <app-button-group [(value)]="effacementScore" [labels]="effacementOptions"></app-button-group>
             </td>
             <td fxHide fxShow.gt-xs class="score-cell">{{effacementScore}}</td>
           </tr>
           <tr>
             <td>
+              <label class="button-group-label">Station</label>
               <app-button-group [(value)]="stationScore" [labels]="stationOptions"></app-button-group>
             </td>
             <td fxHide fxShow.gt-xs class="score-cell">{{stationScore}}</td>
@@ -37,6 +54,7 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>Gestational Age</mat-panel-title>
+          <mat-panel-description>{{ga}}</mat-panel-description>
         </mat-expansion-panel-header>
 
         <div fxLayout="row">
@@ -51,28 +69,20 @@
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>Race</mat-panel-title>
+          <mat-panel-description>{{getRace()}}</mat-panel-description>
         </mat-expansion-panel-header>
 
-        <div fxLayout="row">
-          <button mat-raised-button>Click me!</button>
-          <button mat-raised-button>Click me too!</button>
-          <button mat-raised-button>Click me 3!</button>
-          <button mat-raised-button>Click me four!</button>
-        </div>
+        <app-button-group [labels]="raceOptions" [(value)]="race"></app-button-group>
 
       </mat-expansion-panel>
 
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>Prior Vaginal Delivery</mat-panel-title>
+          <mat-panel-description>{{prior}}</mat-panel-description>
         </mat-expansion-panel-header>
 
-        <div fxLayout="row">
-          <button mat-button>Click me!</button>
-          <button mat-button>Click me too!</button>
-          <button mat-button>Click me 3!</button>
-          <button mat-button>Click me four!</button>
-        </div>
+        <mat-slide-toggle [(ngModel)]="prior">History of prior vaginal delivery</mat-slide-toggle>
 
       </mat-expansion-panel>
 

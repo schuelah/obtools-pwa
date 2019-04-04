@@ -11,16 +11,18 @@ export class PreEclampsiaCalcComponent implements OnInit {
   effacementScore = 0;
   stationScore = 0;
   ga = 40;
-  race = 'other';
+  race = 3;
   bmi = 20;
   prior = false;
 
   cm = 160;
   kg = 60;
 
-  dilationOptions = ['CLOSED', '1-2cm', '3-4cm', '&ge;5cm'];
+  dilationOptions = ['closed', '1-2cm', '3-4cm', '&ge;5cm'];
   effacementOptions = ['0-30%', '40-50%', '60-70%', '&ge;80%'];
   stationOptions = ['-3', '-2', '-1, 0', '+1, +2'];
+
+  raceOptions = ['White', 'Black', 'Hispanic', 'Other/Unknown'];
 
   constructor() { }
 
@@ -33,5 +35,9 @@ export class PreEclampsiaCalcComponent implements OnInit {
 
   getBishopScore() {
     return this.dilationScore + this.stationScore + this.effacementScore;
+  }
+
+  getRace() {
+    return this.raceOptions[this.race];
   }
 }
