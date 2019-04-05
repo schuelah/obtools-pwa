@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CalculatorComponent } from './calculator.component';
+import {MatProgressBarModule, MatToolbarModule} from '@angular/material';
+import {FlexModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [CalculatorComponent],
@@ -8,7 +10,10 @@ import { CalculatorComponent } from './calculator.component';
     CalculatorComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatToolbarModule,
+    MatProgressBarModule,
+    FlexModule
   ]
 })
 export class CalculatorModule { }

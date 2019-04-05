@@ -1,0 +1,33 @@
+@import '~src/uc.theme';
+
+.calculator-header {
+  background-color: mat-color($uc-theme-accent);
+  color: mat-color($uc-theme-accent, default-contrast);
+  box-sizing: border-box;
+  padding: 16px;
+}
+
+.calculator-header h1 {
+  font-size: 1.7em;
+}
+
+.calculator-result-row {
+  align-items: center;
+}
+
+.calculator-result-row h3 {
+  font-size: 1.4em;
+  margin: 0;
+  font-weight: 400;
+}
+
+.calculator-result {
+  background-color: white;
+  border: 1px solid black;
+  color: #2A2A2A;
+  font-family: "Inconsolata", monospace;
+  font-size: xx-large;
+  text-align: right;
+  padding: 3px;
+  min-width: 150px;
+}
