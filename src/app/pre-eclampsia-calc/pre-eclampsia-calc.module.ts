@@ -12,6 +12,8 @@ import {
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule} from '@angular/forms';
 import {ButtonGroupModule} from '../button-group/button-group.module';
+import {ExpandableModule} from '../expandable/expandable.module';
+import {CalculatorModule} from '../calculator/calculator.module';
 
 @NgModule({
   declarations: [PreEclampsiaCalcComponent],
@@ -30,6 +32,8 @@ import {ButtonGroupModule} from '../button-group/button-group.module';
     MatSlideToggleModule,
     MatToolbarModule,
     MatProgressBarModule,
+    ExpandableModule,
+    CalculatorModule,
   ]
 })
 export class PreEclampsiaCalcModule { }

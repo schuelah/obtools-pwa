@@ -1,5 +1,9 @@
+<app-calculator></app-calculator>
+
 <mat-toolbar class="mat-accent">
-  Calculator to predict the likelihood of cesarean delivery after induction in the setting of preeclampsia
+  <div>PreE Calc
+<!--    Calculator to predict the likelihood of cesarean delivery after induction in the setting of preeclampsia-->
+  </div>
 </mat-toolbar>
 <div>
   <mat-toolbar class="mat-accent">
@@ -104,6 +108,8 @@
   </div>
 
   <div>
+    <app-expandable>Here is my content inside the directive</app-expandable>
+
     <div fxLayout="row" fxLayoutAlign="space-between">
       <button mat-button>Click me!</button>
       <button mat-button>Click me too!</button>

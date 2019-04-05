@@ -1,27 +1,66 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
-               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-               [mode]="(isHandset$ | async) ? 'over' : 'side'"
-               [opened]="!(isHandset$ | async)">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>{{ title }}</span>
+<!--<mat-sidenav-container class="sidenav-container">-->
+<!--  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"-->
+<!--               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"-->
+<!--               [mode]="(isHandset$ | async) ? 'over' : 'side'"-->
+<!--               [opened]="!(isHandset$ | async)">-->
+<!--    <mat-toolbar>Menu</mat-toolbar>-->
+<!--    <mat-nav-list>-->
+<!--      <a mat-list-item href="#">Link 1</a>-->
+<!--      <a mat-list-item href="#">Link 2</a>-->
+<!--      <a mat-list-item href="#">Link 3</a>-->
+<!--    </mat-nav-list>-->
+<!--  </mat-sidenav>-->
+<!--  <mat-sidenav-content>-->
+<!--    <mat-toolbar color="primary">-->
+<!--      <button-->
+<!--        type="button"-->
+<!--        aria-label="Toggle sidenav"-->
+<!--        mat-icon-button-->
+<!--        (click)="drawer.toggle()"-->
+<!--        *ngIf="isHandset$ | async">-->
+<!--        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>-->
+<!--      </button>-->
+<!--      <span>{{ title }}</span>-->
+<!--    </mat-toolbar>-->
+<!--    <router-outlet></router-outlet>-->
+<!--  </mat-sidenav-content>-->
+<!--</mat-sidenav-container>-->
+
+<div fxLayout="row" fxLayoutAlign="center">
+  <div fxFlex fxFlex.gt-xs="80">
+    <mat-toolbar class="app-navbar">
+      <img class="logo svg" src="/assets/images/uch-logo.svg" title="UC Health" alt="UC Health Logo">
     </mat-toolbar>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <div class="mat-elevation-z3">
+      <router-outlet></router-outlet>
+    </div>
+    <p>University of Cincinnati Obstetrical Tools are intended for use by clinicians trained in the care of
+      obstetrical patients. Users should consult relevant references to ensure they are used in a context
+      generalizable from the original study population. The user accepts responsibility for appropriate
+      application of these tools.</p>
+  </div>
+
+</div>
+
+<div flex="flex"></div>
+<div flex="none" md-theme="footer">
+  <!--    <md-toolbar class="md-hue-2" layout="row" layout-padding>-->
+  <!--      <div flex></div>-->
+  <!--      <div layout="row" layout-align="center center">-->
+  <!--        <img src="/content/images/UC_ID_PrimaryWhiteRed.png">-->
+  <!--      </div>-->
+  <!--      <div class="address">-->
+  <!--        <p>UC Department of Obstetrics and Gynecology</p>-->
+  <!--        <p>Medical Sciences Building Room 7254<br>-->
+  <!--          231 Albert Sabin Way<br>-->
+  <!--          Mail Location 0526<br>-->
+  <!--          Cincinnati, OH 45267-0526</p>-->
+
+  <!--        <p>Patient Care Office<br>-->
+  <!--          Phone: 513-475-8588<br>-->
+  <!--          Fax: 513-475-8726</p>-->
+  <!--      </div>-->
+  <!--      <div flex></div>-->
+  <!--    </md-toolbar>-->
+
+</div>
