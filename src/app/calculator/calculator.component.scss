@@ -1,8 +1,11 @@
+@import '~@angular/material/theming';
 @import '~src/uc.theme';
 
 .calculator-header {
   background-color: mat-color($uc-theme-accent);
-  color: mat-color($uc-theme-accent, default-contrast);
+  //color: mat-color($white-87-opacity);
+  //color: mat-color($uc-theme-accent, default-contrast);
+  color: rgba(255, 255, 255, 0.87);
   box-sizing: border-box;
   padding: 16px;
 }

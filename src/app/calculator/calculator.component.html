@@ -1,9 +1,9 @@
 <div class="calculator-header mat-elevation-z3">
-  <h1>Calculator to predict the likelihood of cesarean delivery after induction in the setting of preeclampsia</h1>
+  <h1>{{title}}</h1>
   <div fxLayout="row" class="calculator-result-row">
-    <h3>Likelihood of Cesarean Delivery:</h3>
+    <h3>{{label}}:</h3>
     <div fxFlex></div>
-    <div fxFlex="30" class="calculator-result">{{100 * 3.14159 | number : '0.'}}</div>
+    <div fxFlex="30" class="calculator-result">{{100 * value | number : '0.'}}</div>
   </div>
 </div>
 <mat-progress-bar mode="determinate" value="30"></mat-progress-bar>
