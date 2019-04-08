@@ -1,7 +1,7 @@
 <app-calculator
   [title]="'Calculator to predict the likelihood of cesarean delivery after induction in the setting of preeclampsia'"
   [label]="'Likelihood of Cesarean Delivery'"
-  [value]="getBishopScore()"></app-calculator>
+  [value]="calculateScore()"></app-calculator>
 
 <div fxLayout="column" fxLayoutAlign="space-between">
   <div class="calculator-section">
@@ -98,8 +98,32 @@
     </div>
   </div>
 
-  <div>
+  <div class="calculator-section">
+    <mat-toolbar>
+      <span>Clinical Note Template</span>
+      <span fxFlex></span>
+    </mat-toolbar>
+    <div>
 
+      <div class="mock-textarea" contenteditable="true">
+        <p>Based on <span *ngIf="!isFavorableCervix()">an unfavorable</span><span
+          *ngIf="isFavorableCervix()">a favorable</span> cervix (simplified bishop score of
+          {{getBishopScore()}}),
+          postmenstrual age {{ga}} weeks,
+          {{getRace()}} race,
+          <span *ngIf="!prior">no</span><span *ngIf="prior">a</span> prior vaginal delivery,
+          and a BMI of {{bmi | number : '1.0-0'}}:<br/>
+          <strong>The probability of this patient requiring a C-Section after induction of labor in
+            the context of pre-eclampsia is {{100 * calculateScore() | number : '1.0-0'}}%.</strong></p>
+  <!--      <p class="reference">Reference:-->
+  <!--        <article-citation ng-init="ref = vm.references[0]"></article-citation>-->
+  <!--      </p>-->
+  <!--      <p class="reference">Calculator at <a-->
+  <!--        href="http://webcentral.uc.edu/admin/calc/index.html#!/pe-cs-calc">http://webcentral.uc.edu/admin/calc/index.html#!/pe-cs-calc</a>-->
+  <!--      </p>-->
+      </div>
+
+    </div>
   </div>
 
 </div>

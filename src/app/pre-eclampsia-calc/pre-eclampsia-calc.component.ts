@@ -39,11 +39,41 @@ export class PreEclampsiaCalcComponent implements OnInit {
     return this.dilationScore + this.stationScore + this.effacementScore;
   }
 
+  isFavorableCervix(): boolean {
+    return this.getBishopScore() > 4;
+  }
+
   getRace() {
     return this.raceOptions[this.race];
   }
 
   toggleBmiCalc() {
     this.bmiCalcExpanded = !this.bmiCalcExpanded;
+  }
+
+  /**
+   * Calculates the probability of requiring a C-Section
+   */
+  calculateScore(): number {
+    const unfavCx = this.isFavorableCervix() ? 0 : 1; // note UN-favorable cervix, so ? 0 : 1.
+
+    let delCoef = 0;
+    if (34 <= this.ga && this.ga < 37) {
+      delCoef = 0.2004;
+    } else if (30 <= this.ga && this.ga < 34) {
+      delCoef = 0.9044;
+    } else if (this.ga < 30) {
+      delCoef = 2.7657;
+    }
+
+    const RACE_COEFS = [0, 0.3152, 1.6587, 1.6587];
+    const raceCoef = RACE_COEFS[this.race];
+
+    const PPBMI = this.bmi;
+    const PriorVagDel = this.prior ? 1 : 0;
+
+    const exponent = -1.69 - 1.5311 * (unfavCx) + delCoef + raceCoef + 0.035 * (PPBMI) - 1.5355 * (PriorVagDel);
+
+    return Math.exp(exponent) / (1 + Math.exp(exponent));
   }
 }
