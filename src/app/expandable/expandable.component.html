@@ -1,13 +1,3 @@
-<div [ngClass]="{'expanded': isExpanded}" [@changeDivSize]=getCurrentState() class="expandable-content">
+<div [ngClass]="{'expanded': isExpanded}" [@expandContract]=_getCurrentState() class="expandable-content">
   <ng-content></ng-content>
 </div>
-
-<!--<ng-content select="mat-expansion-panel-header"></ng-content>-->
-<!--<div class="mat-expansion-panel-content"-->
-<!--     role="region"-->
-<!--     [@bodyExpansion]="_getExpandedState()">-->
-<!--  <div class="mat-expansion-panel-body">-->
-<!--    <ng-content></ng-content>-->
-<!--    <div>Here is my stock content in an expansion panel</div>-->
-<!--  </div>-->
-<!--</div>-->

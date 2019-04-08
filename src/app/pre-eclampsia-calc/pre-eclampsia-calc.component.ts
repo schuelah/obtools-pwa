@@ -23,7 +23,7 @@ export class PreEclampsiaCalcComponent implements OnInit {
   stationOptions = ['-3', '-2', '-1, 0', '+1, +2'];
 
   raceOptions = ['White', 'Black', 'Hispanic', 'Other/Unknown'];
-  bmiCalcExpanced = false;
+  bmiCalcExpanded = false;
   bmiHt: any;
 
   constructor() { }
@@ -44,6 +44,6 @@ export class PreEclampsiaCalcComponent implements OnInit {
   }
 
   toggleBmiCalc() {
-    this.bmiCalcExpanced = !this.bmiCalcExpanced;
+    this.bmiCalcExpanded = !this.bmiCalcExpanded;
   }
 }

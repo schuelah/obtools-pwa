@@ -28,6 +28,7 @@ import {FlexModule} from '@angular/flex-layout';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+
     FlexModule,
   ],
   providers: [],

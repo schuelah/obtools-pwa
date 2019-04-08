@@ -8,14 +8,16 @@ export const EXPANDABLE_ANIMATION_TIMING = '225ms cubic-bezier(0.4,0.0,0.2,1)';
   selector: 'app-expandable',
   templateUrl: './expandable.component.html',
   styleUrls: ['./expandable.component.css'],
-  animations: [trigger('changeDivSize', [
+  animations: [trigger('expandContract', [
       state('closed', style({
         visibility: 'hidden',
         height: '0',
+        opacity: 0,
       })),
       state('open', style({
         visibility: 'visible',
         height: '*',
+        opacity: 1,
       })),
       transition('closed<=>open', animate(EXPANDABLE_ANIMATION_TIMING)),
     ]),
@@ -23,21 +25,12 @@ export const EXPANDABLE_ANIMATION_TIMING = '225ms cubic-bezier(0.4,0.0,0.2,1)';
 })
 export class ExpandableComponent implements OnInit {
   @Input() isExpanded: false;
-  currentState = 'closed';
-
-  changeState() {
-    this.currentState = this.currentState === 'open' ? 'closed' : 'open';
-  }
 
   constructor() { }
 
   ngOnInit() { }
 
-  getCurrentState() {
+  _getCurrentState() {
     return (this.isExpanded ? 'open' : 'closed');
-  }
-
-  _getExpandedState() {
-    return this.isExpanded ? 'open' : 'closed';
   }
 }

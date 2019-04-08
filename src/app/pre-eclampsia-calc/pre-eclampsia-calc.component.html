@@ -84,24 +84,22 @@
       <span fxFlex></span>
       <span>{{bmi}}</span>
     </mat-toolbar>
-    <div fxLayout="row">
-      <mat-slider fxFlex min="0" max="60" value="25" step="1" tickInterval="5" [(ngModel)]="bmi"></mat-slider>
-      <mat-form-field>
-        <input matInput [(ngModel)]="bmi" type="number">
-      </mat-form-field>
+    <div>
+      <div fxLayout="row">
+        <mat-slider fxFlex min="0" max="60" value="25" step="1" tickInterval="5" [(ngModel)]="bmi"></mat-slider>
+        <mat-form-field>
+          <input matInput [(ngModel)]="bmi" type="number">
+        </mat-form-field>
+      </div>
+      <button mat-raised-button *ngIf="!bmiCalcExpanded" (click)="toggleBmiCalc()">Show Calculator</button>
+      <app-expandable [isExpanded]="bmiCalcExpanded">
+        <app-bmi-calculator [(value)]="bmi"></app-bmi-calculator>
+      </app-expandable>
     </div>
   </div>
 
   <div>
-    <button mat-raised-button (click)="toggleBmiCalc()">Toggle Expandable</button>
-    <app-expandable [isExpanded]="bmiCalcExpanced">
-      <mat-form-field>
-        <label>Height</label>
-        <input matInput [(ngModel)]="bmiHt">
-      </mat-form-field>
-    </app-expandable>
 
-    <app-bmi-calculator></app-bmi-calculator>
   </div>
 
 </div>

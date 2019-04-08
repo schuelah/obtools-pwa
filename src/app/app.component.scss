@@ -1,0 +1,42 @@
+@import '~@angular/material/theming';
+@import '~src/uc.theme';
+
+.footer {
+  background-color: mat-color($uc-theme-accent);
+  //color: mat-color($white-87-opacity);
+  color: mat-color($uc-theme-accent, default-contrast);
+  //color: rgba(255, 255, 255, 0.87);
+  box-sizing: border-box;
+  padding: 16px;
+}
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+img.logo {
+  width: 130px;
+  height: 30px;
+}
+
+.app-navbar {
+  background-color: transparent;
+}
+
+.address {
+  font-size: small;
+}
