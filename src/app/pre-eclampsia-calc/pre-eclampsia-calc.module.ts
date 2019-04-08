@@ -14,6 +14,7 @@ import {FormsModule} from '@angular/forms';
 import {ButtonGroupModule} from '../button-group/button-group.module';
 import {ExpandableModule} from '../expandable/expandable.module';
 import {CalculatorModule} from '../calculator/calculator.module';
+import {BmiCalculatorModule} from '../expandable-bmi-calculator/bmi-calculator.module';
 
 @NgModule({
   declarations: [PreEclampsiaCalcComponent],
@@ -34,6 +35,7 @@ import {CalculatorModule} from '../calculator/calculator.module';
     MatProgressBarModule,
     ExpandableModule,
     CalculatorModule,
+    BmiCalculatorModule,
   ]
 })
 export class PreEclampsiaCalcModule { }

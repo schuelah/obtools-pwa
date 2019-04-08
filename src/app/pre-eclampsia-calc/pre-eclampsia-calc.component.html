@@ -3,108 +3,105 @@
   [label]="'Likelihood of Cesarean Delivery'"
   [value]="getBishopScore()"></app-calculator>
 
-<div fxLayout="column" fxLayout.gt-md="row">
-  <div>
-    <mat-accordion>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>Bishop Score</mat-panel-title>
-          <mat-panel-description>{{getBishopScore()}}</mat-panel-description>
-        </mat-expansion-panel-header>
+<div fxLayout="column" fxLayoutAlign="space-between">
+  <div class="calculator-section">
+    <mat-toolbar>
+      <span>Bishop Score</span>
+      <span fxFlex></span>
+      <span>{{getBishopScore()}}</span>
+    </mat-toolbar>
+    <div>
+      <table class="bishop-table">
+        <tr>
+          <td>
+            <label class="button-group-label">Dilation</label>
+            <app-button-group [(value)]="dilationScore" [labels]="dilationOptions"></app-button-group>
+          </td>
+          <td fxHide fxShow.gt-xs class="score-cell">{{dilationScore}}</td>
+        </tr>
+        <tr>
+          <td>
+            <label class="button-group-label">Effacement</label>
+            <app-button-group [(value)]="effacementScore" [labels]="effacementOptions"></app-button-group>
+          </td>
+          <td fxHide fxShow.gt-xs class="score-cell">{{effacementScore}}</td>
+        </tr>
+        <tr>
+          <td>
+            <label class="button-group-label">Station</label>
+            <app-button-group [(value)]="stationScore" [labels]="stationOptions"></app-button-group>
+          </td>
+          <td fxHide fxShow.gt-xs class="score-cell">{{stationScore}}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td fxHide fxShow.gt-xs class="score-cell">{{getBishopScore()}}</td>
 
-        <table width="100%">
-          <tr>
-            <td>
-              <label class="button-group-label">Dilation</label>
-              <app-button-group [(value)]="dilationScore" [labels]="dilationOptions"></app-button-group>
-            </td>
-            <td fxHide fxShow.gt-xs class="score-cell">{{dilationScore}}</td>
-          </tr>
-          <tr>
-            <td>
-              <label class="button-group-label">Effacement</label>
-              <app-button-group [(value)]="effacementScore" [labels]="effacementOptions"></app-button-group>
-            </td>
-            <td fxHide fxShow.gt-xs class="score-cell">{{effacementScore}}</td>
-          </tr>
-          <tr>
-            <td>
-              <label class="button-group-label">Station</label>
-              <app-button-group [(value)]="stationScore" [labels]="stationOptions"></app-button-group>
-            </td>
-            <td fxHide fxShow.gt-xs class="score-cell">{{stationScore}}</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td fxHide fxShow.gt-xs class="score-cell">{{getBishopScore()}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
 
-          </tr>
-        </table>
-      </mat-expansion-panel>
+  <div class="calculator-section">
+    <mat-toolbar>
+      <span>Gestational Age</span>
+      <span fxFlex></span>
+      <span>{{ga}}</span>
+    </mat-toolbar>
+    <div fxLayout="row">
+      <mat-slider fxFlex min="0" max="45" value="40" step="1" tickInterval="5" [(ngModel)]="ga"></mat-slider>
+      <mat-form-field>
+        <input matInput [(ngModel)]="ga" type="number">
+      </mat-form-field>
+    </div>
+  </div>
 
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>Gestational Age</mat-panel-title>
-          <mat-panel-description>{{ga}}</mat-panel-description>
-        </mat-expansion-panel-header>
+  <div class="calculator-section">
+    <mat-toolbar>
+      <span>Race</span>
+      <span fxFlex></span>
+      <span>{{getRace()}}</span>
+    </mat-toolbar>
+    <div>
+      <app-button-group [labels]="raceOptions" [(value)]="race"></app-button-group>
+    </div>
+  </div>
 
-        <div fxLayout="row">
-          <mat-slider min="0" max="45" value="40" step="1" tickInterval="5" [(ngModel)]="ga"></mat-slider>
-          <mat-form-field>
-            <input matInput [(ngModel)]="ga" type="number">
-          </mat-form-field>
-        </div>
+  <div class="calculator-section">
+    <mat-toolbar>
+      <span>Prior Vaginal Delivery</span>
+      <span fxFlex></span>
+      <span>{{prior}}</span>
+    </mat-toolbar>
+    <div fxLayout="row">
+      <mat-slide-toggle [(ngModel)]="prior">History of prior vaginal delivery</mat-slide-toggle>
+    </div>
+  </div>
 
-      </mat-expansion-panel>
-
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>Race</mat-panel-title>
-          <mat-panel-description>{{getRace()}}</mat-panel-description>
-        </mat-expansion-panel-header>
-
-        <app-button-group [labels]="raceOptions" [(value)]="race"></app-button-group>
-
-      </mat-expansion-panel>
-
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>Prior Vaginal Delivery</mat-panel-title>
-          <mat-panel-description>{{prior}}</mat-panel-description>
-        </mat-expansion-panel-header>
-
-        <mat-slide-toggle [(ngModel)]="prior">History of prior vaginal delivery</mat-slide-toggle>
-
-      </mat-expansion-panel>
-
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>Body Mass Index</mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <div fxLayout="row">
-          <button mat-button>Click me!</button>
-          <button mat-button>Click me too!</button>
-          <button mat-button>Click me 3!</button>
-          <button mat-button>Click me four!</button>
-        </div>
-
-      </mat-expansion-panel>
-    </mat-accordion>
-
+  <div class="calculator-section">
+    <mat-toolbar>
+      <span>Body Mass Index</span>
+      <span fxFlex></span>
+      <span>{{bmi}}</span>
+    </mat-toolbar>
+    <div fxLayout="row">
+      <mat-slider fxFlex min="0" max="60" value="25" step="1" tickInterval="5" [(ngModel)]="bmi"></mat-slider>
+      <mat-form-field>
+        <input matInput [(ngModel)]="bmi" type="number">
+      </mat-form-field>
+    </div>
   </div>
 
   <div>
-    <app-expandable>Here is my content inside the directive</app-expandable>
+    <button mat-raised-button (click)="toggleBmiCalc()">Toggle Expandable</button>
+    <app-expandable [isExpanded]="bmiCalcExpanced">
+      <mat-form-field>
+        <label>Height</label>
+        <input matInput [(ngModel)]="bmiHt">
+      </mat-form-field>
+    </app-expandable>
 
-    <div fxLayout="row" fxLayoutAlign="space-between">
-      <button mat-button>Click me!</button>
-      <button mat-button>Click me too!</button>
-    </div>
-    <div fxLayout="row" fxLayoutAlign="space-between">
-      <button mat-button>Click me!</button>
-      <button mat-button>Click me too!</button>
-    </div>
+    <app-bmi-calculator></app-bmi-calculator>
   </div>
 
 </div>

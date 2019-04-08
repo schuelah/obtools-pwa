@@ -1,0 +1,45 @@
+<h1>
+  bmi-calculator: {{getBmi()}}
+</h1>
+
+<div fxLayout="row">
+  <div>
+    <mat-form-field>
+      <label>cm</label>
+      <input matInput (keyup)="onCmChange()" type="number" [(ngModel)]="cmInputValue">
+    </mat-form-field>
+
+    <div fxLayout="row">
+      <mat-form-field>
+        <label>ft</label>
+        <input matInput (keyup)="onFtInChange()" type="number" [(ngModel)]="ftInputValue">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label>inches</label>
+        <input matInput (keyup)="onFtInChange()" type="number" [(ngModel)]="inInputValue">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <label>kg</label>
+      <input matInput (keyup)="onKgChange()" type="number" [(ngModel)]="kgInputValue">
+    </mat-form-field>
+
+    <div fxLayout="row">
+      <mat-form-field>
+        <label>lb</label>
+        <input matInput (keyup)="onLbOzChange()" type="number" [(ngModel)]="lbInputValue">
+      </mat-form-field>
+
+      <mat-form-field>
+        <label>oz</label>
+        <input matInput (keyup)="onLbOzChange()" type="number" [(ngModel)]="ozInputValue">
+      </mat-form-field>
+    </div>
+
+  </div>
+
+</div>

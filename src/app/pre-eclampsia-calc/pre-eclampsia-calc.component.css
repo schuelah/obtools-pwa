@@ -16,3 +16,18 @@ mat-slider {
   font-weight: bold;
   padding-top: 15px;
 }
+
+.calculator-section {
+  align-items: center;
+}
+
+.calculator-section > div {
+  padding: 16px;
+}
+
+.bishop-table {
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
