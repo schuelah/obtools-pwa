@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 export const FT_TO_METERS = 0.3048;
 export const M_TO_IN = 39.3701;
@@ -12,8 +12,9 @@ export const KG_TO_OZ = 35.274;
   styleUrls: ['./bmi-calculator.component.css']
 })
 export class BmiCalculatorComponent implements OnInit {
-  m = 1.6;
-  kg = 60;
+  @Input() m: number;
+  @Input() kg: number;
+  @Input() bmi: number;
 
   cmInputValue: number;
   ftInputValue: number;
@@ -27,9 +28,31 @@ export class BmiCalculatorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // Figure out if any parameters are supplied. If so, update others. Otherwise, set defaults to 160cm & 65m
+    if (this.bmi > 0) {
+      if (this.m > 0) {
+        this.updateKg();
+      } else if (this.kg > 0) {
+        this.m = Math.pow(this.kg / this.bmi, 0.5);
+      } else {
+        this.m = 1.6;
+        this.updateKg();
+      }
+    } else if (this.m > 0 && this.kg > 0) {
+      this.updateBmi();
+    } else {
+      this.m = 1.6;
+      this.kg = 65;
+
+      this.updateBmi();
+    }
+
+
+
     this.cmInputValue = this.m * 100;
     this.kgInputValue = this.kg;
 
+    this.updateBmi();
     this.updateFtIn();
     this.updateLbOz();
   }
@@ -38,24 +61,28 @@ export class BmiCalculatorComponent implements OnInit {
     this.m = this.cmInputValue * 0.01;
 
     this.updateFtIn();
+    this.updateBmi();
   }
 
   onFtInChange() {
     this.m = (this.ftInputValue + this.inInputValue / 12) * FT_TO_METERS;
 
-    this.updateCm();
+    this.updateCmInputValue();
+    this.updateBmi();
   }
 
   onKgChange() {
     this.kg = this.kgInputValue;
 
     this.updateLbOz();
+    this.updateBmi();
   }
 
   onLbOzChange() {
     this.kg = (this.lbInputValue + this.ozInputValue / 16) * LB_TO_KG;
 
-    this.updateKg();
+    this.updateKgInputValue();
+    this.updateBmi();
   }
 
   /////////////////
@@ -67,7 +94,7 @@ export class BmiCalculatorComponent implements OnInit {
     this.inInputValue = inches % 12;
   }
 
-  updateCm() {
+  updateCmInputValue() {
     this.cmInputValue = this.m * 100;
   }
 
@@ -78,17 +105,20 @@ export class BmiCalculatorComponent implements OnInit {
     this.ozInputValue = ounces - 16 * this.lbInputValue;
   }
 
-  updateKg() {
+  updateKgInputValue() {
     this.kgInputValue = this.kg;
   }
 
   /////////////////////
 
-  getBmi(): number {
-    if (this.m <= 0) {
-      return null;
+  updateBmi() {
+    if (this.m <= 0 || this.kg <= 0) {
+      this.bmi = 0;
     }
-    return this.kg / Math.pow(this.m, 2);
+    this.bmi = this.kg / Math.pow(this.m, 2);
   }
 
+  updateKg() {
+    this.kg = Math.pow(this.m, 2) * this.kg;
+  }
 }
