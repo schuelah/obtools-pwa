@@ -3,125 +3,132 @@
   [label]="'Likelihood of Cesarean Delivery'"
   [value]="calculateScore()"></app-calculator>
 
-<div fxLayout="column" fxLayoutAlign="space-between">
-  <div class="calculator-section">
-    <mat-toolbar>
-      <span>Bishop Score</span>
-      <span fxFlex></span>
-      <span>{{getBishopScore()}}</span>
-    </mat-toolbar>
-    <div>
-      <table class="bishop-table">
-        <tr>
-          <td>
-            <label class="button-group-label">Dilation</label>
-            <app-button-group [(value)]="dilationScore" [labels]="dilationOptions"></app-button-group>
-          </td>
-          <td fxHide fxShow.gt-xs class="score-cell">{{dilationScore}}</td>
-        </tr>
-        <tr>
-          <td>
-            <label class="button-group-label">Effacement</label>
-            <app-button-group [(value)]="effacementScore" [labels]="effacementOptions"></app-button-group>
-          </td>
-          <td fxHide fxShow.gt-xs class="score-cell">{{effacementScore}}</td>
-        </tr>
-        <tr>
-          <td>
-            <label class="button-group-label">Station</label>
-            <app-button-group [(value)]="stationScore" [labels]="stationOptions"></app-button-group>
-          </td>
-          <td fxHide fxShow.gt-xs class="score-cell">{{stationScore}}</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td fxHide fxShow.gt-xs class="score-cell">{{getBishopScore()}}</td>
+<div fxLayout="column" fxLayout.gt-md="row" fxLayoutAlign="space-between">
+  <div fxLayout="column" fxLayoutAlign="space-between" fxFlex.gt-md="50">
 
-        </tr>
-      </table>
+    <div class="calculator-section">
+      <mat-toolbar>
+        <span>Bishop Score</span>
+        <span fxFlex></span>
+        <span>{{getBishopScore()}}</span>
+      </mat-toolbar>
+      <div>
+        <table class="bishop-table">
+          <tr>
+            <td>
+              <label class="button-group-label">Dilation</label>
+              <app-button-group [(value)]="dilationScore" [labels]="dilationOptions"></app-button-group>
+            </td>
+            <td fxHide fxShow.gt-xs class="score-cell">{{dilationScore}}</td>
+          </tr>
+          <tr>
+            <td>
+              <label class="button-group-label">Effacement</label>
+              <app-button-group [(value)]="effacementScore" [labels]="effacementOptions"></app-button-group>
+            </td>
+            <td fxHide fxShow.gt-xs class="score-cell">{{effacementScore}}</td>
+          </tr>
+          <tr>
+            <td>
+              <label class="button-group-label">Station</label>
+              <app-button-group [(value)]="stationScore" [labels]="stationOptions"></app-button-group>
+            </td>
+            <td fxHide fxShow.gt-xs class="score-cell">{{stationScore}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td fxHide fxShow.gt-xs class="score-cell">{{getBishopScore()}}</td>
+          </tr>
+        </table>
+      </div>
     </div>
-  </div>
 
-  <div class="calculator-section">
-    <mat-toolbar>
-      <span>Gestational Age</span>
-      <span fxFlex></span>
-      <span>{{ga}}</span>
-    </mat-toolbar>
-    <div fxLayout="row">
-      <mat-slider fxFlex min="0" max="45" value="40" step="1" tickInterval="5" [(ngModel)]="ga"></mat-slider>
-      <mat-form-field>
-        <input matInput [(ngModel)]="ga" type="number">
-      </mat-form-field>
-    </div>
-  </div>
-
-  <div class="calculator-section">
-    <mat-toolbar>
-      <span>Race</span>
-      <span fxFlex></span>
-      <span>{{getRace()}}</span>
-    </mat-toolbar>
-    <div>
-      <app-button-group [labels]="raceOptions" [(value)]="race"></app-button-group>
-    </div>
-  </div>
-
-  <div class="calculator-section">
-    <mat-toolbar>
-      <span>Prior Vaginal Delivery</span>
-      <span fxFlex></span>
-      <span>{{prior}}</span>
-    </mat-toolbar>
-    <div fxLayout="row">
-      <mat-slide-toggle [(ngModel)]="prior">History of prior vaginal delivery</mat-slide-toggle>
-    </div>
-  </div>
-
-  <div class="calculator-section">
-    <mat-toolbar>
-      <span>Body Mass Index</span>
-      <span fxFlex></span>
-      <span>{{bmi}}</span>
-    </mat-toolbar>
-    <div>
+    <div class="calculator-section">
+      <mat-toolbar>
+        <span>Gestational Age</span>
+        <span fxFlex></span>
+        <span>{{ga}}</span>
+      </mat-toolbar>
       <div fxLayout="row">
-        <mat-slider fxFlex min="0" max="60" value="25" step="1" tickInterval="5" [(ngModel)]="bmi"></mat-slider>
+        <mat-slider fxFlex min="0" max="45" value="40" step="1" tickInterval="5" [(ngModel)]="ga"></mat-slider>
         <mat-form-field>
-          <input matInput [(ngModel)]="bmi" type="number">
+          <input matInput [(ngModel)]="ga" type="number">
         </mat-form-field>
       </div>
-      <button mat-raised-button *ngIf="!bmiCalcExpanded" (click)="toggleBmiCalc()">Show Calculator</button>
-      <app-expandable [isExpanded]="bmiCalcExpanded">
-        <app-bmi-calculator *ngIf="bmiCalcExpanded" [(value)]="bmi"></app-bmi-calculator>
-      </app-expandable>
+    </div>
+
+    <div class="calculator-section">
+      <mat-toolbar>
+        <span>Race</span>
+        <span fxFlex></span>
+        <span>{{getRace()}}</span>
+      </mat-toolbar>
+      <div>
+        <app-button-group [labels]="raceOptions" [(value)]="race"></app-button-group>
+      </div>
     </div>
   </div>
 
-  <div class="calculator-section">
-    <mat-toolbar>
-      <span>Clinical Note Template</span>
-      <span fxFlex></span>
-    </mat-toolbar>
-    <div>
+  <mat-divider [vertical]="true" fxShow.gt-md></mat-divider>
 
-      <div class="mock-textarea" contenteditable="true">
-        <p>Based on <span *ngIf="!isFavorableCervix()">an unfavorable</span><span
-          *ngIf="isFavorableCervix()">a favorable</span> cervix (simplified bishop score of
-          {{getBishopScore()}}),
-          postmenstrual age {{ga}} weeks,
-          {{getRace()}} race,
-          <span *ngIf="!prior">no</span><span *ngIf="prior">a</span> prior vaginal delivery,
-          and a BMI of {{bmi | number : '1.0-0'}}:<br/>
-          <strong>The probability of this patient requiring a C-Section after induction of labor in
-            the context of pre-eclampsia is {{100 * calculateScore() | number : '1.0-0'}}%.</strong></p>
+  <div fxLayout="column" fxLayoutAlign="space-between" fxFlex.gt-md="50">
 
-        <p class="reference">Reference:
-          <app-article-citation [ref]="citations[0]"></app-article-citation>
-        </p>
-        <p class="reference">Calculator at <a href="{{getUrl()}}">{{getUrl()}}</a></p>
+    <div class="calculator-section">
+      <mat-toolbar>
+        <span>Prior Vaginal Delivery</span>
+        <span fxFlex></span>
+        <span>{{prior}}</span>
+      </mat-toolbar>
+      <div fxLayout="row">
+        <mat-slide-toggle [(ngModel)]="prior">History of prior vaginal delivery</mat-slide-toggle>
       </div>
+    </div>
 
+    <div class="calculator-section">
+      <mat-toolbar>
+        <span>Body Mass Index</span>
+        <span fxFlex></span>
+        <span>{{bmi}}</span>
+      </mat-toolbar>
+      <div>
+        <div fxLayout="row">
+          <mat-slider fxFlex min="0" max="60" value="25" step="1" tickInterval="5" [(ngModel)]="bmi"></mat-slider>
+          <mat-form-field>
+            <input matInput [(ngModel)]="bmi" type="number">
+          </mat-form-field>
+        </div>
+        <button mat-raised-button *ngIf="!bmiCalcExpanded" (click)="toggleBmiCalc()">Show Calculator</button>
+        <app-expandable [isExpanded]="bmiCalcExpanded">
+          <app-bmi-calculator *ngIf="bmiCalcExpanded" [(value)]="bmi"></app-bmi-calculator>
+        </app-expandable>
+      </div>
+    </div>
+
+    <div class="calculator-section">
+      <mat-toolbar>
+        <span>Clinical Note Template</span>
+        <span fxFlex></span>
+      </mat-toolbar>
+      <div>
+
+        <div class="mock-textarea" contenteditable="true">
+          <p>Based on <span *ngIf="!isFavorableCervix()">an unfavorable</span><span
+            *ngIf="isFavorableCervix()">a favorable</span> cervix (simplified bishop score of
+            {{getBishopScore()}}),
+            postmenstrual age {{ga}} weeks,
+            {{getRace()}} race,
+            <span *ngIf="!prior">no</span><span *ngIf="prior">a</span> prior vaginal delivery,
+            and a BMI of {{bmi | number : '1.0-0'}}:<br/>
+            <strong>The probability of this patient requiring a C-Section after induction of labor in
+              the context of pre-eclampsia is {{100 * calculateScore() | number : '1.0-0'}}%.</strong></p>
+
+          <p class="reference">Reference:
+            <app-article-citation [ref]="citations[0]"></app-article-citation>
+          </p>
+          <p class="reference">Calculator at <a href="{{getUrl()}}">{{getUrl()}}</a></p>
+        </div>
+
+      </div>
     </div>
   </div>
 

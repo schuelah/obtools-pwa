@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PreEclampsiaCalcComponent } from './pre-eclampsia-calc.component';
 import {
-  MatButtonModule,
+  MatButtonModule, MatDividerModule,
   MatExpansionModule,
   MatFormFieldModule,
   MatInputModule, MatProgressBarModule,
@@ -38,6 +38,7 @@ import {ReferenceModule} from '../reference/reference.module';
     CalculatorModule,
     BmiCalculatorModule,
     ReferenceModule,
+    MatDividerModule,
   ]
 })
 export class PreEclampsiaCalcModule { }
