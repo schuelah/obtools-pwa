@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Citation} from '../reference/article-citation.component';
 import {CITATIONS} from './citations';
+import {ActivatedRoute} from '@angular/router';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-pre-eclampsia-calc',
@@ -9,7 +11,7 @@ import {CITATIONS} from './citations';
 })
 export class PreEclampsiaCalcComponent implements OnInit {
 
-  dilationScore = 1;
+  dilationScore = 0;
   effacementScore = 0;
   stationScore = 0;
   ga = 40;
@@ -28,19 +30,33 @@ export class PreEclampsiaCalcComponent implements OnInit {
   bmiCalcExpanded = false;
   bmiHt: any;
 
-  citations: any;
+  citations = CITATIONS as Array<Citation>;
 
-  constructor() {
-    this.citations = CITATIONS as Array<Citation>;
-
-    console.log(this.citations);
+  constructor(private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
+    // http://ob.tools/#/pe-cs-calc?dil=1&eff=1&sta=2&ga=32&race=black&prior=true&bmi=28
+
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.getValIfKeyExists(params, 'dil').subscribe(val => this.dilationScore = val);
+      this.getValIfKeyExists(params, 'eff').subscribe(val => this.effacementScore = val);
+      this.getValIfKeyExists(params, 'sta').subscribe(val => this.stationScore = val);
+      this.getValIfKeyExists(params, 'ga').subscribe(val => this.ga = val);
+      this.getValIfKeyExists(params, 'race').subscribe(val => this.race = val);
+      this.getValIfKeyExists(params, 'prior').subscribe(val => this.prior = (val === 'true'));
+      this.getValIfKeyExists(params, 'bmi').subscribe(val => this.bmi = +val);
+    });
   }
 
-  setDilationScore(score: number) {
-    this.dilationScore = score;
+  getValIfKeyExists(mapObject, key): Observable<any> {
+    return new Observable<any>((observer) => {
+      if (mapObject.hasOwnProperty(key)) {
+        observer.next(mapObject[key]);
+      }
+
+      observer.complete();
+    });
   }
 
   getBishopScore() {
@@ -83,5 +99,15 @@ export class PreEclampsiaCalcComponent implements OnInit {
     const exponent = -1.69 - 1.5311 * (unfavCx) + delCoef + raceCoef + 0.035 * (PPBMI) - 1.5355 * (PriorVagDel);
 
     return Math.exp(exponent) / (1 + Math.exp(exponent));
+  }
+
+  getUrl(): string {
+    return 'http://stage.ob.tools/pe-cs-calc?' +
+      'dil=' + this.dilationScore +
+      '&eff=' + this.effacementScore +
+      '&sta=' + this.stationScore +
+      '&ga=' + this.ga +
+      '&race=' + this.race +
+      '&bmi=' + this.bmi;
   }
 }

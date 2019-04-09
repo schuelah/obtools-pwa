@@ -6,12 +6,16 @@ export const CITATIONS = [
     title: 'Factors Associated with a Failed Induction in the Setting of Pre-Eclampsia',
     author: [
       {
+        family: 'McKinney',
+        given: 'David'
+      },
+      {
         family: 'Langager',
         given: 'Amanda'
       },
       {
-        family: 'McKinney',
-        given: 'David'
+        family: 'Dufendach',
+        given: 'Kevin Reid'
       },
       {
         family: 'Boyd',
@@ -24,10 +28,6 @@ export const CITATIONS = [
       {
         family: 'Oswald',
         given: 'Michael'
-      },
-      {
-        family: 'Dufendach',
-        given: 'Kevin Reid'
       },
       {
         family: 'Warshak',

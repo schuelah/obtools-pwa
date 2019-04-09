@@ -5,6 +5,11 @@ import {PreEclampsiaCalcComponent} from '../pre-eclampsia-calc/pre-eclampsia-cal
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/pe-cs-calc',
+    pathMatch: 'full',
+  },
+  {
+    path: 'pe-cs-calc',
     component: PreEclampsiaCalcComponent,
   },
 ];

@@ -93,7 +93,7 @@
       </div>
       <button mat-raised-button *ngIf="!bmiCalcExpanded" (click)="toggleBmiCalc()">Show Calculator</button>
       <app-expandable [isExpanded]="bmiCalcExpanded">
-        <app-bmi-calculator [(value)]="bmi"></app-bmi-calculator>
+        <app-bmi-calculator *ngIf="bmiCalcExpanded" [(value)]="bmi"></app-bmi-calculator>
       </app-expandable>
     </div>
   </div>
@@ -119,9 +119,7 @@
         <p class="reference">Reference:
           <app-article-citation [ref]="citations[0]"></app-article-citation>
         </p>
-        <!--      <p class="reference">Calculator at <a-->
-        <!--        href="http://webcentral.uc.edu/admin/calc/index.html#!/pe-cs-calc">http://webcentral.uc.edu/admin/calc/index.html#!/pe-cs-calc</a>-->
-        <!--      </p>-->
+        <p class="reference">Calculator at <a href="{{getUrl()}}">{{getUrl()}}</a></p>
       </div>
 
     </div>
