@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Citation} from '../reference/article-citation.component';
+import {CITATIONS} from './citations';
 
 @Component({
   selector: 'app-pre-eclampsia-calc',
@@ -26,7 +28,13 @@ export class PreEclampsiaCalcComponent implements OnInit {
   bmiCalcExpanded = false;
   bmiHt: any;
 
-  constructor() { }
+  citations: any;
+
+  constructor() {
+    this.citations = CITATIONS as Array<Citation>;
+
+    console.log(this.citations);
+  }
 
   ngOnInit() {
   }

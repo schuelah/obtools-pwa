@@ -15,6 +15,7 @@ import {ButtonGroupModule} from '../button-group/button-group.module';
 import {ExpandableModule} from '../expandable/expandable.module';
 import {CalculatorModule} from '../calculator/calculator.module';
 import {BmiCalculatorModule} from '../expandable-bmi-calculator/bmi-calculator.module';
+import {ReferenceModule} from '../reference/reference.module';
 
 @NgModule({
   declarations: [PreEclampsiaCalcComponent],
@@ -36,6 +37,7 @@ import {BmiCalculatorModule} from '../expandable-bmi-calculator/bmi-calculator.m
     ExpandableModule,
     CalculatorModule,
     BmiCalculatorModule,
+    ReferenceModule,
   ]
 })
 export class PreEclampsiaCalcModule { }
