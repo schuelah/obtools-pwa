@@ -15,7 +15,7 @@
       <div>
         <table class="bishop-table">
           <tr>
-            <td>
+            <td fxFlex>
               <label class="button-group-label">Dilation</label>
               <app-button-group [(value)]="dilationScore" [labels]="dilationOptions"></app-button-group>
             </td>
@@ -23,7 +23,7 @@
               <h3>{{dilationScore}}</h3></td>
           </tr>
           <tr>
-            <td>
+            <td fxFlex>
               <label class="button-group-label">Effacement</label>
               <app-button-group [(value)]="effacementScore" [labels]="effacementOptions"></app-button-group>
             </td>
@@ -31,7 +31,7 @@
               <h3>{{effacementScore}}</h3></td>
           </tr>
           <tr>
-            <td>
+            <td fxFlex>
               <label class="button-group-label">Station</label>
               <app-button-group [(value)]="stationScore" [labels]="stationOptions"></app-button-group>
             </td>
@@ -39,10 +39,13 @@
               <h3>{{stationScore}}</h3></td>
           </tr>
           <tr>
-            <td fxFlex><span fxFlex></span>
-              <h3>Simplified Bishop Score: </h3></td>
+            <td fxFlex>
+              <span fxFlex></span>
+              <h3>Simplified Bishop Score: </h3>
+            </td>
             <td fxFlex.gt-xs="20" fxLayoutAlign="center center" fxHide fxShow.gt-xs class="table-calc-total score-cell">
-              <h3>{{getBishopScore()}}</h3></td>
+              <h3>{{getBishopScore()}}</h3>
+            </td>
           </tr>
         </table>
       </div>

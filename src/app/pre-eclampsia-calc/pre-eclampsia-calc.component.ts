@@ -102,7 +102,7 @@ export class PreEclampsiaCalcComponent implements OnInit {
   }
 
   getUrl(): string {
-    return 'http://stage.ob.tools/pe-cs-calc?' +
+    return 'https://stage.ob.tools/pe-cs-calc?' +
       'dil=' + this.dilationScore +
       '&eff=' + this.effacementScore +
       '&sta=' + this.stationScore +
