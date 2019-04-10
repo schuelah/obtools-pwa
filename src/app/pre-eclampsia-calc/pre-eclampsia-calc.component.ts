@@ -39,11 +39,11 @@ export class PreEclampsiaCalcComponent implements OnInit {
     // http://ob.tools/#/pe-cs-calc?dil=1&eff=1&sta=2&ga=32&race=black&prior=true&bmi=28
 
     this.activatedRoute.queryParams.subscribe(params => {
-      this.getValIfKeyExists(params, 'dil').subscribe(val => this.dilationScore = val);
-      this.getValIfKeyExists(params, 'eff').subscribe(val => this.effacementScore = val);
-      this.getValIfKeyExists(params, 'sta').subscribe(val => this.stationScore = val);
-      this.getValIfKeyExists(params, 'ga').subscribe(val => this.ga = val);
-      this.getValIfKeyExists(params, 'race').subscribe(val => this.race = val);
+      this.getValIfKeyExists(params, 'dil').subscribe(val => this.dilationScore = +val);
+      this.getValIfKeyExists(params, 'eff').subscribe(val => this.effacementScore = +val);
+      this.getValIfKeyExists(params, 'sta').subscribe(val => this.stationScore = +val);
+      this.getValIfKeyExists(params, 'ga').subscribe(val => this.ga = +val);
+      this.getValIfKeyExists(params, 'race').subscribe(val => this.race = +val);
       this.getValIfKeyExists(params, 'prior').subscribe(val => this.prior = (val === 'true'));
       this.getValIfKeyExists(params, 'bmi').subscribe(val => this.bmi = +val);
     });
