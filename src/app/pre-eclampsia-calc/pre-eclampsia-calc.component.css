@@ -35,3 +35,7 @@ mat-slider {
 .reference {
   font-size: small;
 }
+
+.table-calc-total {
+  border-top: 1pt solid black;
+}
