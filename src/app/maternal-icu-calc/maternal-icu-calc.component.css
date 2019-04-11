@@ -1,0 +1,19 @@
+/*.calculator-section > * {*/
+/*  margin: 15px;*/
+/*}*/
+
+.calculator-area {
+  padding: 15px;
+}
+
+.calculator-section-left {
+  padding-right: 15px;
+}
+
+.calculator-section-right {
+  padding-left: 15px;
+}
+
+.divider {
+  padding: 20px;
+}

@@ -1,0 +1,54 @@
+<app-calculator
+  [title]="'Calculator to predict the likelihood of a maternal ICU admission'"
+  [label]="'Likelihood of Maternal ICU Admission'"
+  [value]="calculateRisk()"></app-calculator>
+
+<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between" class="calculator-area">
+  <div fxLayout="column" fxFlex.gt-sm="50" ngClass.gt-sm="calculator-section-left">
+    <mat-form-field>
+      <mat-label>Maternal age</mat-label>
+      <input matInput [(ngModel)]="age">
+    </mat-form-field>
+    <mat-slide-toggle [(ngModel)]="cHTN">Chronic hypertension</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="pregestationalDiabetes">Pregestational diabetes mellitus</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="gestationalHTN">Gestational HTN or Pre-Eclampsia</mat-slide-toggle>
+    <mat-form-field>
+      <mat-label>Gestational age (weeks)</mat-label>
+      <input matInput [(ngModel)]="pma">
+    </mat-form-field>
+    <div>
+      <div fxLayout="row">
+        <mat-slider fxFlex min="0" max="60" value="25" step="1" tickInterval="5" [(ngModel)]="bmi"></mat-slider>
+        <mat-form-field>
+          <mat-label>BMI</mat-label>
+          <input matInput [(ngModel)]="bmi" type="number">
+        </mat-form-field>
+      </div>
+      <button mat-raised-button *ngIf="!bmiCalcExpanded" (click)="toggleBmiCalc()">Show Calculator</button>
+      <app-expandable [isExpanded]="bmiCalcExpanded">
+        <app-bmi-calculator *ngIf="bmiCalcExpanded" [(value)]="bmi"></app-bmi-calculator>
+      </app-expandable>
+    </div>
+  </div>
+  <mat-divider fxShow.gt-sm vertical></mat-divider>
+  <div fxLayout="column" fxLayoutAlign="space-between" fxFlex.gt-sm="50"  ngClass.gt-sm="calculator-section-right">
+    <div>
+      <h3>Race:</h3>
+      <app-button-group [labels]="raceOptions" [(value)]="race"></app-button-group>
+    </div>
+    <mat-slide-toggle [(ngModel)]="scheduledCesarean">Scheduled Cesarean</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="medicaid">Medicaid</mat-slide-toggle>
+    <mat-form-field>
+      <mat-label>Interpregnancy interval (months)</mat-label>
+      <input matInput [(ngModel)]="interpregnancyInterval">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Parity</mat-label>
+      <input matInput [(ngModel)]="parity">
+    </mat-form-field>
+    <mat-slide-toggle [(ngModel)]="iol">Induction of labor</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="std">STD during pregnancy</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="priorPreterm">Prior preterm birth</mat-slide-toggle>
+  </div>
+
+</div>

@@ -71,7 +71,7 @@
     </div>
   </div>
 
-  <mat-divider [vertical]="true" fxShow.gt-md></mat-divider>
+  <mat-divider [inset]="true" [vertical]="true" fxShow.gt-md class="divider"></mat-divider>
 
   <div fxLayout="column" fxLayoutAlign="space-between" fxFlex.gt-md="50">
 
@@ -92,6 +92,7 @@
         <div fxLayout="row">
           <mat-slider fxFlex min="0" max="60" value="25" step="1" tickInterval="5" [(ngModel)]="bmi"></mat-slider>
           <mat-form-field>
+            <mat-label>BMI</mat-label>
             <input matInput [(ngModel)]="bmi" type="number">
           </mat-form-field>
         </div>
