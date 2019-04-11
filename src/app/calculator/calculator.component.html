@@ -3,20 +3,7 @@
   <div fxLayout="row" class="calculator-result-row">
     <h3>{{label}}:</h3>
     <div fxFlex></div>
-    <div fxFlex="30" class="calculator-result">{{100 * value | number : '1.0-0'}}</div>
+    <div fxFlex="30" class="calculator-result">{{100 * value | number : '1.0-1'}}%</div>
   </div>
 </div>
-<!--<div class="sticky-header" id="calcHeader">-->
-<!--  <h2>My sticky stuff</h2>-->
-<!--</div>-->
-<mat-progress-bar mode="determinate" value="30"></mat-progress-bar>
-
-<!--<div>-->
-<!--  <mat-toolbar class="mat-accent">-->
-<!--    <mat-toolbar-row>-->
-<!--      <h4>Likelihood of Cesarean Delivery:</h4>-->
-<!--      <div fxFlex></div>-->
-<!--      <div class="calculator-result">{{100 * 3.14159 | number : '0.'}}</div>-->
-<!--    </mat-toolbar-row>-->
-<!--  </mat-toolbar>-->
-<!--</div>-->
+<mat-progress-bar mode="determinate" [value]="value * 100"></mat-progress-bar>

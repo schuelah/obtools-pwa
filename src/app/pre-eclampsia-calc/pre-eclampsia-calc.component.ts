@@ -79,7 +79,7 @@ export class PreEclampsiaCalcComponent implements OnInit {
    * Calculates the probability of requiring a C-Section
    */
   calculateScore(): number {
-    const unfavCx = this.isFavorableCervix() ? 0 : 1; // note UN-favorable cervix, so ? 0 : 1.
+    const favCx = this.isFavorableCervix() ? 1 : 0;
 
     let delCoef = 0;
     if (34 <= this.ga && this.ga < 37) {
@@ -96,7 +96,7 @@ export class PreEclampsiaCalcComponent implements OnInit {
     const PPBMI = this.bmi;
     const PriorVagDel = this.prior ? 1 : 0;
 
-    const exponent = -1.69 - 1.5311 * (unfavCx) + delCoef + raceCoef + 0.035 * (PPBMI) - 1.5355 * (PriorVagDel);
+    const exponent = -1.69 - 1.5311 * favCx + delCoef + raceCoef + 0.035 * (PPBMI) - 1.5355 * (PriorVagDel);
 
     return Math.exp(exponent) / (1 + Math.exp(exponent));
   }

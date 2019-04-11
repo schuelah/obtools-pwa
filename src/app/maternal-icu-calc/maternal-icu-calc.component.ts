@@ -6,23 +6,23 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./maternal-icu-calc.component.css']
 })
 export class MaternalIcuCalcComponent implements OnInit {
-  age: any;
-  cHTN: boolean;
-  pregestationalDiabetes: boolean;
-  gestationalHTN: boolean;
-  pma: number;
-  bmi: number;
+  age = 30;
+  cHTN = false;
+  pregestationalDiabetes = false;
+  gestationalHTN = false;
+  pma = 40;
+  bmi = 25;
   bmiCalcExpanded = false;
 
   raceOptions = ['White', 'Black', 'Hispanic', 'Other/Unknown'];
   race = 3;
-  scheduledCesarean: boolean;
-  medicaid: boolean;
-  interpregnancyInterval: number;
-  parity: number;
-  iol: boolean;
-  std: boolean;
-  priorPreterm: boolean;
+  scheduledCesarean = false;
+  medicaid = false;
+  interpregnancyInterval = 12;
+  parity = 0;
+  iol = false;
+  std = false;
+  priorPreterm = false;
 
   constructor() {
   }
@@ -66,6 +66,10 @@ export class MaternalIcuCalcComponent implements OnInit {
       iolTerm +
       stdTerm +
       priorPretermTerm;
+
+    console.log(exponent);
+
+    console.log(Math.exp(exponent) / (1 + Math.exp(exponent)));
 
     return Math.exp(exponent) / (1 + Math.exp(exponent));
   }
