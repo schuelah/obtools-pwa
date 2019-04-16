@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Citation} from '../reference/article-citation.component';
 import {CITATIONS} from './citations';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
 
 @Component({
@@ -32,7 +32,7 @@ export class PreEclampsiaCalcComponent implements OnInit {
 
   citations = CITATIONS as Array<Citation>;
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {

@@ -6,7 +6,7 @@ import {Component, HostListener, Input, OnDestroy, OnInit} from '@angular/core';
   styleUrls: ['./calculator.component.scss']
 })
 export class CalculatorComponent {
-  @Input() value = 0;
+  @Input() value = 'pending';
   @Input() title = 'Calculator';
   @Input() label = 'Result';
 

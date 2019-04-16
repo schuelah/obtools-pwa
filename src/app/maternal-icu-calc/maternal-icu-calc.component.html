@@ -1,14 +1,19 @@
 <app-calculator
   [title]="'Calculator to predict the likelihood of a maternal ICU admission'"
   [label]="'Likelihood of Maternal ICU Admission'"
-  [value]="calculateRisk()"></app-calculator>
+  [value]="'relative risk: ' + (getRR() | number : '1.0-1')"></app-calculator>
 
 <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between" class="calculator-area">
   <div fxLayout="column" fxFlex.gt-sm="50" ngClass.gt-sm="calculator-section-left">
-    <mat-form-field>
-      <mat-label>Maternal age</mat-label>
-      <input matInput [(ngModel)]="age">
-    </mat-form-field>
+<!--    <mat-form-field>-->
+<!--      <mat-label>Maternal age</mat-label>-->
+<!--      <input matInput [(ngModel)]="age">-->
+<!--    </mat-form-field>-->
+    <div fxLayout="row">
+      <h3 fxFlex="">Maternal Age: </h3>
+      <app-button-group [labels]="ageOptions" [(value)]="ageSelection"></app-button-group>
+
+    </div>
     <mat-slide-toggle [(ngModel)]="cHTN">Chronic hypertension</mat-slide-toggle>
     <mat-slide-toggle [(ngModel)]="pregestationalDiabetes">Pregestational diabetes mellitus</mat-slide-toggle>
     <mat-slide-toggle [(ngModel)]="gestationalHTN">Gestational HTN or Pre-Eclampsia</mat-slide-toggle>

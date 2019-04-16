@@ -3,7 +3,7 @@
   <div fxLayout="row" class="calculator-result-row">
     <h3>{{label}}:</h3>
     <div fxFlex></div>
-    <div fxFlex="30" class="calculator-result">{{100 * value | number : '1.0-1'}}%</div>
+    <div fxFlex="30" class="calculator-result">{{value}}</div>
   </div>
 </div>
-<mat-progress-bar mode="determinate" [value]="value * 100"></mat-progress-bar>
+<!--<mat-progress-bar mode="determinate" [value]=""></mat-progress-bar>-->

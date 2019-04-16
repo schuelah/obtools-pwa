@@ -7,6 +7,8 @@ import {Component, OnInit} from '@angular/core';
 })
 export class MaternalIcuCalcComponent implements OnInit {
   age = 30;
+  ageOptions = ['<35', '&ge;35'];
+  ageSelection = -1;
   cHTN = false;
   pregestationalDiabetes = false;
   gestationalHTN = false;
@@ -36,7 +38,7 @@ export class MaternalIcuCalcComponent implements OnInit {
 
   calculateRisk() {
     const constantTerm = -0.7221365;
-    const ageTerm = 0.2666556 * (this.age >= 35 ? 1 : 0);
+    const ageTerm = 0.2666556 * (this.ageSelection < 0 ? 0 : this.ageSelection);
     const chtnTerm = 0.805747 * (this.cHTN ? 1 : 0);
     const preGestDMTerm = 0.4200111 * (this.pregestationalDiabetes ? 1 : 0);
     const gHTNTerm = 0.8606928 * (this.gestationalHTN ? 1 : 0);
@@ -72,5 +74,9 @@ export class MaternalIcuCalcComponent implements OnInit {
     console.log(Math.exp(exponent) / (1 + Math.exp(exponent)));
 
     return Math.exp(exponent) / (1 + Math.exp(exponent));
+  }
+
+  getRR(): number {
+    return (this.calculateRisk() / 0.0015);
   }
 }
