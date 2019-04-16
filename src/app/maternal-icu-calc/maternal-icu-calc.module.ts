@@ -2,12 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaternalIcuCalcComponent } from './maternal-icu-calc.component';
 import {CalculatorModule} from '../calculator/calculator.module';
-import {MatButtonModule, MatInputModule, MatListModule, MatSelectModule, MatSliderModule, MatSlideToggleModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatInputModule,
+  MatListModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSliderModule,
+  MatSlideToggleModule
+} from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {ExpandableModule} from '../expandable/expandable.module';
 import {BmiCalculatorModule} from '../expandable-bmi-calculator/bmi-calculator.module';
 import {ButtonGroupModule} from '../button-group/button-group.module';
+import {ToolsModule} from '../tools/tools.module';
 
 @NgModule({
   declarations: [MaternalIcuCalcComponent],
@@ -24,7 +33,10 @@ import {ButtonGroupModule} from '../button-group/button-group.module';
     ExpandableModule,
     BmiCalculatorModule,
     MatButtonModule,
-    ButtonGroupModule
+    ButtonGroupModule,
+    MatRippleModule,
+
+    ToolsModule,
   ]
 })
 export class MaternalIcuCalcModule { }

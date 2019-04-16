@@ -69,14 +69,26 @@ export class MaternalIcuCalcComponent implements OnInit {
       stdTerm +
       priorPretermTerm;
 
-    console.log(exponent);
+    // console.log(exponent);
 
-    console.log(Math.exp(exponent) / (1 + Math.exp(exponent)));
+    // console.log(Math.exp(exponent) / (1 + Math.exp(exponent)));
 
     return Math.exp(exponent) / (1 + Math.exp(exponent));
   }
 
   getRR(): number {
     return (this.calculateRisk() / 0.0015);
+  }
+
+  toggleMatAge() {
+    this.ageSelection = this.ageSelection < 0 || this.ageSelection === 1 ? 0 : 1;
+  }
+
+  fromChild() {
+    console.log('fromChild called');
+  }
+
+  fromParent() {
+    console.log('fromParent called');
   }
 }

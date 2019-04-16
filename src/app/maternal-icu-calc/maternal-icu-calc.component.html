@@ -5,18 +5,47 @@
 
 <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between" class="calculator-area">
   <div fxLayout="column" fxFlex.gt-sm="50" ngClass.gt-sm="calculator-section-left">
-<!--    <mat-form-field>-->
-<!--      <mat-label>Maternal age</mat-label>-->
-<!--      <input matInput [(ngModel)]="age">-->
-<!--    </mat-form-field>-->
-    <div fxLayout="row">
-      <h3 fxFlex="">Maternal Age: </h3>
-      <app-button-group [labels]="ageOptions" [(value)]="ageSelection"></app-button-group>
+    <mat-list>
+      <mat-list-item class="clickable" matRipple (click)="toggleMatAge()" tabindex="0">
+        <h4>My Hoverable item</h4>
+        <span fxFlex></span>
+        <app-button-group
+          (appStopPropagation)="fromChild()"
+          [labels]="ageOptions"
+          [(value)]="ageSelection"></app-button-group>
+      </mat-list-item>
 
-    </div>
-    <mat-slide-toggle [(ngModel)]="cHTN">Chronic hypertension</mat-slide-toggle>
-    <mat-slide-toggle [(ngModel)]="pregestationalDiabetes">Pregestational diabetes mellitus</mat-slide-toggle>
-    <mat-slide-toggle [(ngModel)]="gestationalHTN">Gestational HTN or Pre-Eclampsia</mat-slide-toggle>
+      <mat-list-item class="clickable" (click)="cHTN = !cHTN" tabindex="0">
+        <h4>Chronic Hypertension:</h4>
+        <span fxFlex></span>
+        <mat-pseudo-checkbox
+          [state]="cHTN ? 'checked' : 'unchecked'"></mat-pseudo-checkbox>
+      </mat-list-item>
+      <mat-list-item class="clickable" (click)="pregestationalDiabetes = !pregestationalDiabetes"  tabindex="0">
+        <h4>Pregestational diabetes mellitus:</h4>
+        <span fxFlex></span>
+        <mat-pseudo-checkbox
+          [state]="pregestationalDiabetes ? 'checked' : 'unchecked'" tabindex="0"></mat-pseudo-checkbox>
+      </mat-list-item>
+      <mat-list-item class="clickable" (click)="gestationalHTN = !gestationalHTN">
+        <h4>Gestational HTN or Pre-Eclampsia:</h4>
+        <span fxFlex></span>
+        <mat-pseudo-checkbox
+          [state]="gestationalHTN ? 'checked' : 'unchecked'"></mat-pseudo-checkbox>
+      </mat-list-item>
+    </mat-list>
+
+    <mat-action-list>
+      <mat-list-item (click)="toggleMatAge()">
+        <h4>Maternal age:</h4>
+        <span fxFlex></span>
+        <app-button-group
+          (appStopPropagation)="fromChild()"
+          [labels]="ageOptions"
+          [(value)]="ageSelection"></app-button-group>
+      </mat-list-item>
+    </mat-action-list>
+
     <mat-form-field>
       <mat-label>Gestational age (weeks)</mat-label>
       <input matInput [(ngModel)]="pma">
