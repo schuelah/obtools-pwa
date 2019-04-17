@@ -7,7 +7,7 @@ import {StopPropagationDirective} from './stop-propagation.directive';
     StopPropagationDirective,
   ],
   exports: [
-    StopPropagationDirective
+    StopPropagationDirective,
   ],
   imports: [
     CommonModule

@@ -33,3 +33,9 @@
 .score-cell {
   text-align: center;
 }
+
+
+.bmi-calc-card {
+  width: 400px;
+  max-width: 100%;
+}

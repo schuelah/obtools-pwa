@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaternalIcuCalcComponent } from './maternal-icu-calc.component';
 import {CalculatorModule} from '../calculator/calculator.module';
 import {
-  MatButtonModule,
+  MatButtonModule, MatCardModule, MatCheckboxModule,
   MatInputModule,
   MatListModule,
   MatRippleModule,
@@ -37,6 +37,8 @@ import {ToolsModule} from '../tools/tools.module';
     MatRippleModule,
 
     ToolsModule,
+    MatCardModule,
+    MatCheckboxModule,
   ]
 })
 export class MaternalIcuCalcModule { }

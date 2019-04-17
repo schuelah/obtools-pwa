@@ -1,42 +1,12 @@
 <app-calculator
   [title]="'Calculator to predict the likelihood of a maternal ICU admission'"
-  [label]="'Likelihood of Maternal ICU Admission'"
-  [value]="'relative risk: ' + (getRR() | number : '1.0-1')"></app-calculator>
+  [label]="'Relative Risk of Maternal ICU Admission (baseline 0.15%)'"
+  [value]="(getRR() | number : '1.0-1')"></app-calculator>
 
 <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between" class="calculator-area">
-  <div fxLayout="column" fxFlex.gt-sm="50" ngClass.gt-sm="calculator-section-left">
+  <div fxLayout="column" fxFlex.gt-sm="50">
     <mat-list>
-      <mat-list-item class="clickable" matRipple (click)="toggleMatAge()" tabindex="0">
-        <h4>My Hoverable item</h4>
-        <span fxFlex></span>
-        <app-button-group
-          (appStopPropagation)="fromChild()"
-          [labels]="ageOptions"
-          [(value)]="ageSelection"></app-button-group>
-      </mat-list-item>
-
-      <mat-list-item class="clickable" (click)="cHTN = !cHTN" tabindex="0">
-        <h4>Chronic Hypertension:</h4>
-        <span fxFlex></span>
-        <mat-pseudo-checkbox
-          [state]="cHTN ? 'checked' : 'unchecked'"></mat-pseudo-checkbox>
-      </mat-list-item>
-      <mat-list-item class="clickable" (click)="pregestationalDiabetes = !pregestationalDiabetes"  tabindex="0">
-        <h4>Pregestational diabetes mellitus:</h4>
-        <span fxFlex></span>
-        <mat-pseudo-checkbox
-          [state]="pregestationalDiabetes ? 'checked' : 'unchecked'" tabindex="0"></mat-pseudo-checkbox>
-      </mat-list-item>
-      <mat-list-item class="clickable" (click)="gestationalHTN = !gestationalHTN">
-        <h4>Gestational HTN or Pre-Eclampsia:</h4>
-        <span fxFlex></span>
-        <mat-pseudo-checkbox
-          [state]="gestationalHTN ? 'checked' : 'unchecked'"></mat-pseudo-checkbox>
-      </mat-list-item>
-    </mat-list>
-
-    <mat-action-list>
-      <mat-list-item (click)="toggleMatAge()">
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0" (click)="ageSelection = toggleTerm(ageSelection, 2)">
         <h4>Maternal age:</h4>
         <span fxFlex></span>
         <app-button-group
@@ -44,45 +14,119 @@
           [labels]="ageOptions"
           [(value)]="ageSelection"></app-button-group>
       </mat-list-item>
-    </mat-action-list>
 
-    <mat-form-field>
-      <mat-label>Gestational age (weeks)</mat-label>
-      <input matInput [(ngModel)]="pma">
-    </mat-form-field>
-    <div>
-      <div fxLayout="row">
-        <mat-slider fxFlex min="0" max="60" value="25" step="1" tickInterval="5" [(ngModel)]="bmi"></mat-slider>
-        <mat-form-field>
-          <mat-label>BMI</mat-label>
-          <input matInput [(ngModel)]="bmi" type="number">
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="cHTN = toggleTerm(cHTN)">
+        <h4>Chronic hypertension:</h4>
+        <span fxFlex></span>
+        <mat-pseudo-checkbox
+          [state]="getState(cHTN)"></mat-pseudo-checkbox>
+      </mat-list-item>
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="pregestationalDiabetes = toggleTerm(pregestationalDiabetes)">
+        <h4>Pregestational diabetes mellitus:</h4>
+        <span fxFlex></span>
+        <mat-pseudo-checkbox [state]="getState(pregestationalDiabetes)"></mat-pseudo-checkbox>
+      </mat-list-item>
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="gestationalHTN = toggleTerm(gestationalHTN)">
+        <h4>Gestational HTN or Pre-Eclampsia:</h4>
+        <span fxFlex></span>
+        <mat-pseudo-checkbox [state]="getState(gestationalHTN)"></mat-pseudo-checkbox>
+      </mat-list-item>
+      <mat-list-item>
+        <h4>Gestational age:</h4>
+        <span fxFlex></span>
+        <mat-form-field floatLabel="never">
+          <mat-label>PMA</mat-label>
+          <input matInput [(ngModel)]="pma" type="number">
         </mat-form-field>
-      </div>
-      <button mat-raised-button *ngIf="!bmiCalcExpanded" (click)="toggleBmiCalc()">Show Calculator</button>
-      <app-expandable [isExpanded]="bmiCalcExpanded">
-        <app-bmi-calculator *ngIf="bmiCalcExpanded" [(value)]="bmi"></app-bmi-calculator>
-      </app-expandable>
-    </div>
+      </mat-list-item>
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="bmiSelection = toggleTerm(bmiSelection, 2)">
+        <h4>BMI:</h4>
+<!--        <button mat-button *ngIf="!bmiCalcExpanded" (appStopPropagation)="fromChild()" (click)="toggleBmiCalc()">Calculate</button>-->
+        <span fxFlex></span>
+        <app-button-group
+          (appStopPropagation)="fromChild()"
+          [labels]="bmiOptions"
+          [(value)]="bmiSelection"></app-button-group>
+      </mat-list-item>
+    </mat-list>
+
+<!--    <div>-->
+<!--      <app-expandable [isExpanded]="bmiCalcExpanded">-->
+<!--        <mat-card class="bmi-calc-card">-->
+<!--            <app-bmi-calculator *ngIf="bmiCalcExpanded" [(value)]="bmi"></app-bmi-calculator>-->
+<!--        </mat-card>-->
+<!--      </app-expandable>-->
+<!--    </div>-->
   </div>
   <mat-divider fxShow.gt-sm vertical></mat-divider>
-  <div fxLayout="column" fxLayoutAlign="space-between" fxFlex.gt-sm="50"  ngClass.gt-sm="calculator-section-right">
-    <div>
-      <h3>Race:</h3>
-      <app-button-group [labels]="raceOptions" [(value)]="race"></app-button-group>
-    </div>
-    <mat-slide-toggle [(ngModel)]="scheduledCesarean">Scheduled Cesarean</mat-slide-toggle>
-    <mat-slide-toggle [(ngModel)]="medicaid">Medicaid</mat-slide-toggle>
-    <mat-form-field>
-      <mat-label>Interpregnancy interval (months)</mat-label>
-      <input matInput [(ngModel)]="interpregnancyInterval">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Parity</mat-label>
-      <input matInput [(ngModel)]="parity">
-    </mat-form-field>
-    <mat-slide-toggle [(ngModel)]="iol">Induction of labor</mat-slide-toggle>
-    <mat-slide-toggle [(ngModel)]="std">STD during pregnancy</mat-slide-toggle>
-    <mat-slide-toggle [(ngModel)]="priorPreterm">Prior preterm birth</mat-slide-toggle>
+  <div fxLayout="column" fxLayoutAlign="space-between" fxFlex.gt-sm="50">
+    <mat-list>
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0" (click)="race = toggleTerm(race, raceOptions.length)">
+        <h4>Race:</h4>
+        <span fxFlex></span>
+        <app-button-group
+          (appStopPropagation)="fromChild()"
+          [labels]="raceOptions"
+          [(value)]="race"></app-button-group>
+      </mat-list-item>
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="scheduledCesarean = toggleTerm(scheduledCesarean)">
+        <h4>Scheduled Cesarean:</h4>
+        <span fxFlex></span>
+        <mat-pseudo-checkbox [state]="getState(scheduledCesarean)"></mat-pseudo-checkbox>
+      </mat-list-item>
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="medicaid = toggleTerm(medicaid)">
+        <h4>Medicaid:</h4>
+        <span fxFlex></span>
+        <mat-pseudo-checkbox [state]="getState(medicaid)"></mat-pseudo-checkbox>
+      </mat-list-item>
+      <mat-list-item>
+        <h4>Interpregnancy interval:</h4>
+        <span fxFlex></span>
+        <mat-form-field floatLabel="never">
+          <mat-label>months</mat-label>
+          <input matInput [(ngModel)]="interpregnancyInterval" type="number">
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item>
+        <h4>Parity:</h4>
+        <span fxFlex></span>
+        <mat-form-field floatLabel="never">
+          <mat-label>number</mat-label>
+          <input matInput [(ngModel)]="parity" type="number">
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="iol = toggleTerm(iol)">
+        <h4>Induction of Labor:</h4>
+        <span fxFlex></span>
+        <mat-pseudo-checkbox [state]="getState(iol)"></mat-pseudo-checkbox>
+      </mat-list-item>
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="std = toggleTerm(std)">
+        <h4>STD during pregnancy:</h4>
+        <span fxFlex></span>
+        <mat-pseudo-checkbox [state]="getState(std)"></mat-pseudo-checkbox>
+      </mat-list-item>
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="priorPreterm = toggleTerm(priorPreterm)">
+        <h4>Prior preterm birth:</h4>
+        <span fxFlex></span>
+        <mat-pseudo-checkbox [state]="getState(priorPreterm)"></mat-pseudo-checkbox>
+      </mat-list-item>
+
+    </mat-list>
+
+
+<!--    <mat-slide-toggle [(ngModel)]="scheduledCesarean">Scheduled Cesarean</mat-slide-toggle>-->
+<!--    <mat-slide-toggle [(ngModel)]="medicaid">Medicaid</mat-slide-toggle>-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Interpregnancy interval (months)</mat-label>-->
+<!--      <input matInput [(ngModel)]="interpregnancyInterval">-->
+<!--    </mat-form-field>-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Parity</mat-label>-->
+<!--      <input matInput [(ngModel)]="parity">-->
+<!--    </mat-form-field>-->
+<!--    <mat-slide-toggle [(ngModel)]="iol">Induction of labor</mat-slide-toggle>-->
+<!--    <mat-slide-toggle [(ngModel)]="std">STD during pregnancy</mat-slide-toggle>-->
+<!--    <mat-slide-toggle [(ngModel)]="priorPreterm">Prior preterm birth</mat-slide-toggle>-->
   </div>
 
 </div>
