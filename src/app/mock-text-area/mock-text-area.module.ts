@@ -4,6 +4,9 @@ import { MockTextAreaComponent } from './mock-text-area.component';
 
 @NgModule({
   declarations: [MockTextAreaComponent],
+  exports: [
+    MockTextAreaComponent
+  ],
   imports: [
     CommonModule
   ]
