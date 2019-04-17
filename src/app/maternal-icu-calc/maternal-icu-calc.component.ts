@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MatPseudoCheckboxState} from '@angular/material';
+import {CITATIONS} from './citations';
+import {Citation} from '../reference/article-citation.component';
+import {RiskBuilder} from '../tools/risk-builder';
 
 enum RACE {
   WHITE = 0,
@@ -15,8 +18,6 @@ enum RACE {
 })
 export class MaternalIcuCalcComponent implements OnInit {
 
-  constructor() {
-  }
   ageOptions = ['&lt;35', '&ge;35'];
   ageSelection = -1;
   cHTN = -1;
@@ -27,7 +28,6 @@ export class MaternalIcuCalcComponent implements OnInit {
   bmiSelection = -1;
   bmiCalcExpanded = false;
   bmi: number;
-
   raceOptions = ['White', 'Black', 'Hispanic', 'Other'];
   race = -1;
   scheduledCesarean = -1;
@@ -37,6 +37,10 @@ export class MaternalIcuCalcComponent implements OnInit {
   iol = -1;
   std = -1;
   priorPreterm = -1;
+  citations = CITATIONS as Array<Citation>;
+
+  constructor() {
+  }
 
   static calcTerm(coefficient: number, variable: number, baseline: number): number {
     if (isNaN(variable) || variable < 0) {
@@ -75,7 +79,7 @@ export class MaternalIcuCalcComponent implements OnInit {
     const chtnTerm = MaternalIcuCalcComponent.calcTerm(0.805747, this.cHTN, 0);
     const preGestDMTerm = MaternalIcuCalcComponent.calcTerm(0.4200111, this.pregestationalDiabetes, 0);
     const gHTNTerm = MaternalIcuCalcComponent.calcTerm(0.8606928, this.gestationalHTN, 0);
-    const pmaTerm = MaternalIcuCalcComponent.calcTerm(-0.2139833, this.pma, 0);
+    const pmaTerm = MaternalIcuCalcComponent.calcTerm(-0.2139833, this.pma, -40 * 0.2139833);
     const bmiTerm = MaternalIcuCalcComponent.calcTerm(0.5351856, this.bmiSelection, 0);
 
     ////////////
@@ -147,5 +151,48 @@ export class MaternalIcuCalcComponent implements OnInit {
     }
 
     return 0;
+  }
+
+  getUrl(): string {
+    return 'https://stage.ob.tools/mat-icu-calc';
+  }
+
+  getRiskFactorsWording(): string {
+    const rb = new RiskBuilder();
+
+    rb.addSimpleTerm(this.ageSelection, 'unknown age', 'age &ge;35');
+    rb.addSimpleTerm(this.cHTN, 'unknown cHTN', 'chronic hypertension');
+    rb.addSimpleTerm(this.pregestationalDiabetes, 'unknown age', 'age &ge;35');
+    rb.addSimpleTerm(this.gestationalHTN, 'unknown gestational hypertension', 'gestational hypertension');
+    rb.addDeclarativeTerm(this.pma, 'unknown gestational age', 'gestational age ' + this.pma);
+    rb.addSimpleTerm(this.bmiSelection, 'unknown BMI', 'BMI &ge;50 kg/m<sup>2</sup>');
+    rb.addDeclarativeTerm(this.race, 'unknown race', this.raceOptions[this.race] + ' race');
+    rb.addSimpleTerm(this.scheduledCesarean, 'unknown if scheduled CS', 'scheduled C-Section');
+    rb.addSimpleTerm(this.medicaid, 'unknown insurance', 'medicaid insurance');
+    rb.addDeclarativeTerm(
+      this.interpregnancyInterval,
+      'unknown interpregnancy interval',
+      'interpregnancy interval ' + this.interpregnancyInterval + ' months');
+    rb.addDeclarativeTerm(
+      this.parity,
+      'unknown parity',
+      'parity ' + this.parity);
+    rb.addSimpleTerm(this.iol, 'unknown if induction of labor', 'induction of labor');
+    rb.addSimpleTerm(this.std, 'unknown STD status', 'STD during pregnancy');
+    rb.addSimpleTerm(this.priorPreterm, 'unknown prior preterm', 'prior preterm birth');
+
+    return rb.getRiskFactorWording();
+  }
+
+  getWording(value: number, unknownWording: string, riskWording: string): string {
+    if (value < 0) {
+      return unknownWording;
+    }
+    if (value === 1) {
+      return riskWording;
+    }
+
+    return '';
+
   }
 }

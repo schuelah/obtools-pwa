@@ -112,21 +112,24 @@
       </mat-list-item>
 
     </mat-list>
-
-
-<!--    <mat-slide-toggle [(ngModel)]="scheduledCesarean">Scheduled Cesarean</mat-slide-toggle>-->
-<!--    <mat-slide-toggle [(ngModel)]="medicaid">Medicaid</mat-slide-toggle>-->
-<!--    <mat-form-field>-->
-<!--      <mat-label>Interpregnancy interval (months)</mat-label>-->
-<!--      <input matInput [(ngModel)]="interpregnancyInterval">-->
-<!--    </mat-form-field>-->
-<!--    <mat-form-field>-->
-<!--      <mat-label>Parity</mat-label>-->
-<!--      <input matInput [(ngModel)]="parity">-->
-<!--    </mat-form-field>-->
-<!--    <mat-slide-toggle [(ngModel)]="iol">Induction of labor</mat-slide-toggle>-->
-<!--    <mat-slide-toggle [(ngModel)]="std">STD during pregnancy</mat-slide-toggle>-->
-<!--    <mat-slide-toggle [(ngModel)]="priorPreterm">Prior preterm birth</mat-slide-toggle>-->
   </div>
 
+
 </div>
+
+<div class="layout-padding">
+  <h3>Clinical Note Template:</h3>
+
+  <app-mock-text-area>
+    <p>Based on {{getRiskFactorsWording()}}: <strong>The risk of this patient being admitted to the ICU at the time of delivery is
+      {{calculateRisk() | percent : '1.0-2'}}. This represents a relative risk of {{getRR() | number : '1.0-1' }}
+        compared with the baseline population risk of 0.15%.</strong>
+    </p>
+
+    <p class="reference">Reference:
+      <app-article-citation [ref]="citations[0]"></app-article-citation>
+    </p>
+    <p class="reference">Calculator at <a href="{{getUrl()}}">{{getUrl()}}</a></p>
+  </app-mock-text-area>
+</div>
+

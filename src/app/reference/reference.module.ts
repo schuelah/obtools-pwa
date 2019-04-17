@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ArticleCitationComponent} from './article-citation.component';
+import {ToolsModule} from '../tools/tools.module';
 
 @NgModule({
   declarations: [ArticleCitationComponent],
@@ -8,7 +9,8 @@ import {ArticleCitationComponent} from './article-citation.component';
     ArticleCitationComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ToolsModule
   ]
 })
 export class ReferenceModule { }

@@ -35,7 +35,6 @@ import {MaternalIcuCalcModule} from './maternal-icu-calc/maternal-icu-calc.modul
     FlexModule,
   ],
   providers: [],
-  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -17,6 +17,8 @@ import {ExpandableModule} from '../expandable/expandable.module';
 import {BmiCalculatorModule} from '../expandable-bmi-calculator/bmi-calculator.module';
 import {ButtonGroupModule} from '../button-group/button-group.module';
 import {ToolsModule} from '../tools/tools.module';
+import {MockTextAreaModule} from '../mock-text-area/mock-text-area.module';
+import {ReferenceModule} from '../reference/reference.module';
 
 @NgModule({
   declarations: [MaternalIcuCalcComponent],
@@ -39,6 +41,8 @@ import {ToolsModule} from '../tools/tools.module';
     ToolsModule,
     MatCardModule,
     MatCheckboxModule,
+    MockTextAreaModule,
+    ReferenceModule,
   ]
 })
 export class MaternalIcuCalcModule { }

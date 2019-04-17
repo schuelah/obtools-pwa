@@ -3,7 +3,7 @@
 /*}*/
 
 .calculator-area {
-  padding: 15px;
+  /*padding: 15px;*/
 }
 
 .calculator-section-left {
@@ -25,4 +25,12 @@
 .clickable {
   cursor: pointer;
   outline: inherit;
+}
+
+.reference {
+  font-size: small;
+}
+
+.layout-padding {
+  padding: 15px;
 }
