@@ -16,6 +16,7 @@ import {ExpandableModule} from '../expandable/expandable.module';
 import {CalculatorModule} from '../calculator/calculator.module';
 import {BmiCalculatorModule} from '../expandable-bmi-calculator/bmi-calculator.module';
 import {ReferenceModule} from '../reference/reference.module';
+import {MockTextAreaModule} from '../mock-text-area/mock-text-area.module';
 
 @NgModule({
   declarations: [PreEclampsiaCalcComponent],
@@ -39,6 +40,7 @@ import {ReferenceModule} from '../reference/reference.module';
     BmiCalculatorModule,
     ReferenceModule,
     MatDividerModule,
+    MockTextAreaModule,
   ]
 })
 export class PreEclampsiaCalcModule { }

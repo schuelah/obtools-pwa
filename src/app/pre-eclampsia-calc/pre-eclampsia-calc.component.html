@@ -109,7 +109,7 @@
       </mat-toolbar>
       <div>
 
-        <div class="mock-textarea" contenteditable="true">
+        <app-mock-text-area>
           <p>Based on <span *ngIf="!isFavorableCervix()">an unfavorable</span><span
             *ngIf="isFavorableCervix()">a favorable</span> cervix (simplified bishop score of
             {{getBishopScore()}}),
@@ -124,8 +124,7 @@
             <app-article-citation [ref]="citations[0]"></app-article-citation>
           </p>
           <p class="reference">Calculator at <a href="{{getUrl()}}">{{getUrl()}}</a></p>
-        </div>
-
+        </app-mock-text-area>
       </div>
     </div>
   </div>

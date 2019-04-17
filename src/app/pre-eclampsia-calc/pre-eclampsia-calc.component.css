@@ -2,15 +2,6 @@ mat-slider {
   width: 100%;
 }
 
-.mock-textarea {
-  background-color: #ffffff;
-  border: 1px solid gray;
-  overflow-x: auto;
-  overflow-y: auto;
-  padding: 8px;
-  resize: both;
-}
-
 .button-group-label {
   display: block;
   font-weight: bold;
