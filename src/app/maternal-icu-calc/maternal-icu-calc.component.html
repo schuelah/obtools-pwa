@@ -1,12 +1,12 @@
 <app-calculator
   [title]="'Calculator to predict the likelihood of a maternal ICU admission'"
-  [label]="'Relative Risk of Maternal ICU Admission (baseline 0.15%)'"
-  [value]="(getRR() | number : '1.0-1')"></app-calculator>
+  [label]="'Risk of Maternal ICU Admission (baseline 0.15%)'"
+  [value]="(calculateRisk() | percent : '1.0-2') + ' (RR ' + ( getRR() | number : '1.0-1') + ')'"></app-calculator>
 
 <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between" class="calculator-area">
   <div fxLayout="column" fxFlex.gt-sm="50">
     <mat-list>
-      <mat-list-item class="clickable mat-primary" matRipple tabindex="0" (click)="ageSelection = toggleTerm(ageSelection, 2)">
+      <mat-list-item class="clickable mat-primary" matRipple (click)="ageSelection = toggleTerm(ageSelection, 2)">
         <h4>Maternal age:</h4>
         <span fxFlex></span>
         <app-button-group
@@ -15,18 +15,21 @@
           [(value)]="ageSelection"></app-button-group>
       </mat-list-item>
 
-      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="cHTN = toggleTerm(cHTN)">
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
+                     (click)="cHTN = toggleTerm(cHTN)">
         <h4>Chronic hypertension:</h4>
         <span fxFlex></span>
         <mat-pseudo-checkbox
           [state]="getState(cHTN)"></mat-pseudo-checkbox>
       </mat-list-item>
-      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="pregestationalDiabetes = toggleTerm(pregestationalDiabetes)">
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
+                     (click)="pregestationalDiabetes = toggleTerm(pregestationalDiabetes)">
         <h4>Pregestational diabetes mellitus:</h4>
         <span fxFlex></span>
         <mat-pseudo-checkbox [state]="getState(pregestationalDiabetes)"></mat-pseudo-checkbox>
       </mat-list-item>
-      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="gestationalHTN = toggleTerm(gestationalHTN)">
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
+                     (click)="gestationalHTN = toggleTerm(gestationalHTN)">
         <h4>Gestational HTN or Pre-Eclampsia:</h4>
         <span fxFlex></span>
         <mat-pseudo-checkbox [state]="getState(gestationalHTN)"></mat-pseudo-checkbox>
@@ -39,9 +42,10 @@
           <input matInput [(ngModel)]="pma" type="number">
         </mat-form-field>
       </mat-list-item>
-      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="bmiSelection = toggleTerm(bmiSelection, 2)">
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
+                     (click)="bmiSelection = toggleTerm(bmiSelection, 2)">
         <h4>BMI:</h4>
-<!--        <button mat-button *ngIf="!bmiCalcExpanded" (appStopPropagation)="fromChild()" (click)="toggleBmiCalc()">Calculate</button>-->
+        <!--        <button mat-button *ngIf="!bmiCalcExpanded" (appStopPropagation)="fromChild()" (click)="toggleBmiCalc()">Calculate</button>-->
         <span fxFlex></span>
         <app-button-group
           (appStopPropagation)="fromChild()"
@@ -50,18 +54,19 @@
       </mat-list-item>
     </mat-list>
 
-<!--    <div>-->
-<!--      <app-expandable [isExpanded]="bmiCalcExpanded">-->
-<!--        <mat-card class="bmi-calc-card">-->
-<!--            <app-bmi-calculator *ngIf="bmiCalcExpanded" [(value)]="bmi"></app-bmi-calculator>-->
-<!--        </mat-card>-->
-<!--      </app-expandable>-->
-<!--    </div>-->
+    <!--    <div>-->
+    <!--      <app-expandable [isExpanded]="bmiCalcExpanded">-->
+    <!--        <mat-card class="bmi-calc-card">-->
+    <!--            <app-bmi-calculator *ngIf="bmiCalcExpanded" [(value)]="bmi"></app-bmi-calculator>-->
+    <!--        </mat-card>-->
+    <!--      </app-expandable>-->
+    <!--    </div>-->
   </div>
   <mat-divider fxShow.gt-sm vertical></mat-divider>
   <div fxLayout="column" fxLayoutAlign="space-between" fxFlex.gt-sm="50">
     <mat-list>
-      <mat-list-item class="clickable mat-primary" matRipple tabindex="0" (click)="race = toggleTerm(race, raceOptions.length)">
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
+                     (click)="race = toggleTerm(race, raceOptions.length)">
         <h4>Race:</h4>
         <span fxFlex></span>
         <app-button-group
@@ -69,12 +74,13 @@
           [labels]="raceOptions"
           [(value)]="race"></app-button-group>
       </mat-list-item>
-      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="scheduledCesarean = toggleTerm(scheduledCesarean)">
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
+                     (click)="scheduledCesarean = toggleTerm(scheduledCesarean)">
         <h4>Scheduled Cesarean:</h4>
         <span fxFlex></span>
         <mat-pseudo-checkbox [state]="getState(scheduledCesarean)"></mat-pseudo-checkbox>
       </mat-list-item>
-      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="medicaid = toggleTerm(medicaid)">
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0" (click)="medicaid = toggleTerm(medicaid)">
         <h4>Medicaid:</h4>
         <span fxFlex></span>
         <mat-pseudo-checkbox [state]="getState(medicaid)"></mat-pseudo-checkbox>
@@ -95,17 +101,18 @@
           <input matInput [(ngModel)]="parity" type="number">
         </mat-form-field>
       </mat-list-item>
-      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="iol = toggleTerm(iol)">
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0" (click)="iol = toggleTerm(iol)">
         <h4>Induction of Labor:</h4>
         <span fxFlex></span>
         <mat-pseudo-checkbox [state]="getState(iol)"></mat-pseudo-checkbox>
       </mat-list-item>
-      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="std = toggleTerm(std)">
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0" (click)="std = toggleTerm(std)">
         <h4>STD during pregnancy:</h4>
         <span fxFlex></span>
         <mat-pseudo-checkbox [state]="getState(std)"></mat-pseudo-checkbox>
       </mat-list-item>
-      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"  (click)="priorPreterm = toggleTerm(priorPreterm)">
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
+                     (click)="priorPreterm = toggleTerm(priorPreterm)">
         <h4>Prior preterm birth:</h4>
         <span fxFlex></span>
         <mat-pseudo-checkbox [state]="getState(priorPreterm)"></mat-pseudo-checkbox>
@@ -121,15 +128,22 @@
   <h3>Clinical Note Template:</h3>
 
   <app-mock-text-area>
-    <p>Based on {{getRiskFactorsWording()}}: <strong>The risk of this patient being admitted to the ICU at the time of delivery is
+    <p>Based on {{getRiskFactorsWording()}}: <strong>The risk of this patient being admitted to the ICU at the time of
+      delivery is
       {{calculateRisk() | percent : '1.0-2'}}. This represents a relative risk of {{getRR() | number : '1.0-1' }}
-        compared with the baseline population risk of 0.15%.</strong>
+      compared with the baseline population risk of 0.15%.</strong>
     </p>
 
     <p class="reference">Reference:
       <app-article-citation [ref]="citations[0]"></app-article-citation>
     </p>
-    <p class="reference">Calculator at <a href="{{getUrl()}}">{{getUrl()}}</a></p>
+    <p class="note-link">Calculator at <a href="{{getUrl()}}">{{getUrl()}}</a></p>
+
+    <p class="limitations">Limitations: The maximum predicted risk for this model approximates 24%. The model is not
+      fitted for predicted risk above 5%. True risk above 5% predicted risk is unknown. This model has a low positive
+      predictive value given the exceedingly rare outcome of maternal ICU admission (see Table 1 of reference). Numbers
+      of individuals from which the calculator was developed are presented for each ICU admission risk strata
+      (Table 1).</p>
   </app-mock-text-area>
 </div>
 
