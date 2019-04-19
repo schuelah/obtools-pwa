@@ -19,14 +19,18 @@
                      (click)="cHTN = toggleTerm(cHTN)">
         <h4>Chronic hypertension:</h4>
         <span fxFlex></span>
+        <div *ngIf="cHTN < 0">unknown</div>
         <mat-pseudo-checkbox
+          *ngIf="cHTN >= 0"
           [state]="getState(cHTN)"></mat-pseudo-checkbox>
       </mat-list-item>
       <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
                      (click)="pregestationalDiabetes = toggleTerm(pregestationalDiabetes)">
         <h4>Pregestational diabetes mellitus:</h4>
         <span fxFlex></span>
-        <mat-pseudo-checkbox [state]="getState(pregestationalDiabetes)"></mat-pseudo-checkbox>
+        <div *ngIf="pregestationalDiabetes < 0">unknown</div>
+        <mat-pseudo-checkbox
+          *ngIf="pregestationalDiabetes >= 0" [state]="getState(pregestationalDiabetes)"></mat-pseudo-checkbox>
       </mat-list-item>
       <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
                      (click)="gestationalHTN = toggleTerm(gestationalHTN)">
