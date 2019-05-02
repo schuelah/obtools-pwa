@@ -144,7 +144,7 @@ export class MaternalIcuCalcComponent implements OnInit {
     return 'checked';
   }
 
-  toggleTerm(term: number, count?: number): number {
+  cycleTerm(term: number, count?: number, allowUndefined?: boolean): number {
     const defaultNumber = (count === undefined ? 1 : 0);
 
     if (term < defaultNumber) {
