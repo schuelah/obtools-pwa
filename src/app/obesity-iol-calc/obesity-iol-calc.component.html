@@ -20,7 +20,7 @@
         <span fxFlex></span>
         <mat-form-field floatLabel="never">
           <mat-label>inches</mat-label>
-          <input matInput [(ngModel)]="maternalHeight" type="number">
+          <input matInput [(ngModel)]="inches" type="number">
         </mat-form-field>
       </mat-list-item>
       <mat-list-item>
@@ -28,7 +28,7 @@
         <span fxFlex></span>
         <mat-form-field floatLabel="never">
           <mat-label>pounds</mat-label>
-          <input matInput [(ngModel)]="maternalWeight" type="number">
+          <input matInput [(ngModel)]="lbs" type="number">
         </mat-form-field>
       </mat-list-item>
       <mat-list-item>
@@ -92,7 +92,7 @@
   <h3>Clinical Note Template:</h3>
 
   <app-mock-text-area>
-    <p>Based on **********: <strong>The risk of this patient being admitted to the ICU at the time of
+    <p>Based on {{getRiskFactorsWording()}}: <strong>The risk of this patient being admitted to the ICU at the time of
       delivery is
       {{calculateRisk() | percent : '1.0-2'}}. This represents a relative risk of {{getRR() | number : '1.0-1' }}
       compared with the baseline population risk of 0.15%.</strong>

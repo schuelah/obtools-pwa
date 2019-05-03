@@ -139,7 +139,7 @@ export class MaternalIcuCalcComponent implements OnInit {
     const rb = new RiskBuilder();
 
     rb.addSimpleTerm(this.ageSelection, 'unknown age', 'age &ge;35');
-    rb.addSimpleTerm(this.cHTN, 'unknown cHTN', 'chronic hypertension');
+    rb.addSimpleTerm(this.cHTN, 'unknown chronic hypertension status', 'chronic hypertension');
     rb.addSimpleTerm(this.pregestationalDiabetes, 'unknown age', 'age &ge;35');
     rb.addSimpleTerm(this.gestationalHTN, 'unknown gestational hypertension', 'gestational hypertension');
     rb.addDeclarativeTerm(this.pma, 'unknown gestational age', 'gestational age ' + this.pma);

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CalcTools} from '../tools/calc-tools';
+import {RiskBuilder} from '../tools/risk-builder';
 
 @Component({
   selector: 'app-obesity-iol-calc',
@@ -13,8 +14,8 @@ export class ObesityIolCalcComponent implements OnInit {
   age: number;
   cHTN = -1;
   pregestationalDiabetes = -1;
-  maternalHeight: number;
-  maternalWeight: number;
+  inches: number;
+  lbs: number;
   weightGain: number;
   medicaid = -1;
   parity: number;
@@ -32,8 +33,8 @@ export class ObesityIolCalcComponent implements OnInit {
   calculateRisk() {
     const constantTerm = 4.437;
     const ageTerm = CalcTools.calcTerm(0.0549897, this.age, 35);
-    const htTerm = CalcTools.calcTerm(-0.1300748, this.maternalHeight, 0);
-    const wtTerm = CalcTools.calcTerm(0.0082933, this.maternalWeight, 0);
+    const htTerm = CalcTools.calcTerm(-0.1300748, this.inches, 0);
+    const wtTerm = CalcTools.calcTerm(0.0082933, this.lbs, 0);
     const wtGainTerm = CalcTools.calcTerm(0.0049423, this.weightGain, 0);
     const cHtnTerm = CalcTools.calcTerm(0.1422798, this.cHTN, 0);
     const preGestDMTerm = CalcTools.calcTerm(0.4957692, this.pregestationalDiabetes, 0);
@@ -62,7 +63,27 @@ export class ObesityIolCalcComponent implements OnInit {
     return (this.calculateRisk() / 0.0015);
   }
 
-  fromChild() {
-    console.log('fromChild called');
+  getRiskFactorsWording(): string {
+    const rb = new RiskBuilder();
+
+    rb.addDeclarativeTerm(this.age, 'unknown age', 'age ' + this.age);
+    rb.addDeclarativeTerm(this.inches, 'unknown height', 'height ' + this.inches + ' inches');
+    rb.addDeclarativeTerm(this.lbs, 'unknown weight', 'weight ' + this.lbs + ' lbs');
+    rb.addSimpleTerm(this.cHTN, 'unknown chronic hypertension status', 'chronic hypertension');
+    rb.addSimpleTerm(this.pregestationalDiabetes, 'unknown age', 'age &ge;35');
+    rb.addSimpleTerm(this.medicaid, 'unknown insurance', 'medicaid insurance');
+    rb.addSimpleTerm(
+      this.priorCesarean,
+      'unknown prior Cesarean delivery',
+      'history of a prior Cesarean delivery',
+      'no history of a prior Cesarean delivery');
+    rb.addSimpleTerm(
+      this.priorCesarean,
+      'unknown prior Cesarean delivery',
+      'history of a prior vaginal delivery',
+      'no history of a prior vaginal delivery');
+    rb.addDeclarativeTerm(this.parity, 'unknown parity', 'parity ' + this.parity);
+
+    return rb.getRiskFactorWording();
   }
 }
