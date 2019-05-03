@@ -1,7 +1,8 @@
 <app-calculator
   [title]="'Calculator to predict the likelihood of cesarean delivery after induction in the setting of preeclampsia'"
   [label]="'Likelihood of Cesarean Delivery'"
-  [value]="(calculateScore() | percent : '1.1-1')"></app-calculator>
+  [valueText]="(calculateScore() | percent : '1.1-1')"
+  [value]="calculateScore()"></app-calculator>
 
 <div fxLayout="column" fxLayout.gt-md="row" fxLayoutAlign="space-between">
   <div fxLayout="column" fxLayoutAlign="space-between" fxFlex.gt-md="50">
