@@ -1,0 +1,12 @@
+.clickable:hover, .clickable:focus {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.clickable {
+  cursor: pointer;
+  outline: inherit;
+}
+
+.mat-pseudo-checkbox-indeterminate {
+  background: rgba(61, 61, 61, 0.15)
+}

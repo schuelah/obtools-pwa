@@ -41,6 +41,10 @@ export class MaternalIcuCalcComponent implements OnInit {
   priorPreterm = -1;
   citations = CITATIONS as Array<Citation>;
 
+  // Reference to cycleTerm method
+  cycleTerm = CalcTools.cycleTerm;
+  getState = CalcTools.getState;
+
   constructor() {
   }
 
@@ -121,35 +125,11 @@ export class MaternalIcuCalcComponent implements OnInit {
     console.log('fromChild called');
   }
 
-  fromParent() {
-    console.log('fromParent called');
-  }
 
-  getState(term: number): MatPseudoCheckboxState {
-    if (term < 0) {
-      return 'indeterminate';
-    }
 
-    if (term === 0) {
-      return 'unchecked';
-    }
-
-    return 'checked';
-  }
-
-  cycleTerm(term: number, count?: number, allowUndefined?: boolean): number {
-    const defaultNumber = (count === undefined ? 1 : 0);
-
-    if (term < defaultNumber) {
-      return defaultNumber;
-    }
-
-    if (count !== undefined && term + 1 < count) {
-      return term + 1;
-    }
-
-    return 0;
-  }
+  // cycleTerm(term: number, count?: number, allowUndefined?: boolean): number {
+  //   return CalcTools.cycleTerm(term, count, allowUndefined);
+  // }
 
   getUrl(): string {
     return 'https://stage.ob.tools/mat-icu-calc';
