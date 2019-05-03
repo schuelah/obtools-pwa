@@ -1,7 +1,8 @@
 <app-calculator
   [title]="'Calculator to predict the likelihood of a maternal ICU admission'"
   [label]="'Risk of Maternal ICU Admission (baseline 0.15%)'"
-  [value]="(calculateRisk() | percent : '1.0-2') + ' (RR ' + ( getRR() | number : '1.0-1') + ')'"></app-calculator>
+  [valueText]="(calculateRisk() | percent : '1.0-2') + ' (RR ' + ( getRR() | number : '1.0-1') + ')'"
+  [value]="calculateRisk()"></app-calculator>
 
 <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between" class="calculator-area">
   <div fxLayout="column" fxFlex.gt-sm="50">

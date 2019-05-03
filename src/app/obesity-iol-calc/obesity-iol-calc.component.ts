@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CalcTools} from '../tools/calc-tools';
 import {RiskBuilder} from '../tools/risk-builder';
+import {CITATIONS} from './citations';
+import {Citation} from '../reference/article-citation.component';
 
 @Component({
   selector: 'app-obesity-iol-calc',
@@ -19,6 +21,8 @@ export class ObesityIolCalcComponent implements OnInit {
   weightGain: number;
   medicaid = -1;
   parity: number;
+
+  citations = CITATIONS as Array<Citation>;
 
   // Reference to cycleTerm method
   cycleTerm = CalcTools.cycleTerm;
@@ -59,10 +63,6 @@ export class ObesityIolCalcComponent implements OnInit {
     return Math.exp(exponent) / (1 + Math.exp(exponent));
   }
 
-  getRR(): number {
-    return (this.calculateRisk() / 0.0015);
-  }
-
   getRiskFactorsWording(): string {
     const rb = new RiskBuilder();
 
@@ -85,5 +85,9 @@ export class ObesityIolCalcComponent implements OnInit {
     rb.addDeclarativeTerm(this.parity, 'unknown parity', 'parity ' + this.parity);
 
     return rb.getRiskFactorWording();
+  }
+
+  getUrl(): string {
+    return 'https://ob.tools/obesity-iol-calc';
   }
 }

@@ -1,13 +1,17 @@
 export const CITATIONS = [
   {
     source: 'In Progress',
-    accessed: {'date-parts': [[2019, 4, 17]]},
+    accessed: {'date-parts': [[2019, 4, 30]]},
     id: 'none',
-    title: 'Predictive Model of Factors Associated With Maternal Intensive Care Unit Admission',
+    title: 'Predictive model for failed induction of labor among obese women',
     author: [
       {
         family: 'Rossi',
         given: 'Robert M'
+      },
+      {
+        family: 'Requarth',
+        given: 'Erin'
       },
       {
         family: 'Dufendach',
@@ -16,6 +20,10 @@ export const CITATIONS = [
       {
         family: 'Hall',
         given: 'Eric S'
+      },
+      {
+        family: 'Warshak',
+        given: 'Carri R'
       },
       {
         family: 'DeFranco',
