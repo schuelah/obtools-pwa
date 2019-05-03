@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {PreEclampsiaCalcComponent} from '../pre-eclampsia-calc/pre-eclampsia-calc.component';
 import {MaternalIcuCalcComponent} from '../maternal-icu-calc/maternal-icu-calc.component';
+import {ObesityIolCalcComponent} from '../obesity-iol-calc/obesity-iol-calc.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'mat-icu-calc',
     component: MaternalIcuCalcComponent,
+  },
+  {
+    path: 'obesity-iol-calc',
+    component: ObesityIolCalcComponent,
   },
   {
     path: 'pe-cs-calc',

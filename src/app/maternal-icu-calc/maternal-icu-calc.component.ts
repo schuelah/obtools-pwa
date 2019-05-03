@@ -3,6 +3,7 @@ import {MatPseudoCheckboxState} from '@angular/material';
 import {CITATIONS} from './citations';
 import {Citation} from '../reference/article-citation.component';
 import {RiskBuilder} from '../tools/risk-builder';
+import {CalcTools} from '../tools/calc-tools';
 
 enum RACE {
   UNKNOWN = -1,
@@ -43,14 +44,6 @@ export class MaternalIcuCalcComponent implements OnInit {
   constructor() {
   }
 
-  static calcTerm(coefficient: number, variable: number, prevalence: number): number {
-    if (isNaN(variable) || variable < 0) {
-      return prevalence * coefficient;
-    }
-
-    return coefficient * variable;
-  }
-
   ngOnInit() {
   }
 
@@ -80,22 +73,22 @@ export class MaternalIcuCalcComponent implements OnInit {
 
   calculateRisk() {
     const constantTerm = -0.7221365;
-    const ageTerm = MaternalIcuCalcComponent.calcTerm(0.2666556, this.ageSelection, 0.155);
-    const chtnTerm = MaternalIcuCalcComponent.calcTerm(0.805747, this.cHTN, 0.0156);
-    const preGestDMTerm = MaternalIcuCalcComponent.calcTerm(0.4200111, this.pregestationalDiabetes, 0.0079);
-    const gHTNTerm = MaternalIcuCalcComponent.calcTerm(0.8606928, this.gestationalHTN, 0.2198);
-    const pmaTerm = MaternalIcuCalcComponent.calcTerm(-0.2139833, this.pma, 40);
-    const bmiTerm = MaternalIcuCalcComponent.calcTerm(0.5351856, this.bmiSelection, 0.0058);
+    const ageTerm = CalcTools.calcTerm(0.2666556, this.ageSelection, 0.155);
+    const chtnTerm = CalcTools.calcTerm(0.805747, this.cHTN, 0.0156);
+    const preGestDMTerm = CalcTools.calcTerm(0.4200111, this.pregestationalDiabetes, 0.0079);
+    const gHTNTerm = CalcTools.calcTerm(0.8606928, this.gestationalHTN, 0.2198);
+    const pmaTerm = CalcTools.calcTerm(-0.2139833, this.pma, 40);
+    const bmiTerm = CalcTools.calcTerm(0.5351856, this.bmiSelection, 0.0058);
 
     ////////////
     const matRaceTerm = this.getRaceCoefficient(); // TODO fix race term
-    const scheduledCesareanTerm = MaternalIcuCalcComponent.calcTerm(1.557407, this.scheduledCesarean, 0.002198);
-    const medicaidTerm = MaternalIcuCalcComponent.calcTerm(0.2217482, this.medicaid, 0.431);
-    const ipIntervalTerm = MaternalIcuCalcComponent.calcTerm(0.0019024, this.interpregnancyInterval, 0);
-    const parityTerm = MaternalIcuCalcComponent.calcTerm(0.1213777, (this.parity > 9 ? 9 : this.parity), 0);
-    const iolTerm = MaternalIcuCalcComponent.calcTerm(0.9716155, this.iol, 0.2405);
-    const stdTerm = MaternalIcuCalcComponent.calcTerm(0.2676578, this.std, 0.0272);
-    const priorPretermTerm = MaternalIcuCalcComponent.calcTerm(0.367929, this.priorPreterm, 0.0272);
+    const scheduledCesareanTerm = CalcTools.calcTerm(1.557407, this.scheduledCesarean, 0.002198);
+    const medicaidTerm = CalcTools.calcTerm(0.2217482, this.medicaid, 0.431);
+    const ipIntervalTerm = CalcTools.calcTerm(0.0019024, this.interpregnancyInterval, 0);
+    const parityTerm = CalcTools.calcTerm(0.1213777, (this.parity > 9 ? 9 : this.parity), 0);
+    const iolTerm = CalcTools.calcTerm(0.9716155, this.iol, 0.2405);
+    const stdTerm = CalcTools.calcTerm(0.2676578, this.std, 0.0272);
+    const priorPretermTerm = CalcTools.calcTerm(0.367929, this.priorPreterm, 0.0272);
 
     const exponent = constantTerm +
       ageTerm +
