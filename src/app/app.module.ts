@@ -12,6 +12,8 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import {FlexModule} from '@angular/flex-layout';
 import {MaternalIcuCalcModule} from './maternal-icu-calc/maternal-icu-calc.module';
 import {ObesityIolCalcModule} from './obesity-iol-calc/obesity-iol-calc.module';
+import { ButtonGroupYesNoComponent } from './button-group-yes-no/button-group-yes-no.component';
+import {ButtonGroupModule} from './button-group/button-group.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import {ObesityIolCalcModule} from './obesity-iol-calc/obesity-iol-calc.module';
     MatListModule,
 
     FlexModule,
+    ButtonGroupModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
   templateUrl: './button-group.component.html',
   styleUrls: ['./button-group.component.css']
 })
+
 export class ButtonGroupComponent {
   selectedIndex = 0;
 
@@ -22,7 +23,6 @@ export class ButtonGroupComponent {
   }
 
   @Input() labels = [];
-
 
   constructor() { }
 
