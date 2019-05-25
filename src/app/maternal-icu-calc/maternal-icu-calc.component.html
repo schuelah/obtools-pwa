@@ -20,30 +20,24 @@
       <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
                      (click)="cHTN = cycleTerm(cHTN)">
         <h4>Chronic hypertension:</h4>
-        <span fxFlex>CHTN: {{cHTN}}</span>
-        <app-button-group-yes-no
-          (appStopPropagation)="fromChild()"
-          [(value)]="cHTN"></app-button-group-yes-no>
-
-      </mat-list-item>
-      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
-                     (click)="gestationalHTN = cycleTerm(gestationalHTN)">
-        <h4>Gestational HTN or Pre-Eclampsia:</h4>
         <span fxFlex></span>
-        <app-button-group
-          (appStopPropagation)="fromChild()"
-          [labels]="['Yes', 'No']"
-          [(value)]="gestationalHTN"></app-button-group>
+<!--        <div *ngIf="cHTN < 0">unknown</div>-->
+        <mat-pseudo-checkbox
+          [state]="getState(cHTN)"></mat-pseudo-checkbox>
       </mat-list-item>
       <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
                      (click)="pregestationalDiabetes = cycleTerm(pregestationalDiabetes)">
         <h4>Pregestational diabetes mellitus:</h4>
         <span fxFlex></span>
 <!--        <div *ngIf="pregestationalDiabetes < 0">unknown</div>-->
-        <app-button-group
-          (appStopPropagation)="fromChild()"
-          [labels]="['Yes', 'No']"
-          [(value)]="pregestationalDiabetes"></app-button-group>
+        <mat-pseudo-checkbox
+          [state]="getState(pregestationalDiabetes)"></mat-pseudo-checkbox>
+      </mat-list-item>
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
+                     (click)="gestationalHTN = cycleTerm(gestationalHTN)">
+        <h4>Gestational HTN or Pre-Eclampsia:</h4>
+        <span fxFlex></span>
+        <mat-pseudo-checkbox [state]="getState(gestationalHTN)"></mat-pseudo-checkbox>
       </mat-list-item>
       <mat-list-item>
         <h4>Gestational age:</h4>
@@ -56,12 +50,26 @@
       <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
                      (click)="bmiSelection = cycleTerm(bmiSelection, 2)">
         <h4>BMI:</h4>
+        <!--        <button mat-button *ngIf="!bmiCalcExpanded" (appStopPropagation)="fromChild()" (click)="toggleBmiCalc()">Calculate</button>-->
         <span fxFlex></span>
         <app-button-group
           (appStopPropagation)="fromChild()"
           [labels]="bmiOptions"
           [(value)]="bmiSelection"></app-button-group>
       </mat-list-item>
+    </mat-list>
+
+    <!--    <div>-->
+    <!--      <app-expandable [isExpanded]="bmiCalcExpanded">-->
+    <!--        <mat-card class="bmi-calc-card">-->
+    <!--            <app-bmi-calculator *ngIf="bmiCalcExpanded" [(value)]="bmi"></app-bmi-calculator>-->
+    <!--        </mat-card>-->
+    <!--      </app-expandable>-->
+    <!--    </div>-->
+  </div>
+  <mat-divider fxShow.gt-sm vertical></mat-divider>
+  <div fxLayout="column" fxLayoutAlign="space-between" fxFlex.gt-sm="50">
+    <mat-list>
       <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
                      (click)="race = cycleTerm(race, raceOptions.length)">
         <h4>Race:</h4>
@@ -71,27 +79,16 @@
           [labels]="raceOptions"
           [(value)]="race"></app-button-group>
       </mat-list-item>
-    </mat-list>
-  </div>
-  <mat-divider fxShow.gt-sm vertical></mat-divider>
-  <div fxLayout="column" fxLayoutAlign="space-between" fxFlex.gt-sm="50">
-    <mat-list>
       <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
                      (click)="scheduledCesarean = cycleTerm(scheduledCesarean)">
         <h4>Scheduled Cesarean:</h4>
         <span fxFlex></span>
-        <app-button-group
-          (appStopPropagation)="fromChild()"
-          [labels]="['Yes', 'No']"
-          [(value)]="scheduledCesarean"></app-button-group>
+        <mat-pseudo-checkbox [state]="getState(scheduledCesarean)"></mat-pseudo-checkbox>
       </mat-list-item>
       <mat-list-item class="clickable mat-primary" matRipple tabindex="0" (click)="medicaid = cycleTerm(medicaid)">
         <h4>Medicaid:</h4>
         <span fxFlex></span>
-        <app-button-group
-          (appStopPropagation)="fromChild()"
-          [labels]="['Yes', 'No']"
-          [(value)]="medicaid"></app-button-group>
+        <mat-pseudo-checkbox [state]="getState(medicaid)"></mat-pseudo-checkbox>
       </mat-list-item>
       <mat-list-item>
         <h4>Interpregnancy interval:</h4>
@@ -112,28 +109,20 @@
       <mat-list-item class="clickable mat-primary" matRipple tabindex="0" (click)="iol = cycleTerm(iol)">
         <h4>Induction of Labor:</h4>
         <span fxFlex></span>
-        <app-button-group
-          (appStopPropagation)="fromChild()"
-          [labels]="['Yes', 'No']"
-          [(value)]="iol"></app-button-group>
+        <mat-pseudo-checkbox [state]="getState(iol)"></mat-pseudo-checkbox>
       </mat-list-item>
       <mat-list-item class="clickable mat-primary" matRipple tabindex="0" (click)="std = cycleTerm(std)">
         <h4>STD during pregnancy:</h4>
         <span fxFlex></span>
-        <app-button-group
-          (appStopPropagation)="fromChild()"
-          [labels]="['Yes', 'No']"
-          [(value)]="std"></app-button-group>
+        <mat-pseudo-checkbox [state]="getState(std)"></mat-pseudo-checkbox>
       </mat-list-item>
       <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
                      (click)="priorPreterm = cycleTerm(priorPreterm)">
         <h4>Prior preterm birth:</h4>
         <span fxFlex></span>
-        <app-button-group
-          (appStopPropagation)="fromChild()"
-          [labels]="['Yes', 'No']"
-          [(value)]="priorPreterm"></app-button-group>
+        <mat-pseudo-checkbox [state]="getState(priorPreterm)"></mat-pseudo-checkbox>
       </mat-list-item>
+
     </mat-list>
   </div>
 
