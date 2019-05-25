@@ -10,6 +10,7 @@ export class CalculatorComponent {
   @Input() title = 'Calculator';
   @Input() label = 'Result';
   @Input() valueText: 'Result';
+  @Input() showProgressBar: true;
 
   constructor() {
   }

@@ -2,6 +2,7 @@
   [title]="'Calculator to predict the likelihood of a maternal ICU admission'"
   [label]="'Risk of Maternal ICU Admission (baseline 0.15%)'"
   [valueText]="getRiskValue()"
+  [showProgressBar]="errorCheck()"
   [value]="calculateRisk()"></app-calculator>
 
 <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between" class="calculator-area">
