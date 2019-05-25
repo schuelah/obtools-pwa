@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {MatPseudoCheckboxState} from '@angular/material';
 import {CITATIONS} from './citations';
 import {Citation} from '../reference/article-citation.component';
 import {RiskBuilder} from '../tools/risk-builder';
 import {CalcTools} from '../tools/calc-tools';
+import {DecimalPipe, PercentPipe} from '@angular/common';
 
 enum RACE {
   UNKNOWN = -1,
@@ -16,7 +16,8 @@ enum RACE {
 @Component({
   selector: 'app-maternal-icu-calc',
   templateUrl: './maternal-icu-calc.component.html',
-  styleUrls: ['./maternal-icu-calc.component.css']
+  styleUrls: ['./maternal-icu-calc.component.css'],
+  providers: [DecimalPipe, PercentPipe]
 })
 export class MaternalIcuCalcComponent implements OnInit {
 
@@ -45,7 +46,7 @@ export class MaternalIcuCalcComponent implements OnInit {
   cycleTerm = CalcTools.cycleTerm;
   getState = CalcTools.getState;
 
-  constructor() {
+  constructor(private percentPipe: PercentPipe, private decimalPipe: DecimalPipe) {
   }
 
   ngOnInit() {
@@ -126,7 +127,6 @@ export class MaternalIcuCalcComponent implements OnInit {
   }
 
 
-
   // cycleTerm(term: number, count?: number, allowUndefined?: boolean): number {
   //   return CalcTools.cycleTerm(term, count, allowUndefined);
   // }
@@ -162,15 +162,31 @@ export class MaternalIcuCalcComponent implements OnInit {
     return rb.getRiskFactorWording();
   }
 
-  getWording(value: number, unknownWording: string, riskWording: string): string {
-    if (value < 0) {
-      return unknownWording;
+  getRiskValue(): string {
+    if (this.errorCheck()) {
+      return this.percentPipe.transform(this.calculateRisk(), '1.0-2') +
+        ' (RR ' + this.decimalPipe.transform(this.getRR(), '1.0-1') + ')';
+    } else {
+      return 'incomplete data';
     }
-    if (value === 1) {
-      return riskWording;
-    }
+  }
 
-    return '';
-
+  errorCheck(): boolean {
+    return (
+      this.ageSelection >= 0 &&
+      this.cHTN >= 0 &&
+      this.pregestationalDiabetes >= 0 &&
+      this.gestationalHTN >= 0 &&
+      this.pma !== undefined && this.pma >= 18 &&
+      this.bmiSelection >= 0 &&
+      this.race >= 0 &&
+      this.scheduledCesarean >= 0 &&
+      this.medicaid >= 0 &&
+      this.interpregnancyInterval !== undefined && this.interpregnancyInterval >= 0 &&
+      this.parity !== undefined && this.parity >= 0 &&
+      this.iol >= 0 &&
+      this.std >= 0 &&
+      this.priorPreterm >= 0
+    );
   }
 }
