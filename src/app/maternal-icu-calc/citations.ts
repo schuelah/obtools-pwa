@@ -10,28 +10,28 @@ export const CITATIONS = [
         given: 'Robert M'
       },
       {
-        family: 'Dufendach',
-        given: 'Kevin Reid'
-      },
-      {
         family: 'Hall',
         given: 'Eric S'
+      },
+      {
+        family: 'Dufendach',
+        given: 'Kevin Reid'
       },
       {
         family: 'DeFranco',
         given: 'Emily A'
       }
     ],
-    'container-title-short': 'Obstet Gynec',
+    'container-title-short': 'Obstet Gynecol',
     'container-title': 'Obstetrics & Gynecology',
     ISSN: '0000-0000',
     issued: {'date-parts': [[2019]]},
-    page: 'xx-xx',
-    volume: 'xx',
+    page: '1-10',
+    volume: '134',
     issue: 'x',
     PMID: '00000000',
     PMCID: 'PMC0000000',
-    DOI: '00.000/AAA.0000000000',
+    DOI: '10.1097/AOG.0000000000003319',
     type: 'article-journal'
   }
 ];
