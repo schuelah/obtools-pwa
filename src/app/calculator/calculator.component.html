@@ -1,8 +1,10 @@
 <div class="calculator-header mat-elevation-z3">
   <h1>{{title}}</h1>
-  <div fxLayout="row" class="calculator-result-row">
+  <div fxLayout="column"
+       fxLayout.gt-sm="row"
+       class="calculator-result-row">
     <h3>{{label}}:</h3>
-    <div fxFlex></div>
+    <div fxHide fxShow.gt-sm fxFlex></div>
     <div class="calculator-result">{{valueText}}</div>
   </div>
 </div>
