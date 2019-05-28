@@ -38,3 +38,11 @@
 .mat-pseudo-checkbox-indeterminate {
   background: rgba(61, 61, 61, 0.15)
 }
+
+.limitations-table {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  background-color: white;
+}

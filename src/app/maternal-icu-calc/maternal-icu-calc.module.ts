@@ -11,7 +11,7 @@ import {
   MatSliderModule,
   MatSlideToggleModule
 } from '@angular/material';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {ExpandableModule} from '../expandable/expandable.module';
 import {BmiCalculatorModule} from '../expandable-bmi-calculator/bmi-calculator.module';
@@ -43,6 +43,7 @@ import {ReferenceModule} from '../reference/reference.module';
     MatCheckboxModule,
     MockTextAreaModule,
     ReferenceModule,
+    ReactiveFormsModule,
   ]
 })
 export class MaternalIcuCalcModule { }

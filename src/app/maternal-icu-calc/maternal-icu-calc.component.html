@@ -22,7 +22,6 @@
                      (click)="cHTN = cycleTerm(cHTN)">
         <h4>Chronic hypertension:</h4>
         <span fxFlex></span>
-<!--        <div *ngIf="cHTN < 0">unknown</div>-->
         <mat-pseudo-checkbox
           [state]="getState(cHTN)"></mat-pseudo-checkbox>
       </mat-list-item>
@@ -30,7 +29,6 @@
                      (click)="pregestationalDiabetes = cycleTerm(pregestationalDiabetes)">
         <h4>Pregestational diabetes mellitus:</h4>
         <span fxFlex></span>
-<!--        <div *ngIf="pregestationalDiabetes < 0">unknown</div>-->
         <mat-pseudo-checkbox
           [state]="getState(pregestationalDiabetes)"></mat-pseudo-checkbox>
       </mat-list-item>
@@ -44,33 +42,25 @@
         <h4>Gestational age:</h4>
         <span fxFlex></span>
         <mat-form-field floatLabel="never">
-          <mat-label>PMA</mat-label>
-          <input matInput [(ngModel)]="pma" type="number">
+          <mat-label>weeks</mat-label>
+          <input matInput
+                 [(ngModel)]="pma"
+                 type="number" id="pmaForm"
+                 #pmaForm="ngModel" min="20"
+                 max="44">
+          <!--          <mat-error *ngIf="(pmaForm.dirty || pmaForm.touched) && pmaForm.errors.min">Acceptable range 20-44</mat-error>-->
         </mat-form-field>
+
       </mat-list-item>
       <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
                      (click)="bmiSelection = cycleTerm(bmiSelection, 2)">
         <h4>BMI:</h4>
-        <!--        <button mat-button *ngIf="!bmiCalcExpanded" (appStopPropagation)="fromChild()" (click)="toggleBmiCalc()">Calculate</button>-->
         <span fxFlex></span>
         <app-button-group
           (appStopPropagation)="fromChild()"
           [labels]="bmiOptions"
           [(value)]="bmiSelection"></app-button-group>
       </mat-list-item>
-    </mat-list>
-
-    <!--    <div>-->
-    <!--      <app-expandable [isExpanded]="bmiCalcExpanded">-->
-    <!--        <mat-card class="bmi-calc-card">-->
-    <!--            <app-bmi-calculator *ngIf="bmiCalcExpanded" [(value)]="bmi"></app-bmi-calculator>-->
-    <!--        </mat-card>-->
-    <!--      </app-expandable>-->
-    <!--    </div>-->
-  </div>
-  <mat-divider fxShow.gt-sm vertical></mat-divider>
-  <div fxLayout="column" fxLayoutAlign="space-between" fxFlex.gt-sm="50">
-    <mat-list>
       <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
                      (click)="race = cycleTerm(race, raceOptions.length)">
         <h4>Race:</h4>
@@ -80,6 +70,12 @@
           [labels]="raceOptions"
           [(value)]="race"></app-button-group>
       </mat-list-item>
+    </mat-list>
+  </div>
+  <mat-divider fxShow.gt-sm vertical></mat-divider>
+  <div fxLayout="column" fxLayoutAlign="space-between" fxFlex.gt-sm="50">
+    <mat-list>
+
       <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
                      (click)="scheduledCesarean = cycleTerm(scheduledCesarean)">
         <h4>Scheduled Cesarean:</h4>
@@ -92,19 +88,20 @@
         <mat-pseudo-checkbox [state]="getState(medicaid)"></mat-pseudo-checkbox>
       </mat-list-item>
       <mat-list-item>
-        <h4>Interpregnancy interval:</h4>
-        <span fxFlex></span>
-        <mat-form-field floatLabel="never">
-          <mat-label>months</mat-label>
-          <input matInput [(ngModel)]="interpregnancyInterval" type="number">
-        </mat-form-field>
-      </mat-list-item>
-      <mat-list-item>
         <h4>Parity:</h4>
         <span fxFlex></span>
         <mat-form-field floatLabel="never">
           <mat-label>number</mat-label>
           <input matInput [(ngModel)]="parity" type="number">
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item>
+        <h4>Interpregnancy interval:</h4>
+        <span fxFlex></span>
+        <mat-form-field floatLabel="never">
+          <mat-label>months</mat-label>
+          <input matInput [(ngModel)]="interpregnancyInterval" type="number">
+          <mat-hint>"0" for nulliparous</mat-hint>
         </mat-form-field>
       </mat-list-item>
       <mat-list-item class="clickable mat-primary" matRipple tabindex="0" (click)="iol = cycleTerm(iol)">
@@ -134,7 +131,8 @@
   <h3>Clinical Note Template:</h3>
 
   <app-mock-text-area>
-    <p *ngIf="errorCheck()">Based on {{getRiskFactorsWording()}}: <strong>The risk of this patient being admitted to the ICU at the time of
+    <p *ngIf="errorCheck()">Based on {{getRiskFactorsWording()}}: <strong>The risk of this patient being admitted to the
+      ICU at the time of
       delivery is
       {{calculateRisk() | percent : '1.0-2'}}. This represents a relative risk of {{getRR() | number : '1.0-1' }}
       compared with the baseline population risk of 0.15%.</strong>
@@ -146,11 +144,106 @@
     </p>
     <p class="note-link">Calculator at <a href="{{getUrl()}}">{{getUrl()}}</a></p>
 
-    <p class="limitations">Limitations: The maximum predicted risk for this model approximates 24%. The model is not
-      fitted for predicted risk above 5%. True risk above 5% predicted risk is unknown. This model has a low positive
-      predictive value given the exceedingly rare outcome of maternal ICU admission (see Table 1 of reference). Numbers
-      of individuals from which the calculator was developed are presented for each ICU admission risk strata
-      (Table 1).</p>
   </app-mock-text-area>
-</div>
 
+</div>
+<div class="layout-padding limitations-card">
+  <h3>Limitations</h3>
+  <p>The maximum predicted risk for this model approximates 24%. The model is not
+    fitted however for predicted risk above 5%. True risk above 5% is unknown and not validated. This model has a low
+    positive predictive value given the exceedingly rare outcome of maternal ICU admission (see Appendix 2 at
+    <a href="http://links.lww.com/AOG/B413">http://links.lww.com/AOG/B413</a>. Numbers of individuals in each risk
+    strata from which the calculator was developed are presented below. </p>
+
+  <table class="limitations-table" width="100%" border="1" cellspacing="0"
+         summary="Numbers of individuals in each risk strata from which the calculator was developed are presented in this table.">
+    <tr>
+      <th colspan="2" scope="col">Expected Risk Strata (%)</th>
+      <th scope="col">Expected Risk for Strata (mean)</th>
+      <th scope="col">Lower CI</th>
+      <th scope="col">Upper CI</th>
+      <th scope="col">Individuals in Risk Strata (n)</th>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>0.25</td>
+      <td>0.06%</td>
+      <td>0.06</td>
+      <td>0.07</td>
+      <td>5,583,157</td>
+    </tr>
+    <tr>
+      <td><p>0.25</p></td>
+      <td>0.5</td>
+      <td>0.3%</td>
+      <td>0.3</td>
+      <td>0.4</td>
+      <td>287,193</td>
+    </tr>
+    <tr>
+      <td>0.5</td>
+      <td>0.75</td>
+      <td>0.6%</td>
+      <td>0.5</td>
+      <td>0.7</td>
+      <td>64,788</td>
+    </tr>
+    <tr>
+      <td>0.75</td>
+      <td>1</td>
+      <td>0.9%</td>
+      <td>0.7</td>
+      <td>1.0</td>
+      <td>26,165</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1.25</td>
+      <td>1.1%</td>
+      <td>0.9</td>
+      <td>1.3</td>
+      <td>13,813</td>
+    </tr>
+    <tr>
+      <td>1.25</td>
+      <td>1.5</td>
+      <td>1.4%</td>
+      <td>1.1</td>
+      <td>1.6</td>
+      <td>8,656</td>
+    </tr>
+    <tr>
+      <td>1.5</td>
+      <td>2</td>
+      <td>1.7%</td>
+      <td>1.4</td>
+      <td>1.9</td>
+      <td>10,167</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>3</td>
+      <td>2.4%</td>
+      <td>2.1</td>
+      <td>2.7</td>
+      <td>9,568</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>4</td>
+      <td>3.4%</td>
+      <td>2.9</td>
+      <td>4</td>
+      <td>4,492</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>5</td>
+      <td>4.4%</td>
+      <td>3.6</td>
+      <td>5.3</td>
+      <td>2,388</td>
+    </tr>
+  </table>
+
+</div>

@@ -4,6 +4,7 @@ import {Citation} from '../reference/article-citation.component';
 import {RiskBuilder} from '../tools/risk-builder';
 import {CalcTools} from '../tools/calc-tools';
 import {DecimalPipe, PercentPipe} from '@angular/common';
+import {FormControl, Validators} from '@angular/forms';
 
 enum RACE {
   UNKNOWN = -1,
@@ -27,6 +28,12 @@ export class MaternalIcuCalcComponent implements OnInit {
   pregestationalDiabetes = -1;
   gestationalHTN = -1;
   pma: number;
+
+  pmaFormControl = new FormControl('', [
+    Validators.min(20),
+    Validators.max(44)
+  ]);
+
   bmiOptions = ['&lt;50 kg/m<sup>2</sup>', '&ge;50 kg/m<sup>2</sup>'];
   bmiSelection = -1;
   bmiCalcExpanded = false;
@@ -132,7 +139,7 @@ export class MaternalIcuCalcComponent implements OnInit {
   // }
 
   getUrl(): string {
-    return 'https://stage.ob.tools/mat-icu-calc';
+    return 'https://ob.tools/mat-icu-calc';
   }
 
   getRiskFactorsWording(): string {
