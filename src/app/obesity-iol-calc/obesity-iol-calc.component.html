@@ -1,7 +1,8 @@
 <app-calculator
   [title]="'Calculator to predict the likelihood of a Cesarean Section following induction of labor among obese women'"
   [label]="'Risk of failed induction of labor'"
-  [valueText]="(calculateRisk() | percent : '1.0-1')"
+  [valueText]="getRiskValue()"
+  [showProgressBar]="errorCheck()"
   [value]="calculateRisk()"></app-calculator>
 
 <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between" class="calculator-area">
@@ -92,20 +93,15 @@
   <h3>Clinical Note Template:</h3>
 
   <app-mock-text-area>
-    <p>Based on {{getRiskFactorsWording()}}: <strong>The risk of this patient requiring a Cesarean section following
+    <p *ngIf="errorCheck()">Based on <span [innerHTML]="getRiskFactorsWording()"></span>: <strong>The risk of this patient requiring a Cesarean section following
       induction of labor is {{calculateRisk() | percent : '1.0-1'}}.</strong>
     </p>
+    <p *ngIf="!errorCheck()">All fields must have a selection for calculation</p>
 
     <p class="reference">Reference:
       <app-article-citation [ref]="citations[0]"></app-article-citation>
     </p>
     <p class="note-link">Calculator at <a href="{{getUrl()}}">{{getUrl()}}</a></p>
-
-    <!--    <p class="limitations">Limitations: The maximum predicted risk for this model approximates 24%. The model is not-->
-    <!--      fitted for predicted risk above 5%. True risk above 5% predicted risk is unknown. This model has a low positive-->
-    <!--      predictive value given the exceedingly rare outcome of maternal ICU admission (see Table 1 of reference). Numbers-->
-    <!--      of individuals from which the calculator was developed are presented for each ICU admission risk strata-->
-    <!--      (Table 1).</p>-->
   </app-mock-text-area>
 </div>
 

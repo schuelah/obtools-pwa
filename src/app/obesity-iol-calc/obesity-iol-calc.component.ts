@@ -3,11 +3,13 @@ import {CalcTools} from '../tools/calc-tools';
 import {RiskBuilder} from '../tools/risk-builder';
 import {CITATIONS} from './citations';
 import {Citation} from '../reference/article-citation.component';
+import {DecimalPipe, PercentPipe} from '@angular/common';
 
 @Component({
   selector: 'app-obesity-iol-calc',
   templateUrl: './obesity-iol-calc.component.html',
-  styleUrls: ['./obesity-iol-calc.component.css']
+  styleUrls: ['./obesity-iol-calc.component.css'],
+  providers: [DecimalPipe, PercentPipe]
 })
 export class ObesityIolCalcComponent implements OnInit {
 
@@ -28,10 +30,18 @@ export class ObesityIolCalcComponent implements OnInit {
   cycleTerm = CalcTools.cycleTerm;
   getState = CalcTools.getState;
 
-  constructor() {
+  constructor(private percentPipe: PercentPipe, private decimalPipe: DecimalPipe) {
   }
 
   ngOnInit() {
+  }
+
+  getRiskValue(): string {
+    if (this.errorCheck()) {
+      return this.percentPipe.transform(this.calculateRisk(), '1.0-2');
+    } else {
+      return 'incomplete data';
+    }
   }
 
   calculateRisk() {
@@ -85,6 +95,20 @@ export class ObesityIolCalcComponent implements OnInit {
     rb.addDeclarativeTerm(this.parity, 'unknown parity', 'parity ' + this.parity);
 
     return rb.getRiskFactorWording();
+  }
+
+  errorCheck(): boolean {
+    return (
+      this.age !== undefined && this.age >= 0 &&
+      this.inches !== undefined && this.inches >= 0 &&
+      this.lbs !== undefined && this.lbs >= 0 &&
+      this.cHTN >= 0 &&
+      this.pregestationalDiabetes >= 0 &&
+      this.medicaid >= 0 &&
+      this.priorCesarean >= 0 &&
+      this.priorVaginal >= 0 &&
+      this.parity !== undefined && this.parity >= 0
+    );
   }
 
   getUrl(): string {
