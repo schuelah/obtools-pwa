@@ -131,7 +131,7 @@
   <h3>Clinical Note Template:</h3>
 
   <app-mock-text-area>
-    <p *ngIf="errorCheck()">Based on {{getRiskFactorsWording()}}: <strong>The risk of this patient being admitted to the
+    <p *ngIf="errorCheck()">Based on <span [innerHtml]="getRiskFactorsWording()"></span>: <strong>The risk of this patient being admitted to the
       ICU at the time of
       delivery is
       {{calculateRisk() | percent : '1.0-2'}}. This represents a relative risk of {{getRR() | number : '1.0-1' }}

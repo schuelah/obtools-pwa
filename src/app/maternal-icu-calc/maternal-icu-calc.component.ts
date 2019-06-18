@@ -147,7 +147,7 @@ export class MaternalIcuCalcComponent implements OnInit {
 
     rb.addSimpleTerm(this.ageSelection, 'unknown age', 'age &ge;35');
     rb.addSimpleTerm(this.cHTN, 'unknown chronic hypertension status', 'chronic hypertension');
-    rb.addSimpleTerm(this.pregestationalDiabetes, 'unknown age', 'age &ge;35');
+    rb.addSimpleTerm(this.pregestationalDiabetes, 'unknown pregestational diabetes mellitus', 'pregestational diabetes mellitus');
     rb.addSimpleTerm(this.gestationalHTN, 'unknown gestational hypertension', 'gestational hypertension');
     rb.addDeclarativeTerm(this.pma, 'unknown gestational age', 'gestational age ' + this.pma);
     rb.addSimpleTerm(this.bmiSelection, 'unknown BMI', 'BMI &ge;50 kg/m<sup>2</sup>');
