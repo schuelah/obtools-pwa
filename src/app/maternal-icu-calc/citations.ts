@@ -1,7 +1,7 @@
 export const CITATIONS = [
   {
     source: 'In Progress',
-    accessed: {'date-parts': [[2019, 4, 17]]},
+    accessed: {'date-parts': [[2019, 7, 16]]},
     id: 'none',
     title: 'Predictive Model of Factors Associated With Maternal Intensive Care Unit Admission',
     author: [
@@ -25,11 +25,11 @@ export const CITATIONS = [
     'container-title-short': 'Obstet Gynecol',
     'container-title': 'Obstetrics & Gynecology',
     ISSN: '0000-0000',
-    issued: {'date-parts': [[2019]]},
+    issued: {'date-parts': [[2019, 7, 9]]},
     page: '1-10',
     volume: '134',
     issue: 'x',
-    PMID: '00000000',
+    PMID: '31306325',
     PMCID: 'PMC0000000',
     DOI: '10.1097/AOG.0000000000003319',
     type: 'article-journal'

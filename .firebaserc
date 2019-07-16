@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "ob-tools"
+    "default": "ob-tools",
+    "staging": "ob-tools-staging"
   }
 }
