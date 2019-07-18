@@ -2,24 +2,10 @@
 @import '~src/uc.theme';
 
 .footer {
-  //position: absolute;
-  //right: 0;
-  //bottom: 0;
-  //left: 0;
-
   background-color: mat-color($uc-theme-accent);
-  //color: mat-color($white-87-opacity);
   color: mat-color($uc-theme-accent, default-contrast);
-  //color: rgba(255, 255, 255, 0.87);
   box-sizing: border-box;
   padding: 16px;
-}
-
-.main-content {
-  //margin: 0 auto;
-  //padding-top: 64px;
-  //max-width: 640px;
-  //width: 94%;
 }
 
 .sidenav-container {
@@ -60,4 +46,13 @@ img.logo {
 
 .tools-disclaimer {
   margin: 15px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: mat-color($uc-theme-accent, default-contrast);
+}
+
+.footer a:hover {
+  text-decoration: underline;
 }
