@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ObesityIolCalcComponent } from './obesity-iol-calc.component';
+import { IolCalcComponent } from './iol-calc.component';
 
 describe('ObesityIolCalcComponent', () => {
-  let component: ObesityIolCalcComponent;
-  let fixture: ComponentFixture<ObesityIolCalcComponent>;
+  let component: IolCalcComponent;
+  let fixture: ComponentFixture<IolCalcComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ObesityIolCalcComponent ]
+      declarations: [ IolCalcComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ObesityIolCalcComponent);
+    fixture = TestBed.createComponent(IolCalcComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

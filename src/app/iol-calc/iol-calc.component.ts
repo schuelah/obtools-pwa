@@ -6,12 +6,12 @@ import {Citation} from '../reference/article-citation.component';
 import {DecimalPipe, PercentPipe} from '@angular/common';
 
 @Component({
-  selector: 'app-obesity-iol-calc',
-  templateUrl: './obesity-iol-calc.component.html',
-  styleUrls: ['./obesity-iol-calc.component.css'],
+  selector: 'app-iol-calc',
+  templateUrl: './iol-calc.component.html',
+  styleUrls: ['./iol-calc.component.css'],
   providers: [DecimalPipe, PercentPipe]
 })
-export class ObesityIolCalcComponent implements OnInit {
+export class IolCalcComponent implements OnInit {
 
   priorCesarean = -1;
   priorVaginal = -1;

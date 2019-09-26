@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ObesityIolCalcComponent } from './obesity-iol-calc.component';
+import { IolCalcComponent } from './iol-calc.component';
 import {CalculatorModule} from '../calculator/calculator.module';
 import {MatDividerModule, MatFormFieldModule, MatInputModule, MatListModule, MatRippleModule} from '@angular/material';
 import {MockTextAreaModule} from '../mock-text-area/mock-text-area.module';
@@ -9,7 +9,7 @@ import {FormsModule} from '@angular/forms';
 import {FlexModule} from '@angular/flex-layout';
 
 @NgModule({
-  declarations: [ObesityIolCalcComponent],
+  declarations: [IolCalcComponent],
   imports: [
     CommonModule,
     CalculatorModule,
@@ -24,5 +24,5 @@ import {FlexModule} from '@angular/flex-layout';
     FlexModule
   ]
 })
-export class ObesityIolCalcModule {
+export class IolCalcModule {
 }

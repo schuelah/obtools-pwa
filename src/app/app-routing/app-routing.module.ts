@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {PreEclampsiaCalcComponent} from '../pre-eclampsia-calc/pre-eclampsia-calc.component';
 import {MaternalIcuCalcComponent} from '../maternal-icu-calc/maternal-icu-calc.component';
 import {ObesityIolCalcComponent} from '../obesity-iol-calc/obesity-iol-calc.component';
+import {IolCalcComponent} from '../iol-calc/iol-calc.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'pe-cs-calc',
     component: PreEclampsiaCalcComponent,
+  },
+  {
+    path: 'iol-calc',
+    component: IolCalcComponent,
   },
 ];
 

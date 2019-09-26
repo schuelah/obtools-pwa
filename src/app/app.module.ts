@@ -12,6 +12,7 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import {FlexModule} from '@angular/flex-layout';
 import {MaternalIcuCalcModule} from './maternal-icu-calc/maternal-icu-calc.module';
 import {ObesityIolCalcModule} from './obesity-iol-calc/obesity-iol-calc.module';
+import {IolCalcModule} from './iol-calc/iol-calc.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {ObesityIolCalcModule} from './obesity-iol-calc/obesity-iol-calc.module';
     PreEclampsiaCalcModule,
     MaternalIcuCalcModule,
     ObesityIolCalcModule,
+    IolCalcModule,
 
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     BrowserAnimationsModule,
