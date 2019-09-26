@@ -1,0 +1,107 @@
+<app-calculator
+  [title]="'Calculator to predict the likelihood of a Cesarean Section following induction of labor among obese women'"
+  [label]="'Risk of failed induction of labor'"
+  [valueText]="getRiskValue()"
+  [showProgressBar]="errorCheck()"
+  [value]="calculateRisk()"></app-calculator>
+
+<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between" class="calculator-area">
+  <div fxLayout="column" fxFlex.gt-sm="50">
+    <mat-list>
+      <mat-list-item>
+        <h4>Age:</h4>
+        <span fxFlex></span>
+        <mat-form-field floatLabel="never">
+          <mat-label>years</mat-label>
+          <input matInput [(ngModel)]="age" type="number">
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item>
+        <h4>Height (in):</h4>
+        <span fxFlex></span>
+        <mat-form-field floatLabel="never">
+          <mat-label>inches</mat-label>
+          <input matInput [(ngModel)]="inches" type="number">
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item>
+        <h4>Weight (lbs):</h4>
+        <span fxFlex></span>
+        <mat-form-field floatLabel="never">
+          <mat-label>pounds</mat-label>
+          <input matInput [(ngModel)]="lbs" type="number">
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item>
+        <h4>Weight gain (lbs):</h4>
+        <span fxFlex></span>
+        <mat-form-field floatLabel="never">
+          <mat-label>&Delta;lbs</mat-label>
+          <input matInput [(ngModel)]="weightGain" type="number">
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item class="clickable mat-primary"
+                     matRipple tabindex="0"
+                     (click)="cHTN = cycleTerm(cHTN)">
+        <h4>Chronic hypertension:</h4><span fxFlex></span>
+        <mat-pseudo-checkbox [state]="getState(cHTN)"></mat-pseudo-checkbox>
+      </mat-list-item>
+    </mat-list>
+  </div>
+
+  <mat-divider fxShow.gt-sm vertical></mat-divider>
+
+  <div fxLayout="column" fxLayoutAlign="space-between" fxFlex.gt-sm="50">
+    <mat-list>
+      <mat-list-item class="clickable mat-primary"
+                     matRipple tabindex="0"
+                     (click)="pregestationalDiabetes = cycleTerm(pregestationalDiabetes)">
+        <h4>Preexisting diabetes:</h4><span fxFlex></span>
+        <mat-pseudo-checkbox [state]="getState(pregestationalDiabetes)"></mat-pseudo-checkbox>
+      </mat-list-item>
+      <mat-list-item class="clickable mat-primary"
+                     matRipple tabindex="0"
+                     (click)="medicaid = cycleTerm(medicaid)">
+        <h4>Medicaid:</h4><span fxFlex></span>
+        <mat-pseudo-checkbox [state]="getState(medicaid)"></mat-pseudo-checkbox>
+      </mat-list-item>
+      <mat-list-item class="clickable mat-primary"
+                     matRipple tabindex="0"
+                     (click)="priorCesarean = cycleTerm(priorCesarean)">
+        <h4>Prior Cesarean delivery:</h4><span fxFlex></span>
+        <mat-pseudo-checkbox [state]="getState(priorCesarean)"></mat-pseudo-checkbox>
+      </mat-list-item>
+      <mat-list-item class="clickable mat-primary"
+                     matRipple tabindex="0"
+                     (click)="priorVaginal = cycleTerm(priorVaginal)">
+        <h4>Prior vaginal delivery:</h4><span fxFlex></span>
+        <mat-pseudo-checkbox [state]="getState(priorVaginal)"></mat-pseudo-checkbox>
+      </mat-list-item>
+      <mat-list-item>
+        <h4>Parity:</h4>
+        <span fxFlex></span>
+        <mat-form-field floatLabel="never">
+          <mat-label>number</mat-label>
+          <input matInput [(ngModel)]="parity" type="number">
+        </mat-form-field>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>
+
+<div class="layout-padding">
+  <h3>Clinical Note Template:</h3>
+
+  <app-mock-text-area>
+    <p *ngIf="errorCheck()">Based on <span [innerHTML]="getRiskFactorsWording()"></span>: <strong>The risk of this patient requiring a Cesarean section following
+      induction of labor is {{calculateRisk() | percent : '1.0-1'}}.</strong>
+    </p>
+    <p *ngIf="!errorCheck()">All fields must have a selection for calculation</p>
+
+    <p class="reference">Reference:
+      <app-article-citation [ref]="citations[0]"></app-article-citation>
+    </p>
+    <p class="note-link">Calculator at <a href="{{getUrl()}}">{{getUrl()}}</a></p>
+  </app-mock-text-area>
+</div>
+

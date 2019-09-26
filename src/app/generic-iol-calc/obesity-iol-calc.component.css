@@ -1,0 +1,36 @@
+.calculator-area {
+  /*padding: 15px;*/
+}
+
+.calculator-section-left {
+  padding-right: 15px;
+}
+
+.calculator-section-right {
+  padding-left: 15px;
+}
+
+.divider {
+  padding: 20px;
+}
+
+.clickable:hover, .clickable:focus {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.clickable {
+  cursor: pointer;
+  outline: inherit;
+}
+
+.mat-pseudo-checkbox-indeterminate {
+  background: rgba(61, 61, 61, 0.15)
+}
+
+.layout-padding {
+  padding: 15px;
+}
+
+.reference, .limitations, .note-link {
+  font-size: small;
+}
