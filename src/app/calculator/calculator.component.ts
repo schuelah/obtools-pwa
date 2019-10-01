@@ -9,8 +9,8 @@ export class CalculatorComponent {
   @Input() value = 0;
   @Input() title = 'Calculator';
   @Input() label = 'Result';
-  @Input() valueText: 'Result';
-  @Input() showProgressBar: true;
+  @Input() valueText = 'Result';
+  @Input() showProgressBar = true;
 
   constructor() {
   }

@@ -6,7 +6,7 @@ import {CalcTools} from '../tools/calc-tools';
 import {DecimalPipe, PercentPipe} from '@angular/common';
 import {FormControl, Validators} from '@angular/forms';
 
-enum RACE {
+export enum RACE {
   UNKNOWN = -1,
   WHITE = 0,
   BLACK = 1,
@@ -64,23 +64,14 @@ export class MaternalIcuCalcComponent implements OnInit {
   }
 
   getRaceCoefficient(): number {
-    if (this.race === RACE.WHITE) {
-      return 0.1192638;
+    switch (this.race) {
+      case RACE.WHITE: return 0.1192638;
+      case RACE.BLACK: return 0.2412;
+      case RACE.HISPANIC: return 0.2018;
+      case RACE.OTHER: return 0.4206;
+      default:
+        return (0.1192638 * 0.529 + 0.2412 * 0.1426 + 0.2018 * 0.243 + 0.4206 * 0.085);
     }
-
-    if (this.race === RACE.BLACK) {
-      return 0.2412;
-    }
-
-    if (this.race === RACE.HISPANIC) {
-      return 0.2018;
-    }
-
-    if (this.race === RACE.OTHER) {
-      return 0.4206;
-    }
-
-    return (0.1192638 * 0.529 + 0.2412 * 0.1426 + 0.2018 * 0.243 + 0.4206 * 0.085);
   }
 
   calculateRisk() {

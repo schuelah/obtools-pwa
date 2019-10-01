@@ -78,7 +78,7 @@ export class ObesityIolCalcComponent implements OnInit {
 
     rb.addDeclarativeTerm(this.age, 'unknown age', 'age ' + this.age);
     rb.addDeclarativeTerm(this.inches, 'unknown height', 'height ' + this.inches + ' inches');
-    rb.addDeclarativeTerm(this.lbs, 'unknown weight', 'weight ' + this.lbs + ' lbs');
+    rb.addDeclarativeTerm(this.lbs, 'unknown weight', 'weight ' + this.lbs + ' pounds');
     rb.addSimpleTerm(this.cHTN, 'unknown chronic hypertension status', 'chronic hypertension');
     rb.addSimpleTerm(this.pregestationalDiabetes, 'unknown age', 'age &ge;35');
     rb.addSimpleTerm(this.medicaid, 'unknown insurance', 'medicaid insurance');
@@ -88,8 +88,8 @@ export class ObesityIolCalcComponent implements OnInit {
       'history of a prior Cesarean delivery',
       'no history of a prior Cesarean delivery');
     rb.addSimpleTerm(
-      this.priorCesarean,
-      'unknown prior Cesarean delivery',
+      this.priorVaginal,
+      'unknown prior Vaginal delivery',
       'history of a prior vaginal delivery',
       'no history of a prior vaginal delivery');
     rb.addDeclarativeTerm(this.parity, 'unknown parity', 'parity ' + this.parity);

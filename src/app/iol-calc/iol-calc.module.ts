@@ -6,7 +6,8 @@ import {MatDividerModule, MatFormFieldModule, MatInputModule, MatListModule, Mat
 import {MockTextAreaModule} from '../mock-text-area/mock-text-area.module';
 import {ReferenceModule} from '../reference/reference.module';
 import {FormsModule} from '@angular/forms';
-import {FlexModule} from '@angular/flex-layout';
+import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
+import {ButtonGroupModule} from '../button-group/button-group.module';
 
 @NgModule({
   declarations: [IolCalcComponent],
@@ -21,7 +22,9 @@ import {FlexModule} from '@angular/flex-layout';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    FlexModule
+    FlexModule,
+    FlexLayoutModule,
+    ButtonGroupModule
   ]
 })
 export class IolCalcModule {

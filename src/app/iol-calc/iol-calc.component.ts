@@ -5,6 +5,14 @@ import {CITATIONS} from './citations';
 import {Citation} from '../reference/article-citation.component';
 import {DecimalPipe, PercentPipe} from '@angular/common';
 
+export enum RACE {
+  UNKNOWN = -1,
+  WHITE = 0,
+  BLACK = 1,
+  HISPANIC = 2,
+  OTHER = 3
+}
+
 @Component({
   selector: 'app-iol-calc',
   templateUrl: './iol-calc.component.html',
@@ -13,16 +21,15 @@ import {DecimalPipe, PercentPipe} from '@angular/common';
 })
 export class IolCalcComponent implements OnInit {
 
-  priorCesarean = -1;
   priorVaginal = -1;
-  age: number;
-  cHTN = -1;
-  pregestationalDiabetes = -1;
+  priorCesarean = -1;
+  pounds: number;
   inches: number;
-  lbs: number;
+  age: number;
   weightGain: number;
-  medicaid = -1;
-  parity: number;
+  raceOptions = ['White', 'Black', 'Hispanic', 'Other'];
+  race = -1;
+  pma: number;
 
   citations = CITATIONS as Array<Citation>;
 
@@ -44,31 +51,57 @@ export class IolCalcComponent implements OnInit {
     }
   }
 
-  calculateRisk() {
-    const constantTerm = 4.437;
-    const ageTerm = CalcTools.calcTerm(0.0549897, this.age, 35);
-    const htTerm = CalcTools.calcTerm(-0.1300748, this.inches, 0);
-    const wtTerm = CalcTools.calcTerm(0.0082933, this.lbs, 0);
-    const wtGainTerm = CalcTools.calcTerm(0.0049423, this.weightGain, 0);
-    const cHtnTerm = CalcTools.calcTerm(0.1422798, this.cHTN, 0);
-    const preGestDMTerm = CalcTools.calcTerm(0.4957692, this.pregestationalDiabetes, 0);
-    const medicaidTerm = CalcTools.calcTerm(0.1577025, this.medicaid, 0);
-    const priorCesareanTerm = CalcTools.calcTerm(2.375112, this.priorCesarean, 0);
-    const priorVaginalTerm = CalcTools.calcTerm(-2.022117, this.priorVaginal, 0);
-    const parityTerm = CalcTools.calcTerm(-0.1023807, this.parity, 0);
+  getRaceCoefficient(): number {
+    switch (this.race) {
+      case RACE.WHITE:
+        return 0;
+      case RACE.BLACK:
+        return 0.4808307;
+      case RACE.HISPANIC:
+        return 0.1191086;
+      case RACE.OTHER:
+      default:
+        return 0.1529993;
+    }
+  }
 
-    const exponent = constantTerm +
+  getGATerm(cga: number): number {
+    if (cga < 32) { return null; }
+    if (cga < 33) { return 0; }
+    if (cga < 34) { return -0.2470366; }
+    if (cga < 35) { return -0.81011; }
+    if (cga < 36) { return -0.8121368; }
+    if (cga < 37) { return -0.9665262; }
+    if (cga < 38) { return -1.141938; }
+    if (cga < 39) { return -1.173559; }
+    if (cga < 40) { return -1.197248; }
+    if (cga < 41) { return -1.031923; }
+    if (cga < 42) { return -0.8410257; }
+    if (cga < 43) { return -0.6722133; }
+    return null;
+  }
+
+  calculateRisk() {
+    const constantTerm = 6.329172;
+    const priorVaginalTerm = CalcTools.calcTerm(-2.101029, this.priorVaginal, 0);
+    const priorCesareanTerm = CalcTools.calcTerm(1.267504, this.priorCesarean, 0);
+    const wtTerm = CalcTools.calcTerm(0.0107099, this.pounds, 0);
+    const htTerm = CalcTools.calcTerm(-0.1554968, this.inches, 0);
+    const ageTerm = CalcTools.calcTerm(0.0581601, this.age, 35);
+    const wtGainTerm = CalcTools.calcTerm(0.0051344, this.weightGain, 0);
+    const matRaceTerm = this.getRaceCoefficient(); // TODO fix race term
+    const gaTerm = this.getGATerm(this.pma);
+
+    const exponent =
+      constantTerm +
       ageTerm +
+      gaTerm +
       htTerm +
       wtTerm +
       wtGainTerm +
-      cHtnTerm +
-      cHtnTerm +
-      preGestDMTerm +
-      medicaidTerm +
-      priorCesareanTerm +
+      matRaceTerm +
       priorVaginalTerm +
-      parityTerm;
+      priorCesareanTerm;
 
     return Math.exp(exponent) / (1 + Math.exp(exponent));
   }
@@ -77,22 +110,22 @@ export class IolCalcComponent implements OnInit {
     const rb = new RiskBuilder();
 
     rb.addDeclarativeTerm(this.age, 'unknown age', 'age ' + this.age);
+    rb.addDeclarativeTerm(this.pma, 'unknown gestation', this.pma + ' completed weeks of gestation');
     rb.addDeclarativeTerm(this.inches, 'unknown height', 'height ' + this.inches + ' inches');
-    rb.addDeclarativeTerm(this.lbs, 'unknown weight', 'weight ' + this.lbs + ' lbs');
-    rb.addSimpleTerm(this.cHTN, 'unknown chronic hypertension status', 'chronic hypertension');
-    rb.addSimpleTerm(this.pregestationalDiabetes, 'unknown age', 'age &ge;35');
-    rb.addSimpleTerm(this.medicaid, 'unknown insurance', 'medicaid insurance');
+    rb.addDeclarativeTerm(this.pounds, 'unknown weight', 'weight ' + this.pounds + ' pounds');
+    rb.addDeclarativeTerm(this.weightGain, 'unknown weight gain', 'weight gain ' + this.pounds + ' pounds');
+    // ToDo: Add race term
+
     rb.addSimpleTerm(
       this.priorCesarean,
       'unknown prior Cesarean delivery',
       'history of a prior Cesarean delivery',
       'no history of a prior Cesarean delivery');
     rb.addSimpleTerm(
-      this.priorCesarean,
-      'unknown prior Cesarean delivery',
+      this.priorVaginal,
+      'unknown prior Vaginal delivery',
       'history of a prior vaginal delivery',
       'no history of a prior vaginal delivery');
-    rb.addDeclarativeTerm(this.parity, 'unknown parity', 'parity ' + this.parity);
 
     return rb.getRiskFactorWording();
   }
@@ -100,18 +133,21 @@ export class IolCalcComponent implements OnInit {
   errorCheck(): boolean {
     return (
       this.age !== undefined && this.age >= 0 &&
+      this.pma >= 32 && this.pma < 43 &&
       this.inches !== undefined && this.inches >= 0 &&
-      this.lbs !== undefined && this.lbs >= 0 &&
-      this.cHTN >= 0 &&
-      this.pregestationalDiabetes >= 0 &&
-      this.medicaid >= 0 &&
+      this.pounds !== undefined && this.pounds >= 0 &&
+      this.weightGain !== undefined && this.weightGain >= 0 &&
+      this.race >= 0 &&
       this.priorCesarean >= 0 &&
-      this.priorVaginal >= 0 &&
-      this.parity !== undefined && this.parity >= 0
+      this.priorVaginal >= 0
     );
   }
 
   getUrl(): string {
-    return 'https://ob.tools/obesity-iol-calc';
+    return 'https://ob.tools/iol-calc';
+  }
+
+  fromChild() {
+    console.log('fromChild called');
   }
 }

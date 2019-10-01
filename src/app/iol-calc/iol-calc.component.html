@@ -17,6 +17,14 @@
         </mat-form-field>
       </mat-list-item>
       <mat-list-item>
+        <h4>Gestational Age:</h4>
+        <span fxFlex></span>
+        <mat-form-field floatLabel="never">
+          <mat-label>completed weeks</mat-label>
+          <input matInput [(ngModel)]="pma" type="number">
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item>
         <h4>Height (in):</h4>
         <span fxFlex></span>
         <mat-form-field floatLabel="never">
@@ -29,7 +37,7 @@
         <span fxFlex></span>
         <mat-form-field floatLabel="never">
           <mat-label>pounds</mat-label>
-          <input matInput [(ngModel)]="lbs" type="number">
+          <input matInput [(ngModel)]="pounds" type="number">
         </mat-form-field>
       </mat-list-item>
       <mat-list-item>
@@ -40,12 +48,6 @@
           <input matInput [(ngModel)]="weightGain" type="number">
         </mat-form-field>
       </mat-list-item>
-      <mat-list-item class="clickable mat-primary"
-                     matRipple tabindex="0"
-                     (click)="cHTN = cycleTerm(cHTN)">
-        <h4>Chronic hypertension:</h4><span fxFlex></span>
-        <mat-pseudo-checkbox [state]="getState(cHTN)"></mat-pseudo-checkbox>
-      </mat-list-item>
     </mat-list>
   </div>
 
@@ -53,18 +55,16 @@
 
   <div fxLayout="column" fxLayoutAlign="space-between" fxFlex.gt-sm="50">
     <mat-list>
-      <mat-list-item class="clickable mat-primary"
-                     matRipple tabindex="0"
-                     (click)="pregestationalDiabetes = cycleTerm(pregestationalDiabetes)">
-        <h4>Preexisting diabetes:</h4><span fxFlex></span>
-        <mat-pseudo-checkbox [state]="getState(pregestationalDiabetes)"></mat-pseudo-checkbox>
+      <mat-list-item class="clickable mat-primary" matRipple tabindex="0"
+                     (click)="race = cycleTerm(race, raceOptions.length)">
+        <h4>Race:</h4>
+        <span fxFlex></span>
+        <app-button-group
+          (appStopPropagation)="fromChild()"
+          [labels]="raceOptions"
+          [(value)]="race"></app-button-group>
       </mat-list-item>
-      <mat-list-item class="clickable mat-primary"
-                     matRipple tabindex="0"
-                     (click)="medicaid = cycleTerm(medicaid)">
-        <h4>Medicaid:</h4><span fxFlex></span>
-        <mat-pseudo-checkbox [state]="getState(medicaid)"></mat-pseudo-checkbox>
-      </mat-list-item>
+
       <mat-list-item class="clickable mat-primary"
                      matRipple tabindex="0"
                      (click)="priorCesarean = cycleTerm(priorCesarean)">
@@ -77,14 +77,7 @@
         <h4>Prior vaginal delivery:</h4><span fxFlex></span>
         <mat-pseudo-checkbox [state]="getState(priorVaginal)"></mat-pseudo-checkbox>
       </mat-list-item>
-      <mat-list-item>
-        <h4>Parity:</h4>
-        <span fxFlex></span>
-        <mat-form-field floatLabel="never">
-          <mat-label>number</mat-label>
-          <input matInput [(ngModel)]="parity" type="number">
-        </mat-form-field>
-      </mat-list-item>
+
     </mat-list>
   </div>
 </div>
