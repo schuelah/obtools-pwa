@@ -26,7 +26,6 @@ export class IolCalcComponent implements OnInit {
   pounds: number;
   inches: number;
   age: number;
-  weightGain: number;
   raceOptions = ['White', 'Black', 'Hispanic', 'Other'];
   race = -1;
   pma: number;
@@ -56,39 +55,38 @@ export class IolCalcComponent implements OnInit {
       case RACE.WHITE:
         return 0;
       case RACE.BLACK:
-        return 0.4808307;
+        return 0.4661974;
       case RACE.HISPANIC:
-        return 0.1191086;
+        return 0.1079402;
       case RACE.OTHER:
       default:
-        return 0.1529993;
+        return 0.1474727;
     }
   }
 
   getGATerm(cga: number): number {
     if (cga < 32) { return null; }
     if (cga < 33) { return 0; }
-    if (cga < 34) { return -0.2470366; }
-    if (cga < 35) { return -0.81011; }
-    if (cga < 36) { return -0.8121368; }
-    if (cga < 37) { return -0.9665262; }
-    if (cga < 38) { return -1.141938; }
-    if (cga < 39) { return -1.173559; }
-    if (cga < 40) { return -1.197248; }
-    if (cga < 41) { return -1.031923; }
-    if (cga < 42) { return -0.8410257; }
-    if (cga < 43) { return -0.6722133; }
+    if (cga < 34) { return -0.2417164; }
+    if (cga < 35) { return -0.8054884; }
+    if (cga < 36) { return -0.8010319; }
+    if (cga < 37) { return -0.9520646; }
+    if (cga < 38) { return -1.125466; }
+    if (cga < 39) { return -1.154707; }
+    if (cga < 40) { return -1.175031; }
+    if (cga < 41) { return -1.002833; }
+    if (cga < 42) { return -0.8081131; }
+    if (cga < 43) { return -0.6372783; }
     return null;
   }
 
   calculateRisk() {
-    const constantTerm = 6.329172;
-    const priorVaginalTerm = CalcTools.calcTerm(-2.101029, this.priorVaginal, 0);
-    const priorCesareanTerm = CalcTools.calcTerm(1.267504, this.priorCesarean, 0);
-    const wtTerm = CalcTools.calcTerm(0.0107099, this.pounds, 0);
-    const htTerm = CalcTools.calcTerm(-0.1554968, this.inches, 0);
-    const ageTerm = CalcTools.calcTerm(0.0581601, this.age, 35);
-    const wtGainTerm = CalcTools.calcTerm(0.0051344, this.weightGain, 0);
+    const constantTerm = 6.364138;
+    const priorVaginalTerm = CalcTools.calcTerm(-2.117016, this.priorVaginal, 0);
+    const priorCesareanTerm = CalcTools.calcTerm(1.255777, this.priorCesarean, 0);
+    const wtTerm = CalcTools.calcTerm(0.0109185, this.pounds, 0);
+    const htTerm = CalcTools.calcTerm(-0.1538638, this.inches, 0);
+    const ageTerm = CalcTools.calcTerm(0.0571224, this.age, 35);
     const matRaceTerm = this.getRaceCoefficient(); // TODO fix race term
     const gaTerm = this.getGATerm(this.pma);
 
@@ -98,7 +96,6 @@ export class IolCalcComponent implements OnInit {
       gaTerm +
       htTerm +
       wtTerm +
-      wtGainTerm +
       matRaceTerm +
       priorVaginalTerm +
       priorCesareanTerm;
@@ -113,7 +110,6 @@ export class IolCalcComponent implements OnInit {
     rb.addDeclarativeTerm(this.pma, 'unknown gestation', this.pma + ' completed weeks of gestation');
     rb.addDeclarativeTerm(this.inches, 'unknown height', 'height ' + this.inches + ' inches');
     rb.addDeclarativeTerm(this.pounds, 'unknown weight', 'weight ' + this.pounds + ' pounds');
-    rb.addDeclarativeTerm(this.weightGain, 'unknown weight gain', 'weight gain ' + this.pounds + ' pounds');
     // ToDo: Add race term
 
     rb.addSimpleTerm(
@@ -136,7 +132,6 @@ export class IolCalcComponent implements OnInit {
       this.pma >= 32 && this.pma < 43 &&
       this.inches !== undefined && this.inches >= 0 &&
       this.pounds !== undefined && this.pounds >= 0 &&
-      this.weightGain !== undefined && this.weightGain >= 0 &&
       this.race >= 0 &&
       this.priorCesarean >= 0 &&
       this.priorVaginal >= 0

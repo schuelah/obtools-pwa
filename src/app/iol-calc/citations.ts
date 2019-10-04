@@ -3,7 +3,7 @@ export const CITATIONS = [
     source: 'In Progress',
     accessed: {'date-parts': [[2019, 4, 30]]},
     id: 'none',
-    title: 'Predictive model for failed induction of labor among obese women',
+    title: 'Predictive Risk Calculator of Cesarean Delivery Among Women Undergoing Induction of Labor',
     author: [
       {
         family: 'Rossi',
@@ -14,16 +14,16 @@ export const CITATIONS = [
         given: 'Erin'
       },
       {
+        family: 'Warshak',
+        given: 'Carri R'
+      },
+      {
         family: 'Dufendach',
         given: 'Kevin Reid'
       },
       {
         family: 'Hall',
         given: 'Eric S'
-      },
-      {
-        family: 'Warshak',
-        given: 'Carri R'
       },
       {
         family: 'DeFranco',
