@@ -2,7 +2,9 @@
   <div fxLayout="row" fxLayoutAlign="center">
     <div fxFlex fxFlex.gt-xs="80">
       <mat-toolbar class="app-navbar">
-        <img class="logo svg" src="/assets/images/uch-logo.svg" title="UC Health" alt="UC Health Logo">
+        <a routerLink="/dashboard">
+          <img class="logo svg" src="/assets/images/uch-logo.svg" title="UC Health" alt="UC Health Logo">
+        </a>
       </mat-toolbar>
       <div class="mat-elevation-z3">
         <router-outlet></router-outlet>
