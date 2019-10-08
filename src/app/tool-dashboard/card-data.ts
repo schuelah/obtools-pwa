@@ -3,17 +3,17 @@ import {CardDataModel} from './card-data-model';
 export const CARD_DATA: CardDataModel[] = [
   {
     title: 'IOL Calculator',
-    subtitle: 'A general IOL calculator',
+    subtitle: 'Predictive risk of Cesarean delivery following induction of labor',
     link: '/iol-calc',
   },
   {
     title: 'Obesity IOL Calculator',
-    subtitle: 'An IOL calculator in the context of obesity',
+    subtitle: 'Calculator to predict the likelihood of a Cesarean Section following induction of labor among obese women',
     link: '/obesity-iol-calc',
   },
   {
-    title: 'Maternal ICU Calculator',
-    subtitle: 'A calculator for the risk of ICU admission',
+    title: 'ICU Admission Risk Calculator',
+    subtitle: 'Calculator to predict the likelihood of a maternal ICU admission',
     link: '/mat-icu-calc',
   }
 ];
