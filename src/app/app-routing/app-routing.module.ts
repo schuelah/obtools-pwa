@@ -4,12 +4,17 @@ import {PreEclampsiaCalcComponent} from '../pre-eclampsia-calc/pre-eclampsia-cal
 import {MaternalIcuCalcComponent} from '../maternal-icu-calc/maternal-icu-calc.component';
 import {ObesityIolCalcComponent} from '../obesity-iol-calc/obesity-iol-calc.component';
 import {IolCalcComponent} from '../iol-calc/iol-calc.component';
+import {ToolDashboardComponent} from '../tool-dashboard/tool-dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/mat-icu-calc',
+    redirectTo: '/dashboard',
     pathMatch: 'full',
+  },
+  {
+    path: 'dashboard',
+    component: ToolDashboardComponent,
   },
   {
     path: 'mat-icu-calc',
