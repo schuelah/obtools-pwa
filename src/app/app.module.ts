@@ -14,11 +14,13 @@ import {MaternalIcuCalcModule} from './maternal-icu-calc/maternal-icu-calc.modul
 import {ObesityIolCalcModule} from './obesity-iol-calc/obesity-iol-calc.module';
 import {IolCalcModule} from './iol-calc/iol-calc.module';
 import { ToolDashboardComponent } from './tool-dashboard/tool-dashboard.component';
+import {MaterialElevationDirective} from './tools/material-elevation.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolDashboardComponent,
+    MaterialElevationDirective,
   ],
   imports: [
     BrowserModule,
