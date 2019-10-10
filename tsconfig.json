@@ -12,11 +12,20 @@
     "importHelpers": true,
     "target": "es5",
     "typeRoots": [
-      "node_modules/@types"
+      "node_modules/@types",
+      "node_modules/fhirclient/lib"
     ],
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "krd-fhir-client": [
+        "dist/krd-fhir-client"
+      ],
+      "krd-fhir-client/*": [
+        "dist/krd-fhir-client/*"
+      ]
+    }
   }
 }

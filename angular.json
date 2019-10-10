@@ -149,6 +149,41 @@
           }
         }
       }
+    },
+    "krd-fhir-client": {
+      "projectType": "library",
+      "root": "projects/krd-fhir-client",
+      "sourceRoot": "projects/krd-fhir-client/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/krd-fhir-client/tsconfig.lib.json",
+            "project": "projects/krd-fhir-client/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/krd-fhir-client/src/test.ts",
+            "tsConfig": "projects/krd-fhir-client/tsconfig.spec.json",
+            "karmaConfig": "projects/krd-fhir-client/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/krd-fhir-client/tsconfig.lib.json",
+              "projects/krd-fhir-client/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "obtools-pwa"

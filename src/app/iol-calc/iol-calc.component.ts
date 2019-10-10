@@ -4,6 +4,7 @@ import {RiskBuilder} from '../tools/risk-builder';
 import {CITATIONS} from './citations';
 import {Citation} from '../reference/article-citation.component';
 import {DecimalPipe, PercentPipe} from '@angular/common';
+import {FhirService} from '../fhir.service';
 
 export enum RACE {
   UNKNOWN = -1,
@@ -36,10 +37,13 @@ export class IolCalcComponent implements OnInit {
   cycleTerm = CalcTools.cycleTerm;
   getState = CalcTools.getState;
 
-  constructor(private percentPipe: PercentPipe, private decimalPipe: DecimalPipe) {
+  constructor(
+    private percentPipe: PercentPipe,
+    private fhirService: FhirService) {
   }
 
   ngOnInit() {
+    this.fhirService.init();
   }
 
   getRiskValue(): string {
@@ -65,18 +69,42 @@ export class IolCalcComponent implements OnInit {
   }
 
   getGATerm(cga: number): number {
-    if (cga < 32) { return null; }
-    if (cga < 33) { return 0; }
-    if (cga < 34) { return -0.2417164; }
-    if (cga < 35) { return -0.8054884; }
-    if (cga < 36) { return -0.8010319; }
-    if (cga < 37) { return -0.9520646; }
-    if (cga < 38) { return -1.125466; }
-    if (cga < 39) { return -1.154707; }
-    if (cga < 40) { return -1.175031; }
-    if (cga < 41) { return -1.002833; }
-    if (cga < 42) { return -0.8081131; }
-    if (cga < 43) { return -0.6372783; }
+    if (cga < 32) {
+      return null;
+    }
+    if (cga < 33) {
+      return 0;
+    }
+    if (cga < 34) {
+      return -0.2417164;
+    }
+    if (cga < 35) {
+      return -0.8054884;
+    }
+    if (cga < 36) {
+      return -0.8010319;
+    }
+    if (cga < 37) {
+      return -0.9520646;
+    }
+    if (cga < 38) {
+      return -1.125466;
+    }
+    if (cga < 39) {
+      return -1.154707;
+    }
+    if (cga < 40) {
+      return -1.175031;
+    }
+    if (cga < 41) {
+      return -1.002833;
+    }
+    if (cga < 42) {
+      return -0.8081131;
+    }
+    if (cga < 43) {
+      return -0.6372783;
+    }
     return null;
   }
 
