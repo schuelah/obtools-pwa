@@ -149,6 +149,41 @@
           }
         }
       }
+    },
+    "ng-fhir": {
+      "projectType": "library",
+      "root": "projects/ng-fhir",
+      "sourceRoot": "projects/ng-fhir/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-fhir/tsconfig.lib.json",
+            "project": "projects/ng-fhir/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-fhir/src/test.ts",
+            "tsConfig": "projects/ng-fhir/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-fhir/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-fhir/tsconfig.lib.json",
+              "projects/ng-fhir/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "obtools-pwa"

@@ -25,6 +25,12 @@
       ],
       "krd-fhir-client/*": [
         "dist/krd-fhir-client/*"
+      ],
+      "ng-fhir": [
+        "dist/ng-fhir"
+      ],
+      "ng-fhir/*": [
+        "dist/ng-fhir/*"
       ]
     }
   }
