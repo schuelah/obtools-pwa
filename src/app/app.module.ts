@@ -15,12 +15,14 @@ import {ObesityIolCalcModule} from './obesity-iol-calc/obesity-iol-calc.module';
 import {IolCalcModule} from './iol-calc/iol-calc.module';
 import { ToolDashboardComponent } from './tool-dashboard/tool-dashboard.component';
 import {MaterialElevationDirective} from './tools/material-elevation.directive';
+import { OauthTestComponent } from './oauth-test/oauth-test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolDashboardComponent,
     MaterialElevationDirective,
+    OauthTestComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,8 @@ import {MaterialElevationDirective} from './tools/material-elevation.directive';
     MatCardModule,
 
     MatMenuModule,
+
+    NgFhirModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

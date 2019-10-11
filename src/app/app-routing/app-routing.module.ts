@@ -5,12 +5,21 @@ import {MaternalIcuCalcComponent} from '../maternal-icu-calc/maternal-icu-calc.c
 import {ObesityIolCalcComponent} from '../obesity-iol-calc/obesity-iol-calc.component';
 import {IolCalcComponent} from '../iol-calc/iol-calc.component';
 import {ToolDashboardComponent} from '../tool-dashboard/tool-dashboard.component';
+import {OauthTestComponent} from '../oauth-test/oauth-test.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full',
+  },
+  {
+    path: 'landing',
+    component: OauthTestComponent,
+  },
+  {
+    path: 'launch',
+    component: OauthTestComponent,
   },
   {
     path: 'dashboard',
