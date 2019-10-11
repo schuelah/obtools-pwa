@@ -51,3 +51,4 @@ Thumbs.db
 # Resources folder
 /resources
 /projects/krd-fhir-client - Copy/
+/projects/*/node_modules/

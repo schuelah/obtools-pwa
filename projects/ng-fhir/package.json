@@ -4,5 +4,8 @@
   "peerDependencies": {
     "@angular/common": "^8.0.1",
     "@angular/core": "^8.0.1"
+  },
+  "dependencies": {
+    "angular-oauth2-oidc": "^8.0.4"
   }
 }
