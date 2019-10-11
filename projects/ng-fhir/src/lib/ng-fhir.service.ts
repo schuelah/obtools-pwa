@@ -1,6 +1,4 @@
 import {Injectable} from '@angular/core';
-import {AuthorizeOptionSet, ClientOptions} from './fhir-client';
-import * as oAuth2 from '../src/oauth';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +9,14 @@ export class NgFhirService {
    * Completes the authorization flow. This should be called on the page that
    * represents your redirect_uri.
    */
-  ready = oAuth2.ready;
+  // ready = oAuth2.ready;
 
   /**
    * Calls `authorize` or `ready` depending on the URL parameters. Can be used
    * to handle everything in one page (when the launch_uri and redirect_uri of
    * your smart client are the same)
    */
-  init = oAuth2.init;
+  // init = oAuth2.init;
 
   constructor() {
   }
@@ -28,7 +26,7 @@ export class NgFhirService {
    * called on the page that represents your launch_uri.
    * @param options ClientOptions or AuthorizeOptionSet[]
    */
-  authorize(options?: ClientOptions | AuthorizeOptionSet[]) {
-    return oAuth2.authorize(options);
-  }
+  // authorize(options?: ) {
+  //   // return oAuth2.authorize(options);
+  // }
 }
