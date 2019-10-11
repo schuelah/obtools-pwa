@@ -1,4 +1,8 @@
-import {Client as ClientInterface, fhir, FhirClient as NS, SMART} from '..';
+import * as ClientInterface from '../lib/client';
+import * as fhir from '../lib/fhir';
+import * as NS from '../lib/fhir-client';
+import * as SMART from '../lib/smart';
+
 import Client from './Client';
 import Storage from './Storage';
 import {debug, fetchJSON, getPath, randomString, urlParam, urlToAbsolute} from './lib';
@@ -192,8 +196,8 @@ export function buildAuthorizeUrl(options: NS.AuthorizeOptions | NS.AuthorizeOpt
  * creates it's configuration and returns it in a Promise.
  * NOTE that this function has side effects because it modifies the storage
  * contents.
- * @param req
- * @param storage
+ * @param code string
+ * @param state Client interface state
  */
 export function buildTokenRequest(code: string, state: ClientInterface.State): RequestInit {
 
@@ -291,7 +295,7 @@ export function completeAuth(): Promise<Client> {
     .then(stored => new Client(stored as ClientInterface.State));
 }
 
-export function init(options?: NS.ClientOptions): Promise<Client | {}> {
+export async function init(options?: NS.ClientOptions): Promise<Client | {}> {
   // if `code` and `state` params are present we need to complete the auth flow
   if (urlParam('state') && urlParam('code')) {
     return completeAuth();
@@ -306,41 +310,40 @@ export function init(options?: NS.ClientOptions): Promise<Client | {}> {
   }
 
   // Otherwise try to launch
-  return authorize(options).then(() => {
-    // `init` promises a Client but that cannot happen in this case. The
-    // browser will be redirected (unload the page and be redirected back
-    // to it later and the same init function will be called again). On
-    // success, authorize will resolve with the redirect url but we don't
-    // want to return that from this promise chain because it is not a
-    // Client instance. At the same time, if authorize fails, we do want to
-    // pass the error to those waiting for a client instance.
-    return new Promise(() => { /* leave it pending! */
-    });
+  await authorize(options);
+  // `init` promises a Client but that cannot happen in this case. The
+  // browser will be redirected (unload the page and be redirected back
+  // to it later and the same init function will be called again). On
+  // success, authorize will resolve with the redirect url but we don't
+  // want to return that from this promise chain because it is not a
+  // Client instance. At the same time, if authorize fails, we do want to
+  // pass the error to those waiting for a client instance.
+  return new Promise(() => {
   });
 }
 
-// export async function ready(): Promise<Client> {
+export async function ready(): Promise<Client> {
 
-//     // First check for existing client state
-//     const cached = Storage.get();
+    // First check for existing client state
+    const cached = Storage.get();
 
-//     // If state is found, it means a client instance have already been created
-//     // in this session and we should try to revive it.
-//     if (cached) {
-//         return new Client(cached);
-//     }
+    // If state is found, it means a client instance have already been created
+    // in this session and we should try to revive it.
+    if (cached) {
+        return new Client(cached);
+    }
 
-//     // If no state is found we should be visiting this page for the first time
-//     const state = urlParam("state");
-//     const code  = urlParam("code");
+    // If no state is found we should be visiting this page for the first time
+    const state = urlParam('state');
+    const code  = urlParam('code');
 
-//     // if `code` and `state` params are present we need to complete the auth flow
-//     if (state && code) {
-//         return completeAuth();
-//     }
+    // if `code` and `state` params are present we need to complete the auth flow
+    if (state && code) {
+        return completeAuth();
+    }
 
-//     throw new Error("Unable to complete authentication. Please re-launch the application");
-// }
+    throw new Error('Unable to complete authentication. Please re-launch the application');
+}
 
 
 function waitForDomReady(...args) {

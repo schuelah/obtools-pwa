@@ -1,6 +1,6 @@
-import {FhirClient as NS} from '..';
 // import "whatwg-fetch";
 import * as oAuth2 from './oauth';
+import {AuthorizeOptionSet, ClientOptions} from '../lib/fhir-client';
 
 // New API ---------------------------------------------------------------------
 export const SMART = {
@@ -8,9 +8,9 @@ export const SMART = {
   /**
    * Starts the authorization flow (redirects to the auth uri). This should be
    * called on the page that represents your launch_uri.
-   * @param options
+   * @param options ClientOptions or AuthorizeOptionSet[]
    */
-  authorize(options?: NS.ClientOptions | NS.AuthorizeOptionSet[]) {
+  authorize(options?: ClientOptions | AuthorizeOptionSet[]) {
     return oAuth2.authorize(options);
   },
 
@@ -35,14 +35,14 @@ export const FHIR = {
       replaceBrowserHistory: true,
       fullSessionStorageSupport: true
     },
-    authorize(options: NS.ClientOptions) {
+    authorize(options: ClientOptions) {
       return oAuth2.authorize(options);
     },
     // ready: oAuth2.ready
   }
 };
 
-if (typeof window !== 'undefined') {
-  window.SMART = SMART;
-  window.FHIR = FHIR;
-}
+// if (typeof window !== 'undefined') {
+//   window.SMART = SMART;
+//   window.FHIR = FHIR;
+// }

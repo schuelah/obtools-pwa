@@ -1,4 +1,6 @@
-import {Client as ClientInterface, SMART} from '..';
+import * as ClientInterface from '../lib/client';
+import * as SMART from '../lib/smart';
+
 import Storage from './Storage';
 import {checkResponse, fetchJSON, getPath, resolve, responseToJSON} from './lib';
 
@@ -60,26 +62,26 @@ export default class Client {
       this.parseIdToken(idToken);
     }
 
-    // Set up Fhir.js API if "fhir" is available in the global scope
-    if (typeof window.fhir === 'function') {
-      const accessToken = this.getState('tokenResponse.access_token');
-      const auth = accessToken ?
-        {type: 'bearer', bearer: accessToken} :
-        {type: 'none'};
-
-      this.api = window.fhir({
-        baseUrl: state.serverUrl,
-        auth
-      });
-
-      if (this.patient) {
-        this.patient.api = window.fhir({
-          baseUrl: state.serverUrl,
-          patient: patientId,
-          auth
-        });
-      }
-    }
+    // // Set up Fhir.js API if "fhir" is available in the global scope
+    // if (typeof window.fhir === 'function') {
+    //   const accessToken = this.getState('tokenResponse.access_token');
+    //   const auth = accessToken ?
+    //     {type: 'bearer', bearer: accessToken} :
+    //     {type: 'none'};
+    //
+    //   this.api = window.fhir({
+    //     baseUrl: state.serverUrl,
+    //     auth
+    //   });
+    //
+    //   if (this.patient) {
+    //     this.patient.api = window.fhir({
+    //       baseUrl: state.serverUrl,
+    //       patient: patientId,
+    //       auth
+    //     });
+    //   }
+    // }
   }
 
   /**
