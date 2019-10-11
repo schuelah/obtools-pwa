@@ -17,7 +17,8 @@ export class NgFhirService {
   }
 
   init() {
-    this.oAuthService.initCodeFlow();
+    // this.oAuthService.initCodeFlow();
+    console.log('init called in ng-fhir service');
   }
 
   /**

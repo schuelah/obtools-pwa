@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { NgFhirComponent } from './ng-fhir.component';
-import {OAuthService} from 'angular-oauth2-oidc';
+import {OAuthModule} from 'angular-oauth2-oidc';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [NgFhirComponent],
-  providers: [OAuthService],
-  imports: [],
+  providers: [],
+  imports: [
+    HttpClientModule,
+    OAuthModule.forRoot()
+  ],
   exports: [NgFhirComponent]
 })
 export class NgFhirModule { }

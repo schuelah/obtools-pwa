@@ -16,6 +16,7 @@ import {IolCalcModule} from './iol-calc/iol-calc.module';
 import { ToolDashboardComponent } from './tool-dashboard/tool-dashboard.component';
 import {MaterialElevationDirective} from './tools/material-elevation.directive';
 import { OauthTestComponent } from './oauth-test/oauth-test.component';
+import {NgFhirModule} from '../../projects/ng-fhir/src/lib/ng-fhir.module';
 
 @NgModule({
   declarations: [
@@ -49,8 +50,7 @@ import { OauthTestComponent } from './oauth-test/oauth-test.component';
     MatCardModule,
 
     MatMenuModule,
-
-    NgFhirModule,
+    NgFhirModule
   ],
   providers: [],
   bootstrap: [AppComponent]

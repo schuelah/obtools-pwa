@@ -29,14 +29,6 @@ export const authCodeFlowConfig: AuthConfig = {
 
   showDebugInformation: true,
 
-  /**
-   * Defines whether https is required.
-   * The default value is remoteOnly which only allows
-   * http for localhost, while every other domains need
-   * to be used with https.
-   */
-  requireHttps: false,
-
   // Not recommended:
   // disablePKCI: true,
 };
