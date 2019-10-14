@@ -36,7 +36,7 @@ export class IolCalcComponent implements OnInit {
   cycleTerm = CalcTools.cycleTerm;
   getState = CalcTools.getState;
 
-  constructor(private percentPipe: PercentPipe, private decimalPipe: DecimalPipe) {
+  constructor(private percentPipe: PercentPipe) {
   }
 
   ngOnInit() {
