@@ -13,12 +13,26 @@ export class NgFhirService {
   private configure() {
     this.oAuthService.configure(authCodeFlowConfig);
     this.oAuthService.tokenValidationHandler = new JwksValidationHandler();
-    this.oAuthService.loadDiscoveryDocumentAndLogin();
+    this.oAuthService.setStorage(sessionStorage);
+    // this.oAuthService.loadDiscoveryDocumentAndLogin();
+    // this.init();
   }
 
   init() {
-    // this.oAuthService.initCodeFlow();
+    this.oAuthService.initCodeFlow();
     console.log('init called in ng-fhir service');
+  }
+
+  completeLoginWithCode(): Promise<boolean> {
+    // check if already logged in with valid access token
+    if (!this.oAuthService.hasValidAccessToken()) {
+      return this.oAuthService.tryLogin();
+    }
+
+    // if already logged in
+    return new Promise<boolean>((resolve) => {
+      resolve(true);
+    });
   }
 
   /**

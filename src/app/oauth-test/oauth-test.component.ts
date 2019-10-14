@@ -7,11 +7,20 @@ import {NgFhirService} from '../../../projects/ng-fhir/src/lib/ng-fhir.service';
   styleUrls: ['./oauth-test.component.css']
 })
 export class OauthTestComponent implements OnInit {
-
   constructor(private ngFhir: NgFhirService) { }
 
   ngOnInit() {
+    // this.ngFhir.init();
+  }
+
+  init() {
     this.ngFhir.init();
   }
 
+
+  completeLogin() {
+    this.ngFhir.completeLoginWithCode().then( () => {
+      console.log('completed login successfully');
+    });
+  }
 }
