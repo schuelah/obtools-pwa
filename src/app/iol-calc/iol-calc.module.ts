@@ -8,6 +8,7 @@ import {ReferenceModule} from '../reference/reference.module';
 import {FormsModule} from '@angular/forms';
 import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
 import {ButtonGroupModule} from '../button-group/button-group.module';
+import {ToolsModule} from '../tools/tools.module';
 
 @NgModule({
   declarations: [IolCalcComponent],
@@ -24,7 +25,8 @@ import {ButtonGroupModule} from '../button-group/button-group.module';
     FormsModule,
     FlexModule,
     FlexLayoutModule,
-    ButtonGroupModule
+    ButtonGroupModule,
+    ToolsModule
   ]
 })
 export class IolCalcModule {
