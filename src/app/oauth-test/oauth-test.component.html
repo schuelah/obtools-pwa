@@ -2,5 +2,9 @@
   oauth-test works!
 </p>
 
+<h1>Logged in status: {{loggedIn}}</h1>
+
 <button mat-raised-button (click)="init()">Initialize</button>
 <button mat-raised-button (click)="completeLogin()">Finish Login</button>
+<button mat-raised-button (click)="isLoggedIn()">isLoggedIn: {{loggedIn}}</button>
+<button mat-raised-button (click)="logOut()">Log Out</button>

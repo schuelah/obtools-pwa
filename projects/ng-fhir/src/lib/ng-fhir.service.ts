@@ -1,13 +1,16 @@
 import {Injectable} from '@angular/core';
 import {JwksValidationHandler, OAuthService} from 'angular-oauth2-oidc';
 import {authCodeFlowConfig} from './auth.config';
+import {EventType} from 'angular-oauth2-oidc/events';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NgFhirService {
-  constructor(private oAuthService: OAuthService) {
+  constructor(private oAuthService: OAuthService, private http: HttpClient) {
     this.configure();
+    this.setEventCallbacks();
   }
 
   private configure() {
@@ -19,13 +22,16 @@ export class NgFhirService {
   }
 
   init() {
-    this.oAuthService.initCodeFlow();
     console.log('init called in ng-fhir service');
+
+    this.oAuthService.initCodeFlow();
   }
 
   completeLoginWithCode(): Promise<boolean> {
     // check if already logged in with valid access token
-    if (!this.oAuthService.hasValidAccessToken()) {
+    if (!this.isLoggedIn()) {
+      console.log('not logged in. Attempting tryLogin');
+
       return this.oAuthService.tryLogin();
     }
 
@@ -33,6 +39,10 @@ export class NgFhirService {
     return new Promise<boolean>((resolve) => {
       resolve(true);
     });
+  }
+
+  isLoggedIn() {
+    return this.oAuthService.hasValidAccessToken();
   }
 
   /**
@@ -43,4 +53,25 @@ export class NgFhirService {
   // authorize(options?: ) {
   //   // return oAuth2.authorize(options);
   // }
+
+  logOut() {
+    this.oAuthService.logOut();
+  }
+
+  getContext() {
+  }
+
+  private setEventCallbacks() {
+    this.oAuthService.events.subscribe(event => {
+      if (event.type === 'token_received') {
+        console.log('token received');
+
+        console.log(event);
+
+        console.log(this.oAuthService.customQueryParams);
+
+        // this.http.
+      }
+    });
+  }
 }

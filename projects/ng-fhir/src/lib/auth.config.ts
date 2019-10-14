@@ -66,6 +66,7 @@ export const authCodeFlowConfig: AuthConfig = {
    */
   customQueryParams: {
     aud: 'http://launch.smarthealthit.org/v/r3/sim/eyJoIjoiMSIsImIiOiI1YjEwN2M0My0yOTYzLTQ1OGMtYjc4Ny02NGRlYzUwMWM3MTAiLCJlIjoic21hcn' +
-      'QtUHJhY3RpdGlvbmVyLTcyMDA0NDU0In0/fhir'
+      'QtUHJhY3RpdGlvbmVyLTcyMDA0NDU0In0/fhir',
+    patient: ''
   },
 };
