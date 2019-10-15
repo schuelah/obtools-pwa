@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {JwksValidationHandler, OAuthService} from 'angular-oauth2-oidc';
 import {authCodeFlowConfig} from './auth.config';
-import {EventType} from 'angular-oauth2-oidc/events';
 import {HttpClient} from '@angular/common/http';
+import {OAuthService} from '../../../../angular-oauth2-oidc/projects/lib/src/oauth-service';
+import {JwksValidationHandler} from '../../../../angular-oauth2-oidc/projects/lib/src/token-validation/jwks-validation-handler';
 
 @Injectable({
   providedIn: 'root',

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {NgFhirService} from 'ng-fhir';
+import {NgFhirService} from '../../projects/ng-fhir/src/lib/ng-fhir.service';
 
 @Injectable({
   providedIn: 'root'
