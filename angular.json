@@ -184,7 +184,43 @@
           }
         }
       }
+    },
+    "angular-oauth2-oidc": {
+      "projectType": "library",
+      "root": "projects/angular-oauth2-oidc",
+      "sourceRoot": "projects/angular-oauth2-oidc/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/angular-oauth2-oidc/tsconfig.lib.json",
+            "project": "projects/angular-oauth2-oidc/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular-oauth2-oidc/src/test.ts",
+            "tsConfig": "projects/angular-oauth2-oidc/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-oauth2-oidc/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/angular-oauth2-oidc/tsconfig.lib.json",
+              "projects/angular-oauth2-oidc/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
+
   },
   "defaultProject": "obtools-pwa"
 }

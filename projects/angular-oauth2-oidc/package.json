@@ -1,0 +1,9 @@
+{
+  "name": "angular-oauth2-oidc",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "jsrsasign": "^8.0.12",
+    "@angular/common": "^8.2.9",
+    "@angular/core": "^8.2.9"
+  }
+}
