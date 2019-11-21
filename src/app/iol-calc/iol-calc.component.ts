@@ -44,7 +44,7 @@ export class IolCalcComponent implements OnInit {
 
   getRiskValue(): string {
     if (this.errorCheck()) {
-      return this.percentPipe.transform(this.calculateRisk(), '1.0-2');
+      return this.percentPipe.transform(this.calculateRisk(), '1.0-1');
     } else {
       return 'incomplete data';
     }
