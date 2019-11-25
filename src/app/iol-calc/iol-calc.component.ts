@@ -4,6 +4,7 @@ import {RiskBuilder} from '../tools/risk-builder';
 import {CITATIONS} from './citations';
 import {Citation} from '../reference/article-citation.component';
 import {DecimalPipe, PercentPipe} from '@angular/common';
+import {CI_TABLE} from './confidence-intervals';
 
 export enum RACE {
   UNKNOWN = -1,
@@ -31,6 +32,9 @@ export class IolCalcComponent implements OnInit {
   pma: number;
 
   citations = CITATIONS as Array<Citation>;
+
+  displayedColumns: string[] = ['group', 'rate', 'upper', 'lower'];
+  dataSource = CI_TABLE;
 
   // Reference to cycleTerm method
   cycleTerm = CalcTools.cycleTerm;

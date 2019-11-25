@@ -89,4 +89,38 @@
     <p class="note-link">Calculator at <a href="{{getUrl()}}">{{getUrl()}}</a></p>
   </app-mock-text-area>
 </div>
+<!--<div class="layout-padding" fxLayoutAlign="center" fxLayout="column">-->
+<div class="layout-padding" fxLayoutAlign="center">
+  <div fxLayout="column" fxFlex="0 1 800px">
+    <h4>95% Confidence Intervals for Predicted Risk Group for Cesarean Delivery After Induction of Labor</h4>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" fxFlex>
 
+    <!-- Group Column-->
+    <ng-container matColumnDef="group">
+      <th mat-header-cell *matHeaderCellDef>Group</th>
+      <td mat-cell *matCellDef="let item">{{item.group}}</td>
+    </ng-container>
+
+    <!-- Predicted Column-->
+    <ng-container matColumnDef="rate">
+      <th mat-header-cell *matHeaderCellDef>Predicted Cesarean Rate (%)</th>
+      <td mat-cell *matCellDef="let item">{{item.csrate}}</td>
+    </ng-container>
+
+    <!-- Lower Column-->
+    <ng-container matColumnDef="lower">
+      <th mat-header-cell *matHeaderCellDef>Lower 95% CI</th>
+      <td mat-cell *matCellDef="let item">{{item.lower}}</td>
+    </ng-container>
+
+    <!-- Lower Column-->
+    <ng-container matColumnDef="upper">
+      <th mat-header-cell *matHeaderCellDef>Upper 95% CI</th>
+      <td mat-cell *matCellDef="let item">{{item.upper}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  </div>
+</div>
