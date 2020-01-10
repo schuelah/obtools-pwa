@@ -3,7 +3,7 @@ export const CITATIONS = [
     source: 'In Progress',
     accessed: {'date-parts': [[2019, 4, 30]]},
     id: 'none',
-    title: 'Predictive model for failed induction of labor among obese women',
+    title: 'Predictive Model for Failed Induction of Labor Among Obese Women',
     author: [
       {
         family: 'Rossi',
