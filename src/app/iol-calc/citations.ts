@@ -3,7 +3,7 @@ export const CITATIONS = [
     source: 'In Progress',
     accessed: {'date-parts': [[2019, 4, 30]]},
     id: 'none',
-    title: 'Predictive Risk Calculator of Cesarean Delivery Among Women Undergoing Induction of Labor',
+    title: 'Risk Calculator to Predict Cesarean Delivery Among Women Undergoing Induction of Labor',
     author: [
       {
         family: 'Rossi',
