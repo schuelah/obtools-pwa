@@ -15,7 +15,7 @@ export const CITATIONS = [
       },
       {
         family: 'Dufendach',
-        given: 'Kevin Reid'
+        given: 'Kevin'
       },
       {
         family: 'Hall',
@@ -32,14 +32,14 @@ export const CITATIONS = [
     ],
     'container-title-short': 'Obstet Gynec',
     'container-title': 'Obstetrics & Gynecology',
-    ISSN: '0000-0000',
+    ISSN: '0029-7844',
     issued: {'date-parts': [[2019]]},
-    page: 'xx-xx',
-    volume: 'xx',
-    issue: 'x',
-    PMID: '00000000',
+    page: '485-493',
+    volume: '134',
+    issue: '3',
+    PMID: '31403588',
     PMCID: 'PMC0000000',
-    DOI: '00.000/AAA.0000000000',
+    DOI: '10.1097/AOG.0000000000003377',
     type: 'article-journal'
   }
 ];
