@@ -1,7 +1,7 @@
 export const CITATIONS = [
   {
     source: 'In Progress',
-    accessed: {'date-parts': [[2019, 4, 30]]},
+    accessed: {'date-parts': [[2020, 3, 1]]},
     id: 'none',
     title: 'Risk Calculator to Predict Cesarean Delivery Among Women Undergoing Induction of Labor',
     author: [
@@ -32,14 +32,14 @@ export const CITATIONS = [
     ],
     'container-title-short': 'Obstet Gynec',
     'container-title': 'Obstetrics & Gynecology',
-    ISSN: '0000-0000',
-    issued: {'date-parts': [[2019]]},
-    page: 'xx-xx',
-    volume: 'xx',
-    issue: 'x',
+    ISSN: '0029-7844/20',
+    issued: {'date-parts': [[2020]]},
+    page: '1-10',
+    volume: '135',
+    issue: '3',
     PMID: '00000000',
     PMCID: 'PMC0000000',
-    DOI: '00.000/AAA.0000000000',
+    DOI: '10.1097/AOG.0000000000003696',
     type: 'article-journal'
   }
 ];
