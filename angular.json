@@ -65,11 +65,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
-                },                {
+                },
+                {
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb"
                 }
-
               ],
               "serviceWorker": true,
               "ngswConfigPath": "src/ngsw-config.json"
@@ -155,5 +155,8 @@
       }
     }
   },
-  "defaultProject": "obtools-pwa"
+  "defaultProject": "obtools-pwa",
+  "cli": {
+    "analytics": "6050cf7c-c026-4f6a-b77e-ea5f78003231"
+  }
 }
