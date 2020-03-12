@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaternalIcuCalcComponent } from './maternal-icu-calc.component';
 import {CalculatorModule} from '../calculator/calculator.module';
-import {
-  MatButtonModule, MatCardModule, MatCheckboxModule,
-  MatInputModule,
-  MatListModule,
-  MatRippleModule,
-  MatSelectModule,
-  MatSliderModule,
-  MatSlideToggleModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRippleModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {ExpandableModule} from '../expandable/expandable.module';
