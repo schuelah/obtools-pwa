@@ -30,6 +30,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {FormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {MatInputModule} from '@angular/material/input';
     ToolDashboardComponent,
     MaterialElevationDirective,
     CdhCalcComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,

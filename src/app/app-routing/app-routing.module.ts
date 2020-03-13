@@ -6,6 +6,7 @@ import {ObesityIolCalcComponent} from '../obesity-iol-calc/obesity-iol-calc.comp
 import {IolCalcComponent} from '../iol-calc/iol-calc.component';
 import {ToolDashboardComponent} from '../tool-dashboard/tool-dashboard.component';
 import {CdhCalcComponent} from '../cdh-calc/cdh-calc.component';
+import {CanActivateRouteGuard} from './can-activate-route.guard';
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ const routes: Routes = [
   {
     path: 'calc/cdh-calc',
     component: CdhCalcComponent,
+    canActivate: [CanActivateRouteGuard]
   }
 ];
 
