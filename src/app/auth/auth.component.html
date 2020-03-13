@@ -1,1 +1,21 @@
-<p>auth works!</p>
+<span fxFlex></span>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <mat-card-title>Log in</mat-card-title>
+    <mat-card-content [fxHide]="busy" fxLayout="column">
+      <mat-form-field>
+        <mat-label>email</mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>password</mat-label>
+        <input matInput formControlName="password" type="password">
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <span fxFlex></span>
+      <button mat-button>Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+<span fxFlex></span>

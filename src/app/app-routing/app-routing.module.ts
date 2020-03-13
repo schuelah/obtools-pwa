@@ -7,6 +7,7 @@ import {IolCalcComponent} from '../iol-calc/iol-calc.component';
 import {ToolDashboardComponent} from '../tool-dashboard/tool-dashboard.component';
 import {CdhCalcComponent} from '../cdh-calc/cdh-calc.component';
 import {CanActivateRouteGuard} from './can-activate-route.guard';
+import {AuthComponent} from '../auth/auth.component';
 
 const routes: Routes = [
   {
@@ -37,7 +38,11 @@ const routes: Routes = [
   {
     path: 'calc/cdh-calc',
     component: CdhCalcComponent,
-    canActivate: [CanActivateRouteGuard]
+    canActivate: [CanActivateRouteGuard],
+  },
+  {
+    path: 'authorize',
+    component: AuthComponent,
   }
 ];
 

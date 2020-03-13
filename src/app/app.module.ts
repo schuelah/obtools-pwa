@@ -16,7 +16,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {FlexModule} from '@angular/flex-layout';
+import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
 import {MaternalIcuCalcModule} from './maternal-icu-calc/maternal-icu-calc.module';
 import {ObesityIolCalcModule} from './obesity-iol-calc/obesity-iol-calc.module';
 import {IolCalcModule} from './iol-calc/iol-calc.module';
@@ -27,7 +27,7 @@ import {CalculatorModule} from './calculator/calculator.module';
 import {MockTextAreaModule} from './mock-text-area/mock-text-area.module';
 import {ReferenceModule} from './reference/reference.module';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { AuthComponent } from './auth/auth.component';
@@ -77,6 +77,8 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    ReactiveFormsModule,
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
