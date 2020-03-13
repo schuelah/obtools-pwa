@@ -2,5 +2,14 @@
   "projects": {
     "default": "ob-tools",
     "staging": "ob-tools-staging"
+  },
+  "targets": {
+    "ob-tools-staging": {
+      "hosting": {
+        "obtools-pwa": [
+          "ob-tools-staging"
+        ]
+      }
+    }
   }
 }

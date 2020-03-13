@@ -50,3 +50,7 @@ Thumbs.db
 
 # Resources folder
 /resources
+
+# Firebase configuration
+/src/environments/firebaseConfig.ts
+/src/environments/firebaseConfig.prod.ts
