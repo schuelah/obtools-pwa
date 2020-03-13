@@ -1,0 +1,81 @@
+<!--<app-calculator-->
+<!--  [title]="'CDH Survival Calculator'"-->
+<!--  [label]="'Survival Estimate'"-->
+<!--  [valueText]="getRiskValue()"-->
+<!--  [showProgressBar]="errorCheck()"-->
+<!--  [value]="calculateRisk()"></app-calculator>-->
+
+<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="15px" class="calculator-area">
+  <mat-list fxFlex="50">
+    <mat-list-item>
+      <h4>Parameters obtained at:</h4>
+      <span fxFlex></span>
+      <mat-button-toggle-group [(ngModel)]="ge30" name="cdhLaterality" class="mat-primary" aria-label="CDH Laterality">
+        <mat-button-toggle [value]="false">&lt;30 wks</mat-button-toggle>
+        <mat-button-toggle [value]="1">&ge;30 wks</mat-button-toggle>
+      </mat-button-toggle-group>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <h4>CDH Laterality</h4>
+      <span fxFlex></span>
+      <mat-button-toggle-group [(ngModel)]="laterality" name="cdhLaterality" class="mat-primary" aria-label="CDH Laterality">
+        <mat-button-toggle [value]="0">Left</mat-button-toggle>
+        <mat-button-toggle [value]="1">Right</mat-button-toggle>
+      </mat-button-toggle-group>
+    </mat-list-item>
+    <mat-list-item>
+      <h4>Total lung volume (mL)</h4>
+      <span fxFlex></span>
+      <mat-form-field>
+        <mat-label>TLV (mL)</mat-label>
+        <input matInput [(ngModel)]="tlv" type="number">
+      </mat-form-field>
+    </mat-list-item>
+    <mat-list-item>
+      <h4>Liver position</h4>
+      <span fxFlex></span>
+      <mat-button-toggle-group [(ngModel)]="liverUp" name="cdhLaterality" class="mat-primary" aria-label="CDH Laterality">
+        <mat-button-toggle [value]="true">Up</mat-button-toggle>
+        <mat-button-toggle [value]="false">Down</mat-button-toggle>
+      </mat-button-toggle-group>
+    </mat-list-item>
+    <mat-list-item>
+      <h4>Observed:Expected LHR%</h4>
+      <span fxFlex></span>
+      <mat-form-field>
+        <mat-label>O:E LHR (%)</mat-label>
+        <input matInput [(ngModel)]="oeLhr" type="number">
+      </mat-form-field>
+    </mat-list-item>
+    <mat-list-item>
+      <h4>Predicted percent lung volume</h4>
+      <span fxFlex></span>
+      <mat-form-field>
+        <mat-label>PPLV (%)</mat-label>
+        <input matInput [(ngModel)]="pplv" type="number">
+      </mat-form-field>
+    </mat-list-item>
+  </mat-list>
+  <div fxFlex="50">
+    <h1>My Calc</h1>
+    <h2>Survival: {{survival | percent : '0.0'}}</h2>
+    <h2>ECMO: {{ecmo | percent : '0.0'}}</h2>
+  </div>
+</div>
+
+<!--<div class="layout-padding">-->
+<!--  <h3>Clinical Note Template:</h3>-->
+
+<!--  <app-mock-text-area>-->
+<!--    <p *ngIf="errorCheck()">Based on <span [innerHTML]="getRiskFactorsWording()"></span>: <strong>The risk of this patient requiring a Cesarean section following-->
+<!--      induction of labor is {{calculateRisk() | percent : '1.0-1'}}.</strong>-->
+<!--    </p>-->
+<!--    <p *ngIf="!errorCheck()">All fields must have a selection for calculation</p>-->
+
+<!--    <p class="reference">Reference:-->
+<!--      <app-article-citation [ref]="citations[0]"></app-article-citation>-->
+<!--    </p>-->
+<!--    <p class="note-link">Calculator at <a href="{{getUrl()}}">{{getUrl()}}</a></p>-->
+<!--  </app-mock-text-area>-->
+<!--</div>-->

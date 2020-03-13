@@ -5,6 +5,7 @@ import {MaternalIcuCalcComponent} from '../maternal-icu-calc/maternal-icu-calc.c
 import {ObesityIolCalcComponent} from '../obesity-iol-calc/obesity-iol-calc.component';
 import {IolCalcComponent} from '../iol-calc/iol-calc.component';
 import {ToolDashboardComponent} from '../tool-dashboard/tool-dashboard.component';
+import {CdhCalcComponent} from '../cdh-calc/cdh-calc.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
     path: 'iol-calc',
     component: IolCalcComponent,
   },
+  {
+    path: 'calc/cdh-calc',
+    component: CdhCalcComponent,
+  }
 ];
 
 @NgModule({

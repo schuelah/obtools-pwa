@@ -22,12 +22,21 @@ import {ObesityIolCalcModule} from './obesity-iol-calc/obesity-iol-calc.module';
 import {IolCalcModule} from './iol-calc/iol-calc.module';
 import {ToolDashboardComponent} from './tool-dashboard/tool-dashboard.component';
 import {MaterialElevationDirective} from './tools/material-elevation.directive';
+import { CdhCalcComponent } from './cdh-calc/cdh-calc.component';
+import {CalculatorModule} from './calculator/calculator.module';
+import {MockTextAreaModule} from './mock-text-area/mock-text-area.module';
+import {ReferenceModule} from './reference/reference.module';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {FormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolDashboardComponent,
     MaterialElevationDirective,
+    CdhCalcComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +63,13 @@ import {MaterialElevationDirective} from './tools/material-elevation.directive';
     MatCardModule,
 
     MatMenuModule,
+    CalculatorModule,
+    MockTextAreaModule,
+    ReferenceModule,
+    MatButtonToggleModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
