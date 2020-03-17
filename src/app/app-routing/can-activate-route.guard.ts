@@ -17,7 +17,8 @@ export class CanActivateRouteGuard implements CanActivate {
         if (isAuthenticated) {
           subscriber.next(true);
         } else {
-          subscriber.next(this.router.createUrlTree(['/calc/cdh-calc']));
+          console.log('user not authenticated, rerouting to /authorize')
+          subscriber.next(this.router.createUrlTree(['/authorize']));
         }
       });
     });

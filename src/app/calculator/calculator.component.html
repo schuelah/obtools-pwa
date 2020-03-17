@@ -1,11 +1,13 @@
 <div class="calculator-header mat-elevation-z3">
   <h1>{{title}}</h1>
-  <div fxLayout="column"
+  <div *ngFor="let val of values">
+    <div fxLayout="column"
        fxLayout.gt-sm="row"
        class="calculator-result-row">
-    <h3>{{label}}:</h3>
-    <div fxHide fxShow.gt-sm fxFlex></div>
-    <div class="calculator-result">{{valueText}}</div>
+      <h3>{{val.label}}:</h3>
+      <div fxHide fxShow.gt-sm fxFlex></div>
+      <div class="calculator-result">{{val.valueText}}</div>
+    </div>
+    <mat-progress-bar *ngIf="val.showProgressBar && (!isNaN(val.value))" mode="determinate" [value]="val.value * 100"></mat-progress-bar>
   </div>
 </div>
-<mat-progress-bar *ngIf="showProgressBar" mode="determinate" [value]="value * 100"></mat-progress-bar>

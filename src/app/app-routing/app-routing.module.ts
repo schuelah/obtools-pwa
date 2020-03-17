@@ -36,7 +36,7 @@ const routes: Routes = [
     component: IolCalcComponent,
   },
   {
-    path: 'calc/cdh-calc',
+    path: 'calc/cdh',
     component: CdhCalcComponent,
     canActivate: [CanActivateRouteGuard],
   },

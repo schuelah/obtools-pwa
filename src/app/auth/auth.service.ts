@@ -28,4 +28,8 @@ export class AuthService {
   login(email: string, password: string): Promise<UserCredential> {
     return this.auth.signInWithEmailAndPassword(email, password);
   }
+
+  logout(): Promise<void> {
+    return this.auth.signOut();
+  }
 }

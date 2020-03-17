@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import {AuthService} from './auth/auth.service';
 import {Observable} from 'rxjs';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {map} from 'rxjs/operators';
+import {User} from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +10,13 @@ import {map} from 'rxjs/operators';
 })
 export class AppComponent {
   title = 'Obstetrical Tools from University of Cincinnati';
+  readonly user: Observable<User>;
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches)
-    );
+  constructor(private auth: AuthService) {
+    this.user = auth.user;
+  }
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  logOut() {
+    this.auth.logout();
+  }
 }

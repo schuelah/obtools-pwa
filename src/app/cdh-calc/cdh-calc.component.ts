@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CalculatorResult} from '../calculator/calculator.component';
 
 export enum Laterality {
   left,
@@ -18,10 +19,25 @@ export class CdhCalcComponent implements OnInit {
   oeLhr: number;
   ge30: boolean;
   pplv: number;
+  values: CalculatorResult[];
 
   constructor() { }
 
   ngOnInit() {
+    this.values = [
+      {
+        label: 'Survival',
+        valueText: this.survival.toString(),
+        value: this.survival,
+        showProgressBar: true,
+      },
+      {
+        label: 'ECMO',
+        valueText: this.ecmo.toString(),
+        value: this.ecmo,
+        showProgressBar: true,
+      }
+    ];
   }
 
   get survival() {

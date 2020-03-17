@@ -27,29 +27,12 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit() {
-    // this.busy = true;
-
-    console.log(this.loginForm.value);
-
+    console.log('Beginning login process');
     this.auth.login(this.loginForm.value.email, this.loginForm.value.password)
       .then((u) => {
-        console.log(u);
-
         if (u && u.user.uid === 'WJI5igNeOtdhxiCXuLdJgnE7aWJ3') {
-          this.router.navigate(['/calc/cdh-calc']);
+          this.router.navigate(['/calc/cdh']);
         }
       });
-      // .then(u => {
-      //   console.warn(u.user.uid);
-      //   if (u.user.uid === 'WJI5igNeOtdhxiCXuLdJgnE7aWJ3') {
-      //     this.router.navigate(['/calc/cdh-calc']);
-      //   }
-      // })
-      // .catch(e => {
-      //   console.warn(e);
-      // })
-      // .finally(() => {
-      //   this.busy = false;
-      // });
   }
 }

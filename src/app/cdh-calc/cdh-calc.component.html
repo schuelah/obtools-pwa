@@ -1,9 +1,6 @@
-<!--<app-calculator-->
-<!--  [title]="'CDH Survival Calculator'"-->
-<!--  [label]="'Survival Estimate'"-->
-<!--  [valueText]="getRiskValue()"-->
-<!--  [showProgressBar]="errorCheck()"-->
-<!--  [value]="calculateRisk()"></app-calculator>-->
+<app-calculator
+  [title]="'CDH Survival & ECMO Calculator'"
+  [values]="values"></app-calculator>
 
 <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="15px" class="calculator-area">
   <mat-list fxFlex="50">
@@ -19,7 +16,8 @@
     <mat-list-item>
       <h4>CDH Laterality</h4>
       <span fxFlex></span>
-      <mat-button-toggle-group [(ngModel)]="laterality" name="cdhLaterality" class="mat-primary" aria-label="CDH Laterality">
+      <mat-button-toggle-group [(ngModel)]="laterality" name="cdhLaterality" class="mat-primary"
+                               aria-label="CDH Laterality">
         <mat-button-toggle [value]="0">Left</mat-button-toggle>
         <mat-button-toggle [value]="1">Right</mat-button-toggle>
       </mat-button-toggle-group>
@@ -35,7 +33,8 @@
     <mat-list-item>
       <h4>Liver position</h4>
       <span fxFlex></span>
-      <mat-button-toggle-group [(ngModel)]="liverUp" name="cdhLaterality" class="mat-primary" aria-label="CDH Laterality">
+      <mat-button-toggle-group [(ngModel)]="liverUp" name="cdhLaterality" class="mat-primary"
+                               aria-label="CDH Laterality">
         <mat-button-toggle [value]="true">Up</mat-button-toggle>
         <mat-button-toggle [value]="false">Down</mat-button-toggle>
       </mat-button-toggle-group>
