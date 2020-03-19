@@ -1,39 +1,39 @@
-<app-calculator
-  [title]="'CDH Survival & ECMO Calculator'"
-  [values]="values"></app-calculator>
-
+<!--<app-calculator-->
+<!--  [title]="'CDH Survival & ECMO Calculator'"-->
+<!--  [values]="values"></app-calculator>-->
+<h1>CDH Survival and ECMO Probability Calculator</h1>
 <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="15px" class="calculator-area">
   <mat-list fxFlex="50">
     <mat-list-item>
       <h4>Parameters obtained at:</h4>
       <span fxFlex></span>
-      <mat-button-toggle-group [(ngModel)]="ge30" name="cdhLaterality" class="mat-primary" aria-label="CDH Laterality">
+      <mat-button-toggle-group [(ngModel)]="ge30" appearance="legacy" name="cdhLaterality" class="mat-primary" aria-label="CDH Laterality">
         <mat-button-toggle [value]="false">&lt;30 wks</mat-button-toggle>
-        <mat-button-toggle [value]="1">&ge;30 wks</mat-button-toggle>
+        <mat-button-toggle [value]="true">&ge;30 wks</mat-button-toggle>
       </mat-button-toggle-group>
     </mat-list-item>
-    <mat-divider></mat-divider>
     <mat-list-item>
       <h4>CDH Laterality</h4>
       <span fxFlex></span>
-      <mat-button-toggle-group [(ngModel)]="laterality" name="cdhLaterality" class="mat-primary"
+      <mat-button-toggle-group [(ngModel)]="laterality" appearance="legacy" name="cdhLaterality" class="mat-primary"
                                aria-label="CDH Laterality">
-        <mat-button-toggle [value]="0">Left</mat-button-toggle>
-        <mat-button-toggle [value]="1">Right</mat-button-toggle>
+        <mat-button-toggle [value]="lateralityOptions.left">Left</mat-button-toggle>
+        <mat-button-toggle [value]="lateralityOptions.right">Right</mat-button-toggle>
       </mat-button-toggle-group>
     </mat-list-item>
     <mat-list-item>
       <h4>Total lung volume (mL)</h4>
       <span fxFlex></span>
-      <mat-form-field>
+      <mat-form-field floatLabel="never">
         <mat-label>TLV (mL)</mat-label>
         <input matInput [(ngModel)]="tlv" type="number">
+        <span matSuffix>mL</span>
       </mat-form-field>
     </mat-list-item>
     <mat-list-item>
       <h4>Liver position</h4>
       <span fxFlex></span>
-      <mat-button-toggle-group [(ngModel)]="liverUp" name="cdhLaterality" class="mat-primary"
+      <mat-button-toggle-group [(ngModel)]="liverUp" appearance="legacy" name="cdhLaterality" class="mat-primary"
                                aria-label="CDH Laterality">
         <mat-button-toggle [value]="true">Up</mat-button-toggle>
         <mat-button-toggle [value]="false">Down</mat-button-toggle>
@@ -42,24 +42,26 @@
     <mat-list-item>
       <h4>Observed:Expected LHR%</h4>
       <span fxFlex></span>
-      <mat-form-field>
+      <mat-form-field floatLabel="never">
         <mat-label>O:E LHR (%)</mat-label>
         <input matInput [(ngModel)]="oeLhr" type="number">
+        <span matSuffix>%</span>
       </mat-form-field>
     </mat-list-item>
     <mat-list-item>
       <h4>Predicted percent lung volume</h4>
       <span fxFlex></span>
-      <mat-form-field>
+      <mat-form-field floatLabel="never">
         <mat-label>PPLV (%)</mat-label>
         <input matInput [(ngModel)]="pplv" type="number">
+        <span matSuffix>%</span>
       </mat-form-field>
     </mat-list-item>
   </mat-list>
   <div fxFlex="50">
     <h1>My Calc</h1>
-    <h2>Survival: {{survival | percent : '0.0'}}</h2>
-    <h2>ECMO: {{ecmo | percent : '0.0'}}</h2>
+    <h2>Survival: <span fxFlex></span><span class="calculator-result">{{survival | percent : '0.0'}}</span></h2>
+    <h2>ECMO: <span fxFlex></span><span class="calculator-result">{{ecmo | percent : '0.0'}}</span></h2>
   </div>
 </div>
 
