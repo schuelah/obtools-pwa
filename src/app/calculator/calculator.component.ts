@@ -14,13 +14,13 @@ export interface CalculatorResult {
   styleUrls: ['./calculator.component.scss']
 })
 export class CalculatorComponent implements OnInit {
-  // @Input() value = 0;
+  @Input() value = 0;
   @Input() title = 'Calculator';
-  // @Input() label = 'Result';
-  // @Input() valueText = 'Result';
-  // @Input() showProgressBar = false;
+  @Input() label = 'Result';
+  @Input() valueText = 'Result';
+  @Input() showProgressBar = false;
   isNaN = Number.isNaN;
-  @Input() values: CalculatorResult[];
+  // @Input() value: CalculatorResult;
 
   constructor() {
   }

@@ -1,8 +1,7 @@
 /* tslint:disable:variable-name */
 import {Component, OnInit} from '@angular/core';
 import {CalculatorResult} from '../calculator/calculator.component';
-import {ActivatedRoute, Router, UrlSegment} from '@angular/router';
-import {Observable} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
 
 export enum Laterality {
   left = 1,
