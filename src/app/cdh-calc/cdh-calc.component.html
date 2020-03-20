@@ -7,7 +7,8 @@
     <mat-list-item>
       <h4>Parameters obtained at:</h4>
       <span fxFlex></span>
-      <mat-button-toggle-group [(ngModel)]="ge30" appearance="legacy" name="cdhLaterality" class="mat-primary" aria-label="CDH Laterality">
+      <mat-button-toggle-group [(ngModel)]="ge30" appearance="legacy" name="cdhLaterality" class="mat-primary"
+                               aria-label="CDH Laterality">
         <mat-button-toggle [value]="false">&lt;30 wks</mat-button-toggle>
         <mat-button-toggle [value]="true">&ge;30 wks</mat-button-toggle>
       </mat-button-toggle-group>
@@ -62,21 +63,24 @@
     <h1>My Calc</h1>
     <h2>Survival: <span fxFlex></span><span class="calculator-result">{{survival | percent : '0.0'}}</span></h2>
     <h2>ECMO: <span fxFlex></span><span class="calculator-result">{{ecmo | percent : '0.0'}}</span></h2>
+    <div class="layout-padding">
+      <h3>Clinical Note Template:</h3>
+
+      <app-mock-text-area>
+        <ng-container *ngIf="errorCheck()">
+          <p>Based on <span [innerHTML]="getRiskFactorsWording()"></span>: <strong>The predicted probability of survival for a newborn based on these prognostic indicators is {{survival | percent : '1.0-1'}}.</strong>
+          <p><strong>The predicted probability of  requiring extracorporeal membrane oxygenation for a newborn based on these prognostic indicators is {{ecmo | percent : '1.0-1'}}.</strong>
+        </ng-container>
+
+        <p *ngIf="!errorCheck()">All fields must have a selection for calculation</p>
+
+<!--        <p class="reference">Reference:-->
+<!--          <app-article-citation [ref]="citations[0]"></app-article-citation>-->
+<!--        </p>-->
+        <p class="note-link">Calculator at <a href="{{url}}">{{url}}</a></p>
+      </app-mock-text-area>
+    </div>
   </div>
 </div>
 
-<!--<div class="layout-padding">-->
-<!--  <h3>Clinical Note Template:</h3>-->
 
-<!--  <app-mock-text-area>-->
-<!--    <p *ngIf="errorCheck()">Based on <span [innerHTML]="getRiskFactorsWording()"></span>: <strong>The risk of this patient requiring a Cesarean section following-->
-<!--      induction of labor is {{calculateRisk() | percent : '1.0-1'}}.</strong>-->
-<!--    </p>-->
-<!--    <p *ngIf="!errorCheck()">All fields must have a selection for calculation</p>-->
-
-<!--    <p class="reference">Reference:-->
-<!--      <app-article-citation [ref]="citations[0]"></app-article-citation>-->
-<!--    </p>-->
-<!--    <p class="note-link">Calculator at <a href="{{getUrl()}}">{{getUrl()}}</a></p>-->
-<!--  </app-mock-text-area>-->
-<!--</div>-->

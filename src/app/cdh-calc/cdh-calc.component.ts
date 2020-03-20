@@ -1,7 +1,8 @@
 /* tslint:disable:variable-name */
 import {Component, OnInit} from '@angular/core';
 import {CalculatorResult} from '../calculator/calculator.component';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Router, UrlSegment} from '@angular/router';
+import {Observable} from 'rxjs';
 
 export enum Laterality {
   left = 1,
@@ -17,6 +18,7 @@ export class CdhCalcComponent implements OnInit {
   citations: any;
   values: CalculatorResult[];
   lateralityOptions = Laterality;
+  url: string;
 
   constructor(private route: ActivatedRoute, private router: Router) {
   }
@@ -123,15 +125,16 @@ export class CdhCalcComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParamMap.subscribe(params => {
-      this._laterality = +params.get('lat') || null;
-      this._tlv = +params.get('ltv') || null;
-      this._liverUp = this.booleanTextToBoolOrNull(params.get('liverup'));
-      this._oeLhr = +params.get('oelhr');
-      this._ge30 = this.booleanTextToBoolOrNull(params.get('ge30'));
-      this._pplv = +params.get('pplv');
-    });
+    const params = this.route.snapshot.queryParamMap;
 
+    this._laterality = +params.get('lat') || null;
+    this._tlv = +params.get('ltv');
+    this._liverUp = this.booleanTextToBoolOrNull(params.get('liverup'));
+    this._oeLhr = +params.get('oelhr');
+    this._ge30 = this.booleanTextToBoolOrNull(params.get('ge30'));
+    this._pplv = +params.get('pplv');
+
+    this.url = window.location.href;
 
     this.values = [
       {
@@ -149,24 +152,12 @@ export class CdhCalcComponent implements OnInit {
     ];
   }
 
-  getRiskValue() {
-
-  }
-
-  errorCheck() {
-
-  }
-
-  calculateRisk() {
-
+  errorCheck(): boolean {
+    return true;
   }
 
   getRiskFactorsWording() {
-
-  }
-
-  getUrl() {
-
+    return '';
   }
 
   updateUrl(parameter: string, value: string) {
@@ -177,7 +168,9 @@ export class CdhCalcComponent implements OnInit {
         queryParams: {[parameter]: value},
         queryParamsHandling: 'merge'
       }
-    );
+    ).then(() => {
+      this.url = window.location.href;
+    });
   }
 
   private booleanTextToBoolOrNull(value: string) {
