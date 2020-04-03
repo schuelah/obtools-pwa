@@ -1,20 +1,6 @@
 {
   "hosting": [
     {
-      "public": "dist/obtools-pwa",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
-    },
-    {
       "target": "obtools-pwa",
       "public": "dist/obtools-pwa",
       "ignore": [
