@@ -89,35 +89,31 @@ export class CdhCalcComponent implements OnInit {
 
   get survival() {
     if (!this._ge30) {
-      const lat = this._laterality === Laterality.left ? -1.761544 : 0;
-      const tlv = this._tlv * 0.0548761;
-      const liverUp = this._liverUp ? -1.333602 : 0;
-      const oeLHR = this._oeLhr * 0.0630279;
-      const exp = lat + tlv + liverUp + oeLHR + 0.5012659;
+      const tlv = this._tlv * 0.1086947;
+      const liverUp = this._liverUp ? -1.753112 : 0;
+      const oeLHR = this._oeLhr * 0.0442576;
+      const exp = tlv + liverUp + oeLHR + -3.077485;
       return Math.exp(exp) / (1 + Math.exp(exp));
     } else {
-      const lat = this._laterality === Laterality.left ? -2.62162 : 0;
-      const tlv = this._tlv * 0.0924926;
-      const liverUp = this._liverUp ? -1.422642 : 0;
-      const exp = lat + tlv + liverUp + 1.615074;
+      const tlv = this._tlv * 0.0753448;
+      const liverUp = this._liverUp ? -0.9266774 : 0;
+      const exp = tlv + liverUp + -1.150509;
       return Math.exp(exp) / (1 + Math.exp(exp));
     }
   }
 
   get ecmo() {
     if (!this._ge30) {
-      const tlv = this._tlv * -0.0078677;
-      const liverUp = this._liverUp ? 1.268983 : 0;
-      const oeLHR = this._oeLhr * -0.0366514;
-      const pplv = this._pplv * -0.0860495;
-      const exp = tlv + liverUp + oeLHR + pplv + 2.640578;
+      const liverUp = this._liverUp ? 1.122035 : 0;
+      const oeLHR = this._oeLhr * -0.0544642;
+      const pplv = this._pplv * -0.0782441;
+      const exp = liverUp + oeLHR + pplv + 2.895443;
       return Math.exp(exp) / (1 + Math.exp(exp));
     } else {
-      const tlv = this._tlv * -0.0699594;
-      const liverUp = this._liverUp ? 1.105742 : 0;
-      const oeLHR = this._oeLhr * -0.0211092;
-      const pplv = this._pplv * -0.180458;
-      const exp = tlv + liverUp + oeLHR + pplv + 4.525116;
+      const tlv = this._tlv * -0.1032494;
+      const liverUp = this._liverUp ? 1.457379 : 0;
+      const oeLHR = this._oeLhr * -0.030146;
+      const exp = tlv + liverUp + oeLHR + 2.997803 ;
       return Math.exp(exp) / (1 + Math.exp(exp));
     }
   }
