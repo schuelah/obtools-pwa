@@ -15,7 +15,6 @@ export enum Laterality {
 })
 export class CdhCalcComponent implements OnInit {
   citations: any;
-  values: CalculatorResult[];
   lateralityOptions = Laterality;
   url: string;
 
@@ -135,20 +134,20 @@ export class CdhCalcComponent implements OnInit {
 
     this.url = window.location.href;
 
-    this.values = [
-      {
-        label: 'Survival',
-        valueText: this.survival.toString(),
-        value: this.survival,
-        showProgressBar: true,
-      },
-      {
-        label: 'ECMO',
-        valueText: this.ecmo.toString(),
-        value: this.ecmo,
-        showProgressBar: true,
-      }
-    ];
+    // this.values = [
+    //   {
+    //     label: 'Survival',
+    //     valueText: this.survival.toString(),
+    //     value: this.survival,
+    //     showProgressBar: true,
+    //   },
+    //   {
+    //     label: 'ECMO',
+    //     valueText: this.ecmo.toString(),
+    //     value: this.ecmo,
+    //     showProgressBar: true,
+    //   }
+    // ];
   }
 
   errorCheck(): boolean {
