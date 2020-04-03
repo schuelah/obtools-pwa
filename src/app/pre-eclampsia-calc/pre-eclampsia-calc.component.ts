@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
 @Component({
   selector: 'app-pre-eclampsia-calc',
   templateUrl: './pre-eclampsia-calc.component.html',
-  styleUrls: ['./pre-eclampsia-calc.component.css']
+  styleUrls: ['./pre-eclampsia-calc.component.css', '../calculator/calculator.scss']
 })
 export class PreEclampsiaCalcComponent implements OnInit {
 

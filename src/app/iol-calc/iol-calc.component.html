@@ -1,9 +1,18 @@
-<app-calculator
+<!-- <app-calculator
   [title]="'Predictive risk of Cesarean Delivery following induction of labor'"
   [label]="'Risk of Cesarean Delivery'"
   [valueText]="getRiskValue()"
   [showProgressBar]="errorCheck()"
-  [value]="calculateRisk()"></app-calculator>
+  [value]="calculateRisk()"></app-calculator> -->
+
+<div class="calculator-header">
+  <h1>Predictive risk of Cesarean Delivery following induction of labor</h1>
+  <app-calculator-result-row
+    [value]="calculateRisk()"
+    label="Risk of Cesarean Delivery"
+    [valueText]="getRiskValue()"
+    [showProgressBar]="errorCheck()"></app-calculator-result-row>
+</div>
 
 <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-between" class="calculator-area">
   <div fxLayout="column" fxFlex.gt-sm="50">

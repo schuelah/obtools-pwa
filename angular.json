@@ -38,7 +38,7 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/uc.theme.scss",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -162,5 +162,10 @@
   "defaultProject": "obtools-pwa",
   "cli": {
     "analytics": "6050cf7c-c026-4f6a-b77e-ea5f78003231"
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
   }
 }

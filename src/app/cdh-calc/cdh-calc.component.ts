@@ -11,7 +11,7 @@ export enum Laterality {
 @Component({
   selector: 'app-cdh-calc',
   templateUrl: './cdh-calc.component.html',
-  styleUrls: ['./cdh-calc.component.css']
+  styleUrls: ['./cdh-calc.component.css', '../calculator/calculator.scss']
 })
 export class CdhCalcComponent implements OnInit {
   citations: any;

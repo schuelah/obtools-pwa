@@ -17,7 +17,7 @@ export enum RACE {
 @Component({
   selector: 'app-iol-calc',
   templateUrl: './iol-calc.component.html',
-  styleUrls: ['./iol-calc.component.css'],
+  styleUrls: ['./iol-calc.component.css', '../calculator/calculator.scss'],
   providers: [DecimalPipe, PercentPipe]
 })
 export class IolCalcComponent implements OnInit {

@@ -7,19 +7,10 @@
   // color: mat-color($uc-theme-accent, default-contrast);
   color: rgba(255, 255, 255, 0.87);
   box-sizing: border-box;
-  // padding: 1px;
+  padding: 16px 16px 6px 16px;
 }
 
 .calculator-header h1 {
-  margin: 16px;
+  margin: 0;
   font-size: 1.7em;
-}
-
-.sticky {
-  position: fixed;
-  top: 0;
-}
-
-.sticky .content {
-  padding-top: 102px;
 }

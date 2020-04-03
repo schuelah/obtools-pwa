@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
 
 export interface CalculatorResult {
   label: string;
@@ -14,8 +13,8 @@ export interface CalculatorResult {
   styleUrls: ['./calculator.component.scss']
 })
 export class CalculatorComponent implements OnInit {
-  @Input() value = 0;
   @Input() title = 'Calculator';
+  @Input() value = 0;
   @Input() label = 'Result';
   @Input() valueText = 'Result';
   @Input() showProgressBar = false;

@@ -8,7 +8,7 @@ import {DecimalPipe, PercentPipe} from '@angular/common';
 @Component({
   selector: 'app-obesity-iol-calc',
   templateUrl: './obesity-iol-calc.component.html',
-  styleUrls: ['./obesity-iol-calc.component.css'],
+  styleUrls: ['./obesity-iol-calc.component.css', '../calculator/calculator.scss'],
   providers: [DecimalPipe, PercentPipe]
 })
 export class ObesityIolCalcComponent implements OnInit {

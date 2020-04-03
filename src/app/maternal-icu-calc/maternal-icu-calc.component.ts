@@ -17,7 +17,7 @@ export enum RACE {
 @Component({
   selector: 'app-maternal-icu-calc',
   templateUrl: './maternal-icu-calc.component.html',
-  styleUrls: ['./maternal-icu-calc.component.css'],
+  styleUrls: ['./maternal-icu-calc.component.css', '../calculator/calculator.scss'],
   providers: [DecimalPipe, PercentPipe]
 })
 export class MaternalIcuCalcComponent implements OnInit {
