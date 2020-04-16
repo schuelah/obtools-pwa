@@ -1,12 +1,8 @@
 /* tslint:disable:variable-name */
 import {Component, OnInit} from '@angular/core';
-import {CalculatorResult} from '../calculator/calculator.component';
 import {ActivatedRoute, Router} from '@angular/router';
+import {RiskBuilder} from '../tools/risk-builder';
 
-export enum Laterality {
-  left = 1,
-  right
-}
 
 @Component({
   selector: 'app-cdh-calc',
@@ -15,21 +11,9 @@ export enum Laterality {
 })
 export class CdhCalcComponent implements OnInit {
   citations: any;
-  lateralityOptions = Laterality;
   url: string;
 
   constructor(private route: ActivatedRoute, private router: Router) {
-  }
-
-  private _laterality: Laterality;
-
-  get laterality(): Laterality {
-    return this._laterality;
-  }
-
-  set laterality(value: Laterality) {
-    this._laterality = value;
-    this.updateUrl('lat', value.toString());
   }
 
   private _tlv: number;
@@ -92,28 +76,32 @@ export class CdhCalcComponent implements OnInit {
       const tlv = this._tlv * 0.1086947;
       const liverUp = this._liverUp ? -1.753112 : 0;
       const oeLHR = this._oeLhr * 0.0442576;
+
       const exp = tlv + liverUp + oeLHR + -3.077485;
       return Math.exp(exp) / (1 + Math.exp(exp));
     } else {
       const tlv = this._tlv * 0.0753448;
       const liverUp = this._liverUp ? -0.9266774 : 0;
+
       const exp = tlv + liverUp + -1.150509;
       return Math.exp(exp) / (1 + Math.exp(exp));
     }
   }
 
   get ecmo() {
-    if (!this._ge30) {
+    if (!this._ge30) { // <less than >30 weeks
       const liverUp = this._liverUp ? 1.122035 : 0;
       const oeLHR = this._oeLhr * -0.0544642;
       const pplv = this._pplv * -0.0782441;
+
       const exp = liverUp + oeLHR + pplv + 2.895443;
       return Math.exp(exp) / (1 + Math.exp(exp));
     } else {
       const tlv = this._tlv * -0.1032494;
       const liverUp = this._liverUp ? 1.457379 : 0;
       const oeLHR = this._oeLhr * -0.030146;
-      const exp = tlv + liverUp + oeLHR + 2.997803 ;
+
+      const exp = tlv + liverUp + oeLHR + 2.997803;
       return Math.exp(exp) / (1 + Math.exp(exp));
     }
   }
@@ -121,7 +109,7 @@ export class CdhCalcComponent implements OnInit {
   ngOnInit() {
     const params = this.route.snapshot.queryParamMap;
 
-    this._laterality = +params.get('lat') || null;
+    // this._laterality = +params.get('lat') || null;
     this._tlv = +params.get('ltv');
     this._liverUp = this.booleanTextToBoolOrNull(params.get('liverup'));
     this._oeLhr = +params.get('oelhr');
@@ -129,29 +117,45 @@ export class CdhCalcComponent implements OnInit {
     this._pplv = +params.get('pplv');
 
     this.url = window.location.href;
-
-    // this.values = [
-    //   {
-    //     label: 'Survival',
-    //     valueText: this.survival.toString(),
-    //     value: this.survival,
-    //     showProgressBar: true,
-    //   },
-    //   {
-    //     label: 'ECMO',
-    //     valueText: this.ecmo.toString(),
-    //     value: this.ecmo,
-    //     showProgressBar: true,
-    //   }
-    // ];
   }
 
   errorCheck(): boolean {
     return true;
   }
 
-  getRiskFactorsWording() {
-    return '';
+  getRiskFactorsWording(): string {
+    const rb = new RiskBuilder();
+
+    rb.addBooleanTerm(
+      this.ge30,
+      'parameters obtained after completing 30 weeks PMA',
+      'parameters obtained less than 30 weeks PMA'
+    );
+    rb.addBooleanTerm(
+      this.liverUp,
+      'liver up',
+      'liver down'
+    );
+    rb.addDeclarativeTerm(
+      this.oeLhr,
+      'unknown LHR',
+      `O/E LHR: ${this.oeLhr}%`
+    );
+    if (this.ge30) {
+      rb.addDeclarativeTerm(
+        this.tlv,
+        'unknown TLV',
+        `total lung volume ${this.tlv}%`
+      );
+    } else {
+      rb.addDeclarativeTerm(
+        this.pplv,
+        'unknown PPLV',
+        `predicted lung volume ${this.pplv}%`
+      );
+    }
+
+    return rb.getRiskFactorWording();
   }
 
   updateUrl(parameter: string, value: string) {

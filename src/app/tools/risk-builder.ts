@@ -4,7 +4,7 @@ export class RiskBuilder {
   constructor() {
   }
 
-  public addSimpleTerm(value: number, unknownWording: string, positiveWording: string, negativeWording?: string) {
+  addSimpleTerm(value: number, unknownWording: string, positiveWording: string, negativeWording?: string) {
     if (value === undefined || value < 0) {
       this.risks.push(unknownWording);
     } else if (value === 1) {
@@ -12,6 +12,10 @@ export class RiskBuilder {
     } else if (negativeWording !== undefined) {
       this.risks.push(negativeWording);
     }
+  }
+
+  addBooleanTerm(value: boolean, positiveWording: string, negativeWording: string) {
+    this.risks.push(value ? positiveWording : negativeWording);
   }
 
   getRiskFactorWording(): string {

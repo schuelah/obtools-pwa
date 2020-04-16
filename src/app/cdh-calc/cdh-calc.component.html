@@ -1,10 +1,12 @@
 <div class="calculator-header">
   <h1>CDH Survival and ECMO Probability Calculator</h1>
-  <app-calculator-result-row [value]="survival" label="Survival" [valueText]="survival | percent : '0.0'" [showProgressBar]="false"></app-calculator-result-row>
-  <app-calculator-result-row [value]="ecmo" label="ECMO" [valueText]="ecmo | percent : '0.0'" [showProgressBar]="false"></app-calculator-result-row>
+  <app-calculator-result-row [value]="survival" label="Survival" [valueText]="survival | percent : '0.0'"
+                             [showProgressBar]="false"></app-calculator-result-row>
+  <app-calculator-result-row [value]="ecmo" label="ECMO" [valueText]="ecmo | percent : '0.0'"
+                             [showProgressBar]="false"></app-calculator-result-row>
 </div>
 
-<div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap="15px" class="calculator-area">
+<div fxLayout="column" fxLayout.gt-md="row" fxLayoutGap="15px">
   <mat-list fxFlex="50">
     <mat-list-item>
       <h4>Parameters obtained at:</h4>
@@ -16,26 +18,6 @@
       </mat-button-toggle-group>
     </mat-list-item>
     <mat-list-item>
-      <h4>CDH Laterality</h4>
-      <span fxFlex></span>
-      <mat-button-toggle-group [(ngModel)]="laterality" appearance="legacy" name="cdhLaterality" class="mat-primary"
-                               aria-label="CDH Laterality">
-        <mat-button-toggle [value]="lateralityOptions.left">Left</mat-button-toggle>
-        <mat-button-toggle [value]="lateralityOptions.right">Right</mat-button-toggle>
-      </mat-button-toggle-group>
-    </mat-list-item>
-    <mat-list-item>
-      <h4>Total lung volume (mL)</h4>
-      <span fxFlex></span>
-      <mat-form-field floatLabel="never">
-        <mat-label>TLV (mL)</mat-label>
-        <input matInput [(ngModel)]="tlv" type="number">
-        <span matSuffix>mL</span>
-      </mat-form-field>
-    </mat-list-item>
-  </mat-list>
-  <mat-list>
-    <mat-list-item>
       <h4>Liver position</h4>
       <span fxFlex></span>
       <mat-button-toggle-group [(ngModel)]="liverUp" appearance="legacy" name="cdhLaterality" class="mat-primary"
@@ -44,6 +26,8 @@
         <mat-button-toggle [value]="false">Down</mat-button-toggle>
       </mat-button-toggle-group>
     </mat-list-item>
+  </mat-list>
+  <mat-list fxFlex="50">
     <mat-list-item>
       <h4>Observed:Expected LHR%</h4>
       <span fxFlex></span>
@@ -53,7 +37,16 @@
         <span matSuffix>%</span>
       </mat-form-field>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item *ngIf="ge30">
+      <h4>Total lung volume (mL)</h4>
+      <span fxFlex></span>
+      <mat-form-field floatLabel="never">
+        <mat-label>TLV (mL)</mat-label>
+        <input matInput [(ngModel)]="tlv" type="number">
+        <span matSuffix>mL</span>
+      </mat-form-field>
+    </mat-list-item>
+    <mat-list-item *ngIf="!ge30">
       <h4>Predicted percent lung volume</h4>
       <span fxFlex></span>
       <mat-form-field floatLabel="never">
@@ -70,15 +63,17 @@
 
   <app-mock-text-area>
     <ng-container *ngIf="errorCheck()">
-      <p>Based on <span [innerHTML]="getRiskFactorsWording()"></span>: <strong>The predicted probability of survival for a newborn based on these prognostic indicators is {{survival | percent : '1.0-1'}}.</strong>
-      <p><strong>The predicted probability of  requiring extracorporeal membrane oxygenation for a newborn based on these prognostic indicators is {{ecmo | percent : '1.0-1'}}.</strong>
+      <p>Based on <span [innerHTML]="getRiskFactorsWording()"></span>: <strong>The predicted probability of survival for
+        a newborn based on these prognostic indicators is {{survival | percent : '1.0-1'}}.</strong>
+      <p><strong>The predicted probability of requiring extracorporeal membrane oxygenation for a newborn based on these
+        prognostic indicators is {{ecmo | percent : '1.0-1'}}.</strong>
     </ng-container>
 
     <p *ngIf="!errorCheck()">All fields must have a selection for calculation</p>
 
-<!--        <p class="reference">Reference:-->
-<!--          <app-article-citation [ref]="citations[0]"></app-article-citation>-->
-<!--        </p>-->
+    <!--        <p class="reference">Reference:-->
+    <!--          <app-article-citation [ref]="citations[0]"></app-article-citation>-->
+    <!--        </p>-->
     <p class="note-link">Calculator at <a href="{{url}}">{{url}}</a></p>
   </app-mock-text-area>
 </div>
