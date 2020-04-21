@@ -6,75 +6,79 @@
                              [showProgressBar]="false"></app-calculator-result-row>
 </div>
 
-<div fxLayout="column" fxLayout.gt-md="row" fxLayoutGap="15px">
-  <mat-list fxFlex="50">
-    <mat-list-item>
-      <h4>Parameters obtained at:</h4>
-      <span fxFlex></span>
-      <mat-button-toggle-group [(ngModel)]="ge30" appearance="legacy" name="cdhLaterality" class="mat-primary"
-                               aria-label="CDH Laterality">
-        <mat-button-toggle [value]="false">&lt;30 wks</mat-button-toggle>
-        <mat-button-toggle [value]="true">&ge;30 wks</mat-button-toggle>
-      </mat-button-toggle-group>
-    </mat-list-item>
-    <mat-list-item>
-      <h4>Liver position</h4>
-      <span fxFlex></span>
-      <mat-button-toggle-group [(ngModel)]="liverUp" appearance="legacy" name="cdhLaterality" class="mat-primary"
-                               aria-label="CDH Laterality">
-        <mat-button-toggle [value]="true">Up</mat-button-toggle>
-        <mat-button-toggle [value]="false">Down</mat-button-toggle>
-      </mat-button-toggle-group>
-    </mat-list-item>
-  </mat-list>
-  <mat-list fxFlex="50">
-    <mat-list-item>
-      <h4>Observed:Expected LHR%</h4>
-      <span fxFlex></span>
-      <mat-form-field floatLabel="never">
-        <mat-label>O:E LHR (%)</mat-label>
-        <input matInput [(ngModel)]="oeLhr" type="number">
-        <span matSuffix>%</span>
-      </mat-form-field>
-    </mat-list-item>
-    <mat-list-item *ngIf="ge30">
-      <h4>Total lung volume (mL)</h4>
-      <span fxFlex></span>
-      <mat-form-field floatLabel="never">
-        <mat-label>TLV (mL)</mat-label>
-        <input matInput [(ngModel)]="tlv" type="number">
-        <span matSuffix>mL</span>
-      </mat-form-field>
-    </mat-list-item>
-    <mat-list-item *ngIf="!ge30">
-      <h4>Predicted percent lung volume</h4>
-      <span fxFlex></span>
-      <mat-form-field floatLabel="never">
-        <mat-label>PPLV (%)</mat-label>
-        <input matInput [(ngModel)]="pplv" type="number">
-        <span matSuffix>%</span>
-      </mat-form-field>
-    </mat-list-item>
-  </mat-list>
+<div fxLayout="column" fxLayout.gt-md="row">
+  <div fxFlex.gt-md="50" class="calculator-area">
+    <h3>Clinical Parameters:</h3>
+    <mat-list>
+      <mat-list-item>
+        <h4>Parameters obtained at:</h4>
+        <span fxFlex></span>
+        <mat-button-toggle-group [(ngModel)]="ge30" appearance="legacy" name="cdhLaterality" class="mat-primary"
+                                 aria-label="CDH Laterality">
+          <mat-button-toggle [value]="false">&lt;30 wks</mat-button-toggle>
+          <mat-button-toggle [value]="true">&ge;30 wks</mat-button-toggle>
+        </mat-button-toggle-group>
+      </mat-list-item>
+      <mat-list-item>
+        <h4>Liver position</h4>
+        <span fxFlex></span>
+        <mat-button-toggle-group [(ngModel)]="liverUp" appearance="legacy" name="cdhLaterality" class="mat-primary"
+                                 aria-label="CDH Laterality">
+          <mat-button-toggle [value]="true">Up</mat-button-toggle>
+          <mat-button-toggle [value]="false">Down</mat-button-toggle>
+        </mat-button-toggle-group>
+      </mat-list-item>
+      <mat-list-item>
+        <h4>Observed:Expected LHR%</h4>
+        <span fxFlex></span>
+        <mat-form-field floatLabel="never">
+          <mat-label>O:E LHR (%)</mat-label>
+          <input matInput [(ngModel)]="oeLhr" type="number">
+          <span matSuffix>%</span>
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item *ngIf="ge30">
+        <h4>Observed:Expected TLV (%)</h4>
+        <span fxFlex></span>
+        <mat-form-field floatLabel="never">
+          <mat-label>TLV (mL)</mat-label>
+          <input matInput [(ngModel)]="oetlv" type="number">
+          <span matSuffix>%</span>
+        </mat-form-field>
+      </mat-list-item>
+      <mat-list-item *ngIf="!ge30">
+        <h4>Predicted percent lung volume</h4>
+        <span fxFlex></span>
+        <mat-form-field floatLabel="never">
+          <mat-label>PPLV (%)</mat-label>
+          <input matInput [(ngModel)]="pplv" type="number">
+          <span matSuffix>%</span>
+        </mat-form-field>
+      </mat-list-item>
+    </mat-list>
+  </div>
+  <div class="calculator-area" fxFlex.gt-md="50">
+    <h3>Clinical Note Template:</h3>
+
+    <app-mock-text-area>
+      <ng-container *ngIf="errorCheck()">
+        <p>Based on <span [innerHTML]="getRiskFactorsWording()"></span>: <strong>The predicted probability of survival
+          for
+          a newborn based on these prognostic indicators is {{survival | percent : '1.0-1'}}.</strong>
+        <p><strong>The predicted probability of requiring extracorporeal membrane oxygenation for a newborn based on
+          these
+          prognostic indicators is {{ecmo | percent : '1.0-1'}}.</strong>
+      </ng-container>
+
+      <p *ngIf="!errorCheck()">All fields must have a selection for calculation</p>
+
+      <!--        <p class="reference">Reference:-->
+      <!--          <app-article-citation [ref]="citations[0]"></app-article-citation>-->
+      <!--        </p>-->
+      <p class="note-link">Calculator at <a href="{{url}}">{{url}}</a></p>
+    </app-mock-text-area>
+  </div>
 </div>
 
-<div class="calculator-area">
-  <h3>Clinical Note Template:</h3>
 
-  <app-mock-text-area>
-    <ng-container *ngIf="errorCheck()">
-      <p>Based on <span [innerHTML]="getRiskFactorsWording()"></span>: <strong>The predicted probability of survival for
-        a newborn based on these prognostic indicators is {{survival | percent : '1.0-1'}}.</strong>
-      <p><strong>The predicted probability of requiring extracorporeal membrane oxygenation for a newborn based on these
-        prognostic indicators is {{ecmo | percent : '1.0-1'}}.</strong>
-    </ng-container>
-
-    <p *ngIf="!errorCheck()">All fields must have a selection for calculation</p>
-
-    <!--        <p class="reference">Reference:-->
-    <!--          <app-article-citation [ref]="citations[0]"></app-article-citation>-->
-    <!--        </p>-->
-    <p class="note-link">Calculator at <a href="{{url}}">{{url}}</a></p>
-  </app-mock-text-area>
-</div>
 

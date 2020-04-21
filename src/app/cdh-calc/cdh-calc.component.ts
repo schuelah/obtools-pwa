@@ -16,15 +16,15 @@ export class CdhCalcComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) {
   }
 
-  private _tlv: number;
+  private _oetlv: number;
 
-  get tlv(): number {
-    return this._tlv;
+  get oetlv(): number {
+    return this._oetlv;
   }
 
-  set tlv(value: number) {
-    this._tlv = value;
-    this.updateUrl('tlv', value.toString());
+  set oetlv(value: number) {
+    this._oetlv = value;
+    this.updateUrl('oetlv', value.toString());
   }
 
   private _liverUp: boolean;
@@ -72,16 +72,16 @@ export class CdhCalcComponent implements OnInit {
   }
 
   get survival() {
-    if (!this._ge30) {
-      const tlv = this._tlv * 0.1086947;
+    if (!this._ge30) { // less than 30 weeks
       const liverUp = this._liverUp ? -1.753112 : 0;
+      const pplv = this._pplv * 0.1086947;
       const oeLHR = this._oeLhr * 0.0442576;
 
-      const exp = tlv + liverUp + oeLHR + -3.077485;
+      const exp = pplv + liverUp + oeLHR + -3.077485;
       return Math.exp(exp) / (1 + Math.exp(exp));
     } else {
-      const tlv = this._tlv * 0.0753448;
       const liverUp = this._liverUp ? -0.9266774 : 0;
+      const tlv = this._oetlv * 0.0753448;
 
       const exp = tlv + liverUp + -1.150509;
       return Math.exp(exp) / (1 + Math.exp(exp));
@@ -89,19 +89,19 @@ export class CdhCalcComponent implements OnInit {
   }
 
   get ecmo() {
-    if (!this._ge30) { // <less than >30 weeks
+    if (!this._ge30) { // less than 30 weeks
       const liverUp = this._liverUp ? 1.122035 : 0;
-      const oeLHR = this._oeLhr * -0.0544642;
       const pplv = this._pplv * -0.0782441;
+      const oeLHR = this._oeLhr * -0.0544642;
 
       const exp = liverUp + oeLHR + pplv + 2.895443;
       return Math.exp(exp) / (1 + Math.exp(exp));
     } else {
-      const tlv = this._tlv * -0.1032494;
+      const oetlv = this._oetlv * -0.1032494;
       const liverUp = this._liverUp ? 1.457379 : 0;
       const oeLHR = this._oeLhr * -0.030146;
 
-      const exp = tlv + liverUp + oeLHR + 2.997803;
+      const exp = oetlv + liverUp + oeLHR + 2.997803;
       return Math.exp(exp) / (1 + Math.exp(exp));
     }
   }
@@ -110,7 +110,7 @@ export class CdhCalcComponent implements OnInit {
     const params = this.route.snapshot.queryParamMap;
 
     // this._laterality = +params.get('lat') || null;
-    this._tlv = +params.get('ltv');
+    this._oetlv = +params.get('ltv');
     this._liverUp = this.booleanTextToBoolOrNull(params.get('liverup'));
     this._oeLhr = +params.get('oelhr');
     this._ge30 = this.booleanTextToBoolOrNull(params.get('ge30'));
@@ -139,13 +139,13 @@ export class CdhCalcComponent implements OnInit {
     rb.addDeclarativeTerm(
       this.oeLhr,
       'unknown LHR',
-      `O/E LHR: ${this.oeLhr}%`
+      `O/E LHR ${this.oeLhr}%`
     );
     if (this.ge30) {
       rb.addDeclarativeTerm(
-        this.tlv,
+        this.oetlv,
         'unknown TLV',
-        `total lung volume ${this.tlv}%`
+        `O/E TLV ${this.oetlv}%`
       );
     } else {
       rb.addDeclarativeTerm(
