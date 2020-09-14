@@ -33,6 +33,7 @@ import { MatInputModule } from '@angular/material/input';
 import { AuthComponent } from './auth/auth.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { InfantSurvivalComponent } from './infant-survival/infant-survival.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     MaterialElevationDirective,
     CdhCalcComponent,
     AuthComponent,
+    InfantSurvivalComponent,
   ],
   imports: [
     BrowserModule,
