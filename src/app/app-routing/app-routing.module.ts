@@ -41,6 +41,11 @@ const routes: Routes = [
     canActivate: [CanActivateRouteGuard],
   },
   {
+    path: 'calc/infant-survival',
+    component: CdhCalcComponent,
+    canActivate: [CanActivateRouteGuard],
+  },
+  {
     path: 'authorize',
     component: AuthComponent,
   }
