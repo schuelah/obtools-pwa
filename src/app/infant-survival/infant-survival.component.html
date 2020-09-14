@@ -27,34 +27,7 @@
         </mat-button-toggle-group>
       </mat-list-item>
       <mat-list-item>
-        <h4>Received Anenatal Cortecosteroids:</h4>
-        <span fxFlex></span>
-        <mat-button-toggle-group [(ngModel)]="corticosteroids" appearance="legacy" name="cdhLaterality" class="mat-primary"
-                                 aria-label="Antenatal Corticosteroids">
-          <mat-button-toggle [value]="true">Some</mat-button-toggle>
-          <mat-button-toggle [value]="false">None</mat-button-toggle>
-        </mat-button-toggle-group>
-      </mat-list-item>
-      <mat-list-item>
-        <h4>Sex</h4>
-        <span fxFlex></span>
-        <mat-button-toggle-group [(ngModel)]="sexMale" appearance="legacy" name="sex" class="mat-primary"
-                                 aria-label="Sex">
-          <mat-button-toggle [value]="true">Male</mat-button-toggle>
-          <mat-button-toggle [value]="false">Female</mat-button-toggle>
-        </mat-button-toggle-group>
-      </mat-list-item>
-      <mat-list-item>
-        <h4>Weight</h4>
-        <span fxFlex></span>
-        <mat-form-field floatLabel="never">
-          <mat-label>Weight (g)</mat-label>
-          <input matInput id="wt_input" [(ngModel)]="weight" type="number" min="200" max="1500">
-          <span matSuffix>g</span>
-        </mat-form-field>
-      </mat-list-item>
-      <mat-list-item>
-        <h4>Gestation</h4>
+        <h4>Gestation:</h4>
         <span fxFlex></span>
         <mat-button-toggle-group [(ngModel)]="gestation" appearance="legacy" name="gestation" class="mat-primary"
                                  aria-label="Gestation">
@@ -63,7 +36,35 @@
         </mat-button-toggle-group>
       </mat-list-item>
       <mat-list-item>
-        <h4>Gestational Age</h4>
+        <h4>Received Antenatal Corticosteroids:</h4>
+        <span fxFlex></span>
+        <mat-button-toggle-group [(ngModel)]="corticosteroids" appearance="legacy" name="cdhLaterality" class="mat-primary"
+                                 aria-label="Antenatal Corticosteroids">
+          <mat-button-toggle [value]="true">Some</mat-button-toggle>
+          <mat-button-toggle [value]="false">None</mat-button-toggle>
+        </mat-button-toggle-group>
+      </mat-list-item>
+      <mat-list-item>
+        <h4>Sex:</h4>
+        <span fxFlex></span>
+        <mat-button-toggle-group [(ngModel)]="sexMale" appearance="legacy" name="sex" class="mat-primary"
+                                 aria-label="Sex">
+          <mat-button-toggle [value]="true">Male</mat-button-toggle>
+          <mat-button-toggle [value]="false">Female</mat-button-toggle>
+        </mat-button-toggle-group>
+      </mat-list-item>
+      <mat-list-item>
+        <h4>Weight:</h4>
+        <span fxFlex></span>
+        <mat-form-field floatLabel="never">
+          <mat-label>Weight (g)</mat-label>
+          <input matInput id="wt_input" [(ngModel)]="weight" type="number" min="200" max="1500">
+          <span matSuffix>g</span>
+        </mat-form-field>
+      </mat-list-item>
+
+      <mat-list-item>
+        <h4>Gestational Age:</h4>
         <span fxFlex></span>
         <mat-form-field floatLabel="never">
           <mat-label>GA (pma)</mat-label>
@@ -78,9 +79,8 @@
 
     <app-mock-text-area>
       <ng-container *ngIf="errorCheck()">
-<!--        <p>Based on <span [innerHTML]="getRiskFactorsWording()"></span>: <strong>The predicted probability of survival-->
-<!--          for-->
-<!--          a newborn based on these prognostic indicators is {{survival | percent : '1.0-1'}}.</strong>-->
+        <p>Based on <span [innerHTML]="getRiskFactorsWording()"></span>: <strong>The predicted probability of survival
+          for a newborn based on these prognostic indicators is {{survival | percent : '1.0-1'}}.</strong>
 <!--        <p><strong>The predicted probability of requiring extracorporeal membrane oxygenation for a newborn based on-->
 <!--          these-->
 <!--          prognostic indicators is {{ecmo | percent : '1.0-1'}}.</strong>-->
