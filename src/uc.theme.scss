@@ -1,14 +1,13 @@
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 
-@include mat-core();
+$primary: mat-palette($mat-red, 600);
+$accent: mat-palette($mat-grey, 700);
+$warn: mat-palette($mat-grey, 200);
 
-$uc-theme-primary: mat-palette($mat-red, 600);
-$uc-theme-accent: mat-palette($mat-grey, 700);
-$uc-theme-warn: mat-palette($mat-grey, 200);
-
-$uc-theme: mat-light-theme(
-    $uc-theme-primary,
-    $uc-theme-accent,
-    $uc-theme-warn);
-
-@include angular-material-theme($uc-theme);
+$uc-theme: mat-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn
+  )
+));

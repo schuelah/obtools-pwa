@@ -36,7 +36,6 @@
               "src/manifest.json"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/uc.theme.scss",
               "src/styles.scss"
             ],

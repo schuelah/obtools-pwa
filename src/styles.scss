@@ -2,6 +2,12 @@
 /*@import "~@angular/material/prebuilt-themes/indigo-pink.css";*/
 /*@import "uc.theme.scss";*/
 
+@import '~@angular/material/theming';
+@import "uc.theme.scss";
+@include mat-core();
+@include angular-material-theme($uc-theme);
+
+
 html, body {
   height: 100%;
   box-sizing: border-box;
@@ -18,8 +24,6 @@ body {
 app-root {
   min-height: 100%;
 }
-
-
 
 /*html {*/
 /*  height: 100%;*/

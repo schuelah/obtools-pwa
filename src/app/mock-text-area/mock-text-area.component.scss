@@ -1,0 +1,12 @@
+@import "../../style-utilities.scss";
+
+.mock-textarea {
+  background-color: #ffffff;
+  border: 1px solid gray;
+  overflow-x: auto;
+  overflow-y: auto;
+  padding: 8px;
+  resize: both;
+
+  @include dont-break-out;
+}
