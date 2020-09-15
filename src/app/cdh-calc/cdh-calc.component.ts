@@ -1,4 +1,3 @@
-/* tslint:disable:variable-name */
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RiskBuilder} from '../tools/risk-builder';
