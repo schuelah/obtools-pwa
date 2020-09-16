@@ -31,7 +31,10 @@ export class AuthComponent implements OnInit {
     this.auth.login(this.loginForm.value.email, this.loginForm.value.password)
       .then((u) => {
         if (u && u.user.uid === 'WJI5igNeOtdhxiCXuLdJgnE7aWJ3') {
-          this.router.navigate(['/calc/cdh']);
+          this.router.navigate(['/preview']);
+        }
+        if (u && u.user.uid === 'Ojahn9JZ8dfqYXOYLuIFqMPvewz1') {
+          this.router.navigate(['/calc/elbw']);
         }
       });
   }

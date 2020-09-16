@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RiskBuilder} from '../tools/risk-builder';
+import {Location} from '@angular/common';
+import {infantSurvivalCitations} from './infant-survival.citations';
+import {Citation} from '../reference/article-citation.component';
 
 @Component({
   selector: 'app-infant-survival',
@@ -9,8 +12,10 @@ import {RiskBuilder} from '../tools/risk-builder';
 })
 export class InfantSurvivalComponent implements OnInit {
   url: string;
+  hostname = 'https://ob.tools';
+  citations = infantSurvivalCitations as Array<Citation>;
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private location: Location) {
   }
 
   private _deliveryVaginal: boolean | null;
@@ -92,12 +97,12 @@ export class InfantSurvivalComponent implements OnInit {
 
   get survival(): number {
     const del = this.getDeliveryCoefficient();
-    const ancs = (this._corticosteroids ? 0.2857647 : 0);
-    const sex = (this._sexMale ? -0.4151408 : 0);
-    const wt = (this._weight * 0.0044304);
-    const gestation = (this._gestation ? 0.2066992 : 0);
-    const pma = (this._pma * 0.3447296);
-    const exp = del + ancs + sex + wt + pma + gestation + -12.20841 + 1.045461;
+    const ancs = (this._corticosteroids ? 0.2751239 : 0);
+    const sex = (this._sexMale ? -0.420105 : 0);
+    const wt = (this._weight * 0.0044485);
+    const gestation = (this._gestation ? 0.2198172 : 0);
+    const pma = (this._pma * 0.3830105);
+    const exp = del + ancs + sex + wt + pma + gestation + -13.0726 + 1.013788;
 
     return Math.exp(exp) / (1 + Math.exp(exp));
   }
@@ -113,7 +118,7 @@ export class InfantSurvivalComponent implements OnInit {
     this._gestation = this.booleanTextToBoolOrNull(params.get('single'));
     this._pma = +params.get('pma');
 
-    this.url = window.location.href;
+    this.url = this.hostname + this.router.url;
   }
 
   errorCheck(): boolean {
@@ -129,7 +134,9 @@ export class InfantSurvivalComponent implements OnInit {
         queryParamsHandling: 'merge'
       }
     ).then(() => {
-      this.url = window.location.href;
+      // this.url = window.location.href;
+      // this.url = this.route.snapshot.toString();
+      this.url = this.hostname + this.router.url;
     });
   }
 
@@ -169,8 +176,8 @@ export class InfantSurvivalComponent implements OnInit {
       )
       .addDeclarativeTerm(
         this._pma,
-        'unknown postmenstrual age',
-        `postmenstrual age ${this._pma} weeks`
+        'unknown gestational age',
+        `gestational age ${this._pma} weeks`
       );
 
     return rb.getRiskFactorWording();

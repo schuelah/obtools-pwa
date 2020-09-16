@@ -1,12 +1,15 @@
 <div fxLayout="column" fxFlex>
+  <mat-toolbar *ngIf="user | async">
+    <h1>Preview Mode</h1>
+    <span fxFlex></span>
+    <button mat-raised-button (click)="logOut()">Exit preview mode</button>
+  </mat-toolbar>
   <div fxLayout="row" fxLayoutAlign="center">
     <div fxFlex fxFlex.gt-xs="80">
       <mat-toolbar class="app-navbar">
         <a routerLink="/dashboard">
           <img class="logo svg" src="/assets/images/uch-logo.svg" title="UC Health" alt="UC Health Logo">
         </a>
-        <span fxFlex></span>
-        <button mat-button *ngIf="user | async" (click)="logOut()">Exit preview mode</button>
       </mat-toolbar>
       <div class="mat-elevation-z3">
         <router-outlet></router-outlet>

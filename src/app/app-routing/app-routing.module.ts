@@ -9,6 +9,7 @@ import {CdhCalcComponent} from '../cdh-calc/cdh-calc.component';
 import {CanActivateRouteGuard} from './can-activate-route.guard';
 import {AuthComponent} from '../auth/auth.component';
 import {InfantSurvivalComponent} from '../infant-survival/infant-survival.component';
+import {PreviewComponent} from '../preview/preview.component';
 
 const routes: Routes = [
   {
@@ -42,8 +43,13 @@ const routes: Routes = [
     canActivate: [CanActivateRouteGuard],
   },
   {
-    path: 'calc/infant-survival',
+    path: 'calc/elbw',
     component: InfantSurvivalComponent,
+    canActivate: [CanActivateRouteGuard],
+  },
+  {
+    path: 'preview',
+    component: PreviewComponent,
     canActivate: [CanActivateRouteGuard],
   },
   {

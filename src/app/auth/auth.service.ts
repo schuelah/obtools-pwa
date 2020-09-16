@@ -1,14 +1,20 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
-import UserCredential = firebase.auth.UserCredential;
 import {User} from 'firebase';
 import {Observable} from 'rxjs';
+import UserCredential = firebase.auth.UserCredential;
+
+const approvedUsers = [
+  'WJI5igNeOtdhxiCXuLdJgnE7aWJ3',
+  'Ojahn9JZ8dfqYXOYLuIFqMPvewz1'
+];
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   readonly user: Observable<User | null>;
+
   constructor(private auth: AngularFireAuth) {
     this.user = auth.user;
   }
@@ -16,7 +22,7 @@ export class AuthService {
   isUserAuthenticated(): Observable<boolean> {
     return new Observable<boolean>(subscriber => {
       this.user.subscribe(user => {
-        if (user && user.uid === 'WJI5igNeOtdhxiCXuLdJgnE7aWJ3') {
+        if (user && approvedUsers.includes(user.uid)) {
           subscriber.next(true);
         } else {
           subscriber.next(false);

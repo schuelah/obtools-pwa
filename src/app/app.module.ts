@@ -34,6 +34,7 @@ import { AuthComponent } from './auth/auth.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { InfantSurvivalComponent } from './infant-survival/infant-survival.component';
+import { PreviewComponent } from './preview/preview.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { InfantSurvivalComponent } from './infant-survival/infant-survival.compo
     CdhCalcComponent,
     AuthComponent,
     InfantSurvivalComponent,
+    PreviewComponent,
   ],
   imports: [
     BrowserModule,

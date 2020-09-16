@@ -1,5 +1,6 @@
 <div class="calculator-header">
   <h1>Extremely Premature Infant Survival Calculator</h1>
+  <h3>For infants who received postnatal resuscitation</h3>
   <app-calculator-result-row [value]="survival" label="Survival" [valueText]="survival | percent : '0.0'"
                              [showProgressBar]="false"></app-calculator-result-row>
 </div>
@@ -40,8 +41,8 @@
         <span fxFlex></span>
         <mat-button-toggle-group [(ngModel)]="corticosteroids" appearance="legacy" name="cdhLaterality" class="mat-primary"
                                  aria-label="Antenatal Corticosteroids">
-          <mat-button-toggle [value]="true">Some</mat-button-toggle>
-          <mat-button-toggle [value]="false">None</mat-button-toggle>
+          <mat-button-toggle [value]="true">Yes</mat-button-toggle>
+          <mat-button-toggle [value]="false">No</mat-button-toggle>
         </mat-button-toggle-group>
       </mat-list-item>
       <mat-list-item>
@@ -58,7 +59,7 @@
         <span fxFlex></span>
         <mat-form-field floatLabel="never">
           <mat-label>Weight (g)</mat-label>
-          <input matInput id="wt_input" [(ngModel)]="weight" type="number" min="200" max="1500">
+          <input matInput id="wt_input" [(ngModel)]="weight" type="number" min="400" max="1050">
           <span matSuffix>g</span>
         </mat-form-field>
       </mat-list-item>
@@ -81,18 +82,18 @@
       <ng-container *ngIf="errorCheck()">
         <p>Based on <span [innerHTML]="getRiskFactorsWording()"></span>: <strong>The predicted probability of survival
           for a newborn based on these prognostic indicators is {{survival | percent : '1.0-1'}}.</strong>
-<!--        <p><strong>The predicted probability of requiring extracorporeal membrane oxygenation for a newborn based on-->
-<!--          these-->
-<!--          prognostic indicators is {{ecmo | percent : '1.0-1'}}.</strong>-->
       </ng-container>
 
       <p *ngIf="!errorCheck()">All fields must have a selection for calculation</p>
 
-      <!--        <p class="reference">Reference:-->
-      <!--          <app-article-citation [ref]="citations[0]"></app-article-citation>-->
-      <!--        </p>-->
+      <p class="reference">Reference:
+        <app-article-citation [ref]="citations[0]"></app-article-citation>
+      </p>
       <p class="note-link">Calculator at <a href="{{url}}">{{url}}</a></p>
     </app-mock-text-area>
+    <div>
+      <p>Predictions are based on a multivariate logistic regression model from a population-based cohort of infants delivered in the United States from 2009-2013. Predicted outcomes are reflective of overall survival and not intact survival.</p>
+    </div>
   </div>
 </div>
 
