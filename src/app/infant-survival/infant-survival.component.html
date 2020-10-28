@@ -24,7 +24,7 @@
         <mat-button-toggle-group [(ngModel)]="presentationVertex" appearance="legacy" name="presentation" class="mat-primary"
                                  aria-label="Delivery Route">
           <mat-button-toggle [value]="true">Vertex</mat-button-toggle>
-          <mat-button-toggle [value]="false">Breech</mat-button-toggle>
+          <mat-button-toggle [value]="false">Non-Vertex</mat-button-toggle>
         </mat-button-toggle-group>
       </mat-list-item>
       <mat-list-item>
@@ -81,14 +81,14 @@
     <app-mock-text-area>
       <ng-container *ngIf="errorCheck()">
         <p>Based on <span [innerHTML]="getRiskFactorsWording()"></span>: <strong>The predicted probability of survival
-          for a newborn based on these prognostic indicators is {{survival | percent : '1.0-1'}}.</strong>
+          for a newborn based on these prognostic indicators is {{survival | percent : '1.0'}}.</strong>
       </ng-container>
 
       <p *ngIf="!errorCheck()">All fields must have a selection for calculation</p>
 
-      <p class="reference">Reference:
-        <app-article-citation [ref]="citations[0]"></app-article-citation>
-      </p>
+<!--      <p class="reference">Reference:-->
+<!--        <app-article-citation [ref]="citations[0]"></app-article-citation>-->
+<!--      </p>-->
       <p class="note-link">Calculator at <a href="{{url}}">{{url}}</a></p>
     </app-mock-text-area>
     <div>

@@ -97,25 +97,35 @@ export class InfantSurvivalComponent implements OnInit {
 
   get survival(): number {
     const del = this.getDeliveryCoefficient();
-    const ancs = (this._corticosteroids ? 0.2751239 : 0);
-    const sex = (this._sexMale ? -0.420105 : 0);
-    const wt = (this._weight * 0.0044485);
-    const gestation = (this._gestation ? 0.2198172 : 0);
-    const pma = (this._pma * 0.3830105);
-    const exp = del + ancs + sex + wt + pma + gestation + -13.0726 + 1.013788;
+    const ancs = (this._corticosteroids ? 0.2707829 : 0);
+    const sex = (this._sexMale ? -0.4212276 : 0);
+    const wt = (this._weight * 0.0044561);
+    const gestation = (this._gestation ? 0.2180088 : 0);
+    const pma = this.getGestationalAgeCoefficient();
+    const exp = del + ancs + sex + wt + pma + gestation + -4.697194 + 1.002102;
+
+    console.log(exp);
 
     return Math.exp(exp) / (1 + Math.exp(exp));
+  }
+
+  private static booleanTextToBoolOrNull(value: string) {
+    if (value === null || value === '') {
+      return null;
+    }
+
+    return (value === 'true');
   }
 
   ngOnInit(): void {
     const params = this.route.snapshot.queryParamMap;
 
-    this._deliveryVaginal = this.booleanTextToBoolOrNull(params.get('vag'));
-    this._presentationVertex = this.booleanTextToBoolOrNull(params.get('vertex'));
-    this._corticosteroids = this.booleanTextToBoolOrNull(params.get('acs'));
-    this._sexMale = this.booleanTextToBoolOrNull(params.get('male'));
+    this._deliveryVaginal = InfantSurvivalComponent.booleanTextToBoolOrNull(params.get('vag'));
+    this._presentationVertex = InfantSurvivalComponent.booleanTextToBoolOrNull(params.get('vertex'));
+    this._corticosteroids = InfantSurvivalComponent.booleanTextToBoolOrNull(params.get('acs'));
+    this._sexMale = InfantSurvivalComponent.booleanTextToBoolOrNull(params.get('male'));
     this._weight = +params.get('bw');
-    this._gestation = this.booleanTextToBoolOrNull(params.get('single'));
+    this._gestation = InfantSurvivalComponent.booleanTextToBoolOrNull(params.get('single'));
     this._pma = +params.get('pma');
 
     this.url = this.hostname + this.router.url;
@@ -152,7 +162,7 @@ export class InfantSurvivalComponent implements OnInit {
       .addBooleanTerm(
         this._presentationVertex,
         'vertex presentation',
-        'breech presentation'
+        'non-vertex presentation'
       )
       .addBooleanTerm(
         this._gestation,
@@ -183,19 +193,30 @@ export class InfantSurvivalComponent implements OnInit {
     return rb.getRiskFactorWording();
   }
 
-  private getDeliveryCoefficient() {
-    if (this._deliveryVaginal) {
-      return (this._presentationVertex ? 0.4646692 : 0);
-    } else {
-      return (this._presentationVertex ? 0.8656311 : 0.6937033);
-    }
-  }
-
-  private booleanTextToBoolOrNull(value: string) {
-    if (value === null || value === '') {
+  private getGestationalAgeCoefficient(): number | null {
+    if (this._pma < 22) {
       return null;
     }
+    if (this._pma < 23) {
+      return 0;
+    }
+    if (this._pma < 24) {
+      return 0.4470942;
+    }
+    if (this._pma < 25) {
+      return 0.8775264;
+    }
+    if (this._pma < 26) {
+      return 1.17346;
+    }
+    return null;
+  }
 
-    return (value === 'true');
+  private getDeliveryCoefficient() {
+    if (this._deliveryVaginal) {
+      return (this._presentationVertex ? 0.4330756 : 0);
+    } else {
+      return (this._presentationVertex ? 0.8146964 : 0.6311796);
+    }
   }
 }
