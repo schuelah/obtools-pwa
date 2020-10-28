@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RiskBuilder} from '../tools/risk-builder';
-import {Location} from '@angular/common';
 import {infantSurvivalCitations} from './infant-survival.citations';
 import {Citation} from '../reference/article-citation.component';
 
@@ -15,7 +14,7 @@ export class InfantSurvivalComponent implements OnInit {
   hostname = 'https://ob.tools';
   citations = infantSurvivalCitations as Array<Citation>;
 
-  constructor(private route: ActivatedRoute, private router: Router, private location: Location) {
+  constructor(private route: ActivatedRoute, private router: Router) {
   }
 
   private _deliveryVaginal: boolean | null;
