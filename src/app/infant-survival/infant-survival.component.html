@@ -69,12 +69,14 @@
         <span fxFlex></span>
         <mat-form-field floatLabel="never">
           <mat-label>GA (pma)</mat-label>
-          <input matInput [(ngModel)]="pma" type="number">
+          <input id="pmaInput" name="pmaInput" matInput #pmaInput="ngModel" [(ngModel)]="myname" type="number" min="22" max="25">
           <span matSuffix>wks</span>
         </mat-form-field>
       </mat-list-item>
+      <div *ngIf="pmaInput.invalid && (pmaInput.dirty || pmaInput.touched)" class="mat-warn"><p>Gestational age must be 22-25 weeks</p></div>
     </mat-list>
   </div>
+
   <div class="calculator-area" fxFlex.gt-md="50">
     <h3>Clinical Note Template:</h3>
 
@@ -85,10 +87,6 @@
       </ng-container>
 
       <p *ngIf="!errorCheck()">All fields must have a selection for calculation</p>
-
-<!--      <p class="reference">Reference:-->
-<!--        <app-article-citation [ref]="citations[0]"></app-article-citation>-->
-<!--      </p>-->
       <p class="note-link">Calculator at <a href="{{url}}">{{url}}</a></p>
     </app-mock-text-area>
     <div>
