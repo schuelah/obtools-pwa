@@ -13,7 +13,7 @@
       <div class="calculator-row">
         <h4>Delivery Route:</h4>
         <span fxFlex></span>
-        <mat-button-toggle-group formControlName="vag" appearance="legacy" name="delivery route" class="mat-primary"
+        <mat-button-toggle-group formControlName="vag" name="delivery route" class="mat-primary"
                                  aria-label="Delivery Route">
           <mat-button-toggle [value]="true">Vaginal</mat-button-toggle>
           <mat-button-toggle [value]="false">Cesarean</mat-button-toggle>
@@ -22,7 +22,7 @@
       <div class="calculator-row">
         <h4>Presentation:</h4>
         <span fxFlex></span>
-        <mat-button-toggle-group formControlName="vertex" appearance="legacy" name="presentation" class="mat-primary"
+        <mat-button-toggle-group formControlName="vertex" name="presentation" class="mat-primary"
                                  aria-label="Delivery Route">
           <mat-button-toggle [value]="true">Vertex</mat-button-toggle>
           <mat-button-toggle [value]="false">Non-Vertex</mat-button-toggle>
@@ -31,29 +31,30 @@
       <div class="calculator-row">
         <h4>Gestation:</h4>
         <span fxFlex></span>
-        <mat-button-toggle-group formControlName="singleton" appearance="legacy" name="gestation" class="mat-primary"
+        <mat-button-toggle-group formControlName="singleton" name="gestation" class="mat-primary"
                                  aria-label="Gestation">
           <mat-button-toggle [value]="true">Singleton</mat-button-toggle>
           <mat-button-toggle [value]="false">Multiple</mat-button-toggle>
         </mat-button-toggle-group>
       </div>
       <div class="calculator-row">
-        <h4>Received Antenatal Corticosteroids:</h4>
-        <span fxFlex></span>
-        <mat-button-toggle-group formControlName="acs" appearance="legacy" name="cdhLaterality" class="mat-primary"
-                                 aria-label="Antenatal Corticosteroids">
-          <mat-button-toggle [value]="true">Yes</mat-button-toggle>
-          <mat-button-toggle [value]="false">No</mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
-      <div class="calculator-row">
         <h4>Sex:</h4>
         <span fxFlex></span>
-        <mat-button-toggle-group formControlName="male" appearance="legacy" name="sex" class="mat-primary"
+        <mat-button-toggle-group formControlName="male" name="sex" class="mat-primary"
                                  aria-label="Sex">
           <mat-button-toggle [value]="true">Male</mat-button-toggle>
           <mat-button-toggle [value]="false">Female</mat-button-toggle>
         </mat-button-toggle-group>
+      </div>
+      <div class="calculator-row">
+        <h4>Received Antenatal Corticosteroids:</h4>
+        <span fxFlex></span>
+        <mat-slide-toggle formControlName="acs"></mat-slide-toggle>
+<!--        <mat-button-toggle-group formControlName="acs" name="cdhLaterality" class="mat-primary"-->
+<!--                                 aria-label="Antenatal Corticosteroids">-->
+<!--          <mat-button-toggle [value]="true">Yes</mat-button-toggle>-->
+<!--          <mat-button-toggle [value]="false">No</mat-button-toggle>-->
+<!--        </mat-button-toggle-group>-->
       </div>
       <div class="calculator-row">
         <h4>Weight:</h4>

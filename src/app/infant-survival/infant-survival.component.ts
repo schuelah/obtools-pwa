@@ -67,6 +67,8 @@ export class InfantSurvivalComponent implements OnInit {
   ngOnInit(): void {
     const params = this.route.snapshot.queryParamMap;
 
+    this.survival.next(null);
+
     this.observeForFormChanges();
 
     this.infantSurvivalForm.patchValue({
@@ -87,6 +89,9 @@ export class InfantSurvivalComponent implements OnInit {
       if (this.infantSurvivalForm.valid) {
         this.survival.next(this.getSurvival(value));
         this.riskFactorWording.next(this.getRiskFactorsWording(value));
+      } else {
+        this.survival.next(null);
+        this.riskFactorWording.next('Incomplete Data');
       }
 
       this.updateUrl(value);

@@ -1,6 +1,6 @@
 <div fxLayout="row" class="calculator-result-row">
   <div fxFlex></div>
   <h3>{{label}}:</h3>
-  <div class="calculator-result">{{valueText}}</div>
+  <div class="calculator-result">{{valueText || '...'}}</div>
 </div>
 <mat-progress-bar *ngIf="showProgressBar && (!isNaN(value))" mode="determinate" [value]="value * 100"></mat-progress-bar>

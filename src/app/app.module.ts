@@ -35,6 +35,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { InfantSurvivalComponent } from './infant-survival/infant-survival.component';
 import { PreviewComponent } from './preview/preview.component';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,7 @@ import { PreviewComponent } from './preview/preview.component';
     ObesityIolCalcModule,
     IolCalcModule,
 
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
@@ -83,6 +85,8 @@ import { PreviewComponent } from './preview/preview.component';
     AngularFireAuthModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    MatSliderModule,
+    MatSlideToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
