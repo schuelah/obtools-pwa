@@ -25,6 +25,10 @@ app-root {
   min-height: 100%;
 }
 
+a {
+  color: mat-color($primary);
+}
+
 /*html {*/
 /*  height: 100%;*/
 /*  box-sizing: border-box;*/

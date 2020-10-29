@@ -2,8 +2,8 @@
 @import '~src/uc.theme';
 
 .footer {
-  background-color: mat-color($accent);
-  color: mat-color($accent, default-contrast);
+  background-color: mat-color($mat-gray, 800);
+  color: white;
   box-sizing: border-box;
   padding: 16px;
 }
