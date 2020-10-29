@@ -35,3 +35,35 @@ export class CalcTools {
     return 'checked';
   }
 }
+
+export function asBoolOrNull(value: string) {
+  if (value === null || value === '') {
+    return null;
+  }
+
+  return (value === 'true');
+}
+
+export function filterNull<T>(o: T): Partial<T> {
+  const result: Partial<T> = {};
+
+  Object.keys(o).forEach(key => {
+    if (o[key] !== null) {
+      result[key] = o[key];
+    }
+  });
+
+  return result;
+}
+
+export function filterZero<T>(o: T): Partial<T> {
+  const result: Partial<T> = {};
+
+  Object.keys(o).forEach(key => {
+    if (o[key] !== 0) {
+      result[key] = o[key];
+    }
+  });
+
+  return result;
+}

@@ -78,7 +78,7 @@ export class ObesityIolCalcComponent implements OnInit {
 
     rb.addDeclarativeTerm(this.age, 'unknown age', 'age ' + this.age);
     rb.addDeclarativeTerm(this.inches, 'unknown height', 'height ' + this.inches + ' inches');
-    rb.addDeclarativeTerm(this.lbs, 'unknown weight', 'weight ' + this.lbs + ' pounds');
+    rb.addDeclarativeTerm(this.lbs, 'unknown bw', 'bw ' + this.lbs + ' pounds');
     rb.addSimpleTerm(this.cHTN, 'unknown chronic hypertension status', 'chronic hypertension');
     rb.addSimpleTerm(this.pregestationalDiabetes, 'unknown age', 'age &ge;35');
     rb.addSimpleTerm(this.medicaid, 'unknown insurance', 'medicaid insurance');

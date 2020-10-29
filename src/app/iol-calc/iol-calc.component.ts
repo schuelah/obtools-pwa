@@ -111,9 +111,9 @@ export class IolCalcComponent implements OnInit {
     const rb = new RiskBuilder();
 
     rb.addDeclarativeTerm(this.age, 'unknown age', 'age ' + this.age);
-    rb.addDeclarativeTerm(this.pma, 'unknown gestation', this.pma + ' completed weeks of gestation');
+    rb.addDeclarativeTerm(this.pma, 'unknown singleton', this.pma + ' completed weeks of singleton');
     rb.addDeclarativeTerm(this.inches, 'unknown height', 'height ' + this.inches + ' inches');
-    rb.addDeclarativeTerm(this.pounds, 'unknown weight', 'weight ' + this.pounds + ' pounds');
+    rb.addDeclarativeTerm(this.pounds, 'unknown bw', 'bw ' + this.pounds + ' pounds');
     // ToDo: Add race term
 
     rb.addSimpleTerm(

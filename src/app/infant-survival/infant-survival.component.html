@@ -1,99 +1,105 @@
 <div class="calculator-header">
   <h1>Extremely Premature Infant Survival Calculator</h1>
   <h3>For infants who received postnatal resuscitation</h3>
-  <app-calculator-result-row [value]="survival" label="Survival" [valueText]="survival | percent : '0.0'"
+  <app-calculator-result-row [value]="(survival | async)" label="Survival"
+                             [valueText]="(survival | async) | percent : '0.0'"
                              [showProgressBar]="false"></app-calculator-result-row>
 </div>
 
 <div fxLayout="column" fxLayout.gt-md="row">
-  <div fxFlex.gt-md="50" class="calculator-area">
+  <form [formGroup]="infantSurvivalForm" fxFlex.gt-md="50" class="calculator-area" fxLayout="column">
     <h3>Clinical Parameters:</h3>
-    <mat-list>
-      <mat-list-item>
+    <div fxLayout="column" fxFlex>
+      <div class="calculator-row">
         <h4>Delivery Route:</h4>
         <span fxFlex></span>
-        <mat-button-toggle-group [(ngModel)]="deliveryVaginal" appearance="legacy" name="delivery route" class="mat-primary"
+        <mat-button-toggle-group formControlName="vag" appearance="legacy" name="delivery route" class="mat-primary"
                                  aria-label="Delivery Route">
           <mat-button-toggle [value]="true">Vaginal</mat-button-toggle>
           <mat-button-toggle [value]="false">Cesarean</mat-button-toggle>
         </mat-button-toggle-group>
-      </mat-list-item>
-      <mat-list-item>
+      </div>
+      <div class="calculator-row">
         <h4>Presentation:</h4>
         <span fxFlex></span>
-        <mat-button-toggle-group [(ngModel)]="presentationVertex" appearance="legacy" name="presentation" class="mat-primary"
+        <mat-button-toggle-group formControlName="vertex" appearance="legacy" name="presentation" class="mat-primary"
                                  aria-label="Delivery Route">
           <mat-button-toggle [value]="true">Vertex</mat-button-toggle>
           <mat-button-toggle [value]="false">Non-Vertex</mat-button-toggle>
         </mat-button-toggle-group>
-      </mat-list-item>
-      <mat-list-item>
+      </div>
+      <div class="calculator-row">
         <h4>Gestation:</h4>
         <span fxFlex></span>
-        <mat-button-toggle-group [(ngModel)]="gestation" appearance="legacy" name="gestation" class="mat-primary"
+        <mat-button-toggle-group formControlName="singleton" appearance="legacy" name="gestation" class="mat-primary"
                                  aria-label="Gestation">
           <mat-button-toggle [value]="true">Singleton</mat-button-toggle>
           <mat-button-toggle [value]="false">Multiple</mat-button-toggle>
         </mat-button-toggle-group>
-      </mat-list-item>
-      <mat-list-item>
+      </div>
+      <div class="calculator-row">
         <h4>Received Antenatal Corticosteroids:</h4>
         <span fxFlex></span>
-        <mat-button-toggle-group [(ngModel)]="corticosteroids" appearance="legacy" name="cdhLaterality" class="mat-primary"
+        <mat-button-toggle-group formControlName="acs" appearance="legacy" name="cdhLaterality" class="mat-primary"
                                  aria-label="Antenatal Corticosteroids">
           <mat-button-toggle [value]="true">Yes</mat-button-toggle>
           <mat-button-toggle [value]="false">No</mat-button-toggle>
         </mat-button-toggle-group>
-      </mat-list-item>
-      <mat-list-item>
+      </div>
+      <div class="calculator-row">
         <h4>Sex:</h4>
         <span fxFlex></span>
-        <mat-button-toggle-group [(ngModel)]="sexMale" appearance="legacy" name="sex" class="mat-primary"
+        <mat-button-toggle-group formControlName="male" appearance="legacy" name="sex" class="mat-primary"
                                  aria-label="Sex">
           <mat-button-toggle [value]="true">Male</mat-button-toggle>
           <mat-button-toggle [value]="false">Female</mat-button-toggle>
         </mat-button-toggle-group>
-      </mat-list-item>
-      <mat-list-item>
+      </div>
+      <div class="calculator-row">
         <h4>Weight:</h4>
         <span fxFlex></span>
         <mat-form-field floatLabel="never">
           <mat-label>Weight (g)</mat-label>
-          <input matInput id="wt_input" [(ngModel)]="weight" type="number" min="400" max="1050">
+          <input matInput formControlName="bw" type="number" min="400" max="1050">
           <span matSuffix>g</span>
+          <mat-error *ngIf="infantSurvivalForm.controls.bw.errors
+                  && (infantSurvivalForm.controls.bw.dirty || infantSurvivalForm.controls.bw.touched)"><p>Weight must be 400 to 1050 grams</p></mat-error>
         </mat-form-field>
-      </mat-list-item>
-
-      <mat-list-item>
+      </div>
+      <div class="calculator-row">
         <h4>Gestational Age:</h4>
         <span fxFlex></span>
         <mat-form-field floatLabel="never">
           <mat-label>GA (pma)</mat-label>
-          <input id="pmaInput" name="pmaInput" matInput #pmaInput="ngModel" [(ngModel)]="pma" type="number" min="22" max="25">
+          <input matInput formControlName="pma" type="number" min="22" max="26.99999">
           <span matSuffix>wks</span>
+          <mat-error *ngIf="infantSurvivalForm.controls.pma.errors
+              && (infantSurvivalForm.controls.pma.dirty || infantSurvivalForm.controls.pma.touched)"><p>Gestational age must be 22-25 weeks</p></mat-error>
         </mat-form-field>
-      </mat-list-item>
-      <div *ngIf="pmaInput.invalid && (pmaInput.dirty || pmaInput.touched)" class="mat-warn"><p>Gestational age must be 22-25 weeks</p></div>
-    </mat-list>
-  </div>
+      </div>
+    </div>
+  </form>
 
   <div class="calculator-area" fxFlex.gt-md="50">
     <h3>Clinical Note Template:</h3>
 
     <app-mock-text-area>
-      <ng-container *ngIf="errorCheck()">
-        <p>Based on <span [innerHTML]="getRiskFactorsWording()"></span>: <strong>The predicted probability of survival
-          for a newborn based on these prognostic indicators is {{survival | percent : '1.0'}}.</strong>
+      <ng-container *ngIf="infantSurvivalForm.valid else invalid">
+        <p>Based on <span [innerHTML]="riskFactorWording | async"></span>: <strong>The predicted probability of survival
+          for a newborn based on these prognostic indicators is {{(survival | async)| percent : '1.0'}}.</strong>
       </ng-container>
 
-      <p *ngIf="!errorCheck()">All fields must have a selection for calculation</p>
+      <ng-template #invalid>
+        <p>All fields must have a valid selection for calculation</p>
+      </ng-template>
       <p class="note-link">Calculator at <a href="{{url}}">{{url}}</a></p>
     </app-mock-text-area>
     <div>
-      <p>Predictions are based on a multivariate logistic regression model from a population-based cohort of infants delivered in the United States from 2009-2013. Predicted outcomes are reflective of overall survival and not intact survival.</p>
+      <p>Predictions are based on a multivariate logistic regression model from a population-based cohort of infants
+        delivered in the United States from 2009-2013. Predicted outcomes are reflective of overall survival and not
+        intact survival.</p>
     </div>
   </div>
 </div>
-
 
 
