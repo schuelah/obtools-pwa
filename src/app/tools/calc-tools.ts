@@ -1,4 +1,4 @@
-import {MatPseudoCheckboxState} from '@angular/material';
+import { MatPseudoCheckboxState } from '@angular/material/core';
 
 export class CalcTools {
   static calcTerm(coefficient: number, variable: number, defaultValue: number): number {

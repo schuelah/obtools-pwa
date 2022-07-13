@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CalculatorComponent } from './calculator.component';
-import {MatProgressBarModule, MatToolbarModule} from '@angular/material';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import {FlexModule} from '@angular/flex-layout';
 
 @NgModule({
