@@ -4,7 +4,7 @@ import {Citation} from '../reference/article-citation.component';
 import {RiskBuilder} from '../tools/risk-builder';
 import {CalcTools} from '../tools/calc-tools';
 import {DecimalPipe, PercentPipe} from '@angular/common';
-import {FormControl, Validators} from '@angular/forms';
+import {UntypedFormControl, Validators} from '@angular/forms';
 
 export enum RACE {
   UNKNOWN = -1,
@@ -29,7 +29,7 @@ export class MaternalIcuCalcComponent implements OnInit {
   gestationalHTN = -1;
   pma: number;
 
-  pmaFormControl = new FormControl('', [
+  pmaFormControl = new UntypedFormControl('', [
     Validators.min(20),
     Validators.max(44)
   ]);

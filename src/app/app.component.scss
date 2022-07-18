@@ -1,9 +1,10 @@
-@import '~@angular/material/theming';
+@use '@angular/material' as mat;
+@import '@angular/material/theming';
 @import '~src/uc.theme';
 
 .footer {
-  background-color: mat-color($uc-theme-accent);
-  color: mat-color($uc-theme-accent, default-contrast);
+  background-color: mat.get-color-from-palette($uc-theme-accent);
+  color: mat.get-color-from-palette($uc-theme-accent, default-contrast);
   box-sizing: border-box;
   padding: 16px;
 }
@@ -50,7 +51,7 @@ img.logo {
 
 .footer a {
   text-decoration: none;
-  color: mat-color($uc-theme-accent, default-contrast);
+  color: mat.get-color-from-palette($uc-theme-accent, default-contrast);
 }
 
 .footer a:hover {
