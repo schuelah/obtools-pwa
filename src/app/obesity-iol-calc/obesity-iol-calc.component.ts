@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {CalcTools} from '../tools/calc-tools';
-import {RiskBuilder} from '../tools/risk-builder';
-import {CITATIONS} from './citations';
-import {Citation} from '../reference/article-citation.component';
-import {DecimalPipe, PercentPipe} from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { CalcTools } from '../tools/calc-tools';
+import { RiskBuilder } from '../tools/risk-builder';
+import { CITATIONS } from './citations';
+import { Citation } from '../reference/article-citation.component';
+import { DecimalPipe, PercentPipe } from '@angular/common';
 
 @Component({
   selector: 'app-obesity-iol-calc',
@@ -40,7 +40,7 @@ export class ObesityIolCalcComponent implements OnInit {
     if (this.errorCheck()) {
       return this.percentPipe.transform(this.calculateRisk(), '1.0-2');
     } else {
-      return 'incomplete data';
+      return '';
     }
   }
 

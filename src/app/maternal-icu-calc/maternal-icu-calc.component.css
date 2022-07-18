@@ -3,7 +3,7 @@
 /*}*/
 
 .calculator-area {
-  /*padding: 15px;*/
+  padding: 15px;
 }
 
 .calculator-section-left {
@@ -18,7 +18,8 @@
   padding: 20px;
 }
 
-.clickable:hover, .clickable:focus {
+.clickable:hover,
+.clickable:focus {
   background: rgba(0, 0, 0, 0.04);
 }
 
@@ -27,7 +28,9 @@
   outline: inherit;
 }
 
-.reference, .limitations, .note-link {
+.reference,
+.limitations,
+.note-link {
   font-size: small;
 }
 

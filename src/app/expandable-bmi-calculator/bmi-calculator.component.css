@@ -1,9 +1,9 @@
 expandable {
-  /*padding: 0 !important;*/
-  /*margin: 0 !important;*/
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-expandable > expandable-content > div {
+expandable>expandable-content>div {
   opacity: 0;
   -webkit-transform: translate3d(0, 30px, 0);
   transform: translate3d(0, 30px, 0);
@@ -11,7 +11,7 @@ expandable > expandable-content > div {
   transition: all 0.25s;
 }
 
-expandable.expanded > expandable-content > div {
+expandable.expanded>expandable-content>div {
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
